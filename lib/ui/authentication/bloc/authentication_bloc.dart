@@ -8,7 +8,7 @@ import 'package:copihass/config.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
-
+import '../../../utils/utils.dart';
 import '../../../models/user.dart';
 import '../../account/Home.dart';
 import '../loginPage.dart';
@@ -28,7 +28,11 @@ class AuthenticationBloc
       if (event is LoginEvent) {
         initSharedPref();
         var user = [];
-        var reqBody = {"email": event.email, "password": event.password};
+        var reqBody = {
+          "email": event.email,
+          "password": event.password,
+          "role": event.role,
+        };
 
         var response = await http.post(Uri.parse(login),
             headers: {"Content-Type": "application/json"},
@@ -40,15 +44,16 @@ class AuthenticationBloc
           var myToken = jsonResponse['token'];
           user = jsonResponse['user'];
           prefs.setString('token', myToken);
-          prefs.setInt("id", user[0]);
-          usermodel.firstname = user[1];
-          usermodel.lastname = user[2];
-          usermodel.email = user[3];
-          usermodel.birthdate = user[5];
+          prefs.setString("id", user[0]);
+          usermodel.nom_prenom = user[1];
+          usermodel.nom = user[2];
+          usermodel.prenom = user[3];
+          usermodel.email = user[4];
+          usermodel.date_de_naissance = user[5];
           usermodel.image = "";
-          usermodel.firstname = user[1];
+          usermodel.tel = user[1];
           prefs.setString("lastname", user[2]);
-          prefs.setString("email", user[3]);
+          prefs.setString("email", user[6]);
           prefs.setString("birthdate", user[5]);
           prefs.setString("image", "");
           emit(LoginSuccesState(usermodel));
@@ -60,7 +65,8 @@ class AuthenticationBloc
         initSharedPref();
         var emailController;
         var passwordController;
-        var regBody = {"email": event.email, "password": event.password};
+        
+        var regBody = {"email": event.email, "password": event.password,"role":event.role};
 
         var response = await http.patch(Uri.parse(registration),
             headers: {"Content-Type": "application/json"},
@@ -71,13 +77,15 @@ class AuthenticationBloc
         if (response.statusCode == 200) {
           var myToken = jsonResponse['token'];
           prefs.setString('token', myToken);
+           prefs.setString("id", user[0]);
           user = jsonResponse['user'];
           usermodel.id = user[0];
-          usermodel.firstname = user[1];
-          usermodel.lastname = user[2];
-          usermodel.email = user[3];
-          usermodel.birthdate = user[5];
-          usermodel.image = user[9];
+          usermodel.nom_prenom = user[1];
+          usermodel.nom = user[2];
+          usermodel.email = user[4];
+          usermodel.prenom = user[3];
+          usermodel.date_de_naissance = user[5];
+          usermodel.tel = user[7];
 
           // Navigator.push( context, MaterialPageRoute(builder: (context) => Home()));
           emit(RegistreSuccesState(usermodel));

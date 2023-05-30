@@ -1,24 +1,24 @@
 import 'dart:ffi';
 
 class User {
-  int? id;
-  String? firstname;
-  String? lastname;
+  String? id;
+  String? nom_prenom;
+  String? nom;
+  String? prenom;
   String? email;
-  String? phone;
-  String? birthdate;
-  String? title;
-  String? departement;
+  String? date_de_naissance;
   String? image;
+  String? tel;
+  
   User({
     this.id,
-    this.firstname,
-    this.lastname,
+    this.nom_prenom,
+    this.nom,
+    this.prenom,
     this.email,
-    this.phone,
-    this.birthdate,
-    this.title,
-    this.departement,
+    this.date_de_naissance,
+    
+    this.tel,
     this.image,
   });
 }

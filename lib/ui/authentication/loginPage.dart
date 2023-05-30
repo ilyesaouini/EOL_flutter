@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:copihass/ui/account/Home.dart';
 
 import 'package:copihass/ui/authentication/bloc/authentication_bloc.dart';
@@ -20,6 +21,7 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  String? role;
   bool _isNotValidate = false;
   late SharedPreferences prefs;
 
@@ -36,9 +38,8 @@ class _SignInPageState extends State<SignInPage> {
 
   void loginUser() {
     if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-      context
-          .read<AuthenticationBloc>()
-          .add(LoginEvent(emailController.text, passwordController.text));
+      context.read<AuthenticationBloc>().add(
+          LoginEvent(emailController.text, passwordController.text,role));
     }
   }
 
@@ -47,8 +48,8 @@ class _SignInPageState extends State<SignInPage> {
     return BlocConsumer<AuthenticationBloc, AuthenticationState>(
       listener: (context, state) {
         if (state is LoginSuccesState) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Home(state.user)));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => Home(state.user)));
         }
       },
       builder: (context, state) {
@@ -102,6 +103,36 @@ class _SignInPageState extends State<SignInPage> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10.0)))),
                       ).p4().px24(),
+                      RadioListTile(
+                        title: Text("student"),
+                        value: "student",
+                        groupValue: role,
+                        onChanged: (value) {
+                          setState(() {
+                            role = value.toString();
+                          });
+                        },
+                      ),
+                      RadioListTile(
+                        title: Text("instructor"),
+                        value: "instructor",
+                        groupValue: role,
+                        onChanged: (value) {
+                          setState(() {
+                            role = value.toString();
+                          });
+                        },
+                      ),
+                      RadioListTile(
+                        title: Text("admin"),
+                        value: "admin",
+                        groupValue: role,
+                        onChanged: (value) {
+                          setState(() {
+                            role = value.toString();
+                          });
+                        },
+                      ),
                       GestureDetector(
                         onTap: () {
                           loginUser();

@@ -20,13 +20,14 @@ class Registration extends StatefulWidget {
 class _RegistrationState extends State<Registration> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  String? role;
+
   bool _isNotValidate = false;
 
   void registerUser() async {
     if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-      context
-          .read<AuthenticationBloc>()
-          .add(RegistreEvent(emailController.text, passwordController.text));
+      context.read<AuthenticationBloc>().add(
+          RegistreEvent(emailController.text, passwordController.text, role));
     } else {
       setState(() {
         _isNotValidate = true;
@@ -112,6 +113,36 @@ class _RegistrationState extends State<Registration> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10.0)))),
                       ).p4().px24(),
+                      RadioListTile(
+                        title: Text("student"),
+                        value: "student",
+                        groupValue: role,
+                        onChanged: (value) {
+                          setState(() {
+                            role = value.toString();
+                          });
+                        },
+                      ),
+                      RadioListTile(
+                        title: Text("instructor"),
+                        value: "instructor",
+                        groupValue: role,
+                        onChanged: (value) {
+                          setState(() {
+                            role = value.toString();
+                          });
+                        },
+                      ),
+                      RadioListTile(
+                        title: Text("admin"),
+                        value: "admin",
+                        groupValue: role,
+                        onChanged: (value) {
+                          setState(() {
+                            role = value.toString();
+                          });
+                        },
+                      ),
                       HStack([
                         GestureDetector(
                           onTap: () => {registerUser()},

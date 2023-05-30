@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:http/http.dart' as http;
 import 'package:copihass/config.dart';
 import 'package:copihass/ui/account/components/profile_pic.dart';
@@ -17,6 +19,26 @@ import '../../models/user.dart';
 import '../authentication/bloc/authentication_bloc.dart';
 import 'bloc/account_bloc.dart';
 import 'components/profile_menu.dart';
+
+final items = const [
+  Icon(
+    Icons.home,
+    size: 30,
+  ),
+  Icon(
+    Icons.timelapse,
+    size: 30,
+  ),
+  Icon(
+    Icons.view_quilt_rounded,
+    size: 30,
+  ),
+  Icon(
+    Icons.person,
+    size: 30,
+  ),
+];
+int index = 1;
 
 class Home extends StatefulWidget {
   final User user;
@@ -62,11 +84,21 @@ class _HomeState extends State<Home> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 236, 26, 26),
-          title: Text(
-            "Profile",
-          ),
-        ),
+            backgroundColor: Color.fromARGB(255, 236, 26, 26),
+            title: Text(
+              "ESPRIT",
+            ),
+            actions: <Widget>[
+              IconButton(
+                  onPressed: () {
+                    prefs.remove("token");
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: ((context) => SignInPage())),
+                        (route) => false);
+                  },
+                  icon: Icon(Icons.logout_outlined))
+            ]),
         body: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
@@ -122,79 +154,43 @@ class _HomeState extends State<Home> {
                 ),
                 SizedBox(height: 20),
                 ProfileMenu(
-                  text: widget.user.firstname ?? "N/A",
-                  icon: "assets/profile_image.png",
+                  text: widget.user.nom_prenom ?? "N/A",
+                  icon: "assets/icons/User Icon.svg",
                   press: () => {},
                 ),
                 ProfileMenu(
-                  text: widget.user.lastname ?? "N/A",
+                  text: widget.user.nom ?? "N/A",
                   icon: "assets/icons/Bell.svg",
                   press: () {},
                 ),
                 ProfileMenu(
-                  text: widget.user.email ?? "N/A",
+                  text: widget.user.prenom ?? "N/A",
                   icon: "assets/icons/Settings.svg",
                   press: () {},
                 ),
                 ProfileMenu(
-                  text: widget.user.birthdate ?? "N/A",
+                  text: widget.user.email ?? "N/A",
                   icon: "assets/icons/Question mark.svg",
                   press: () {},
                 ),
-                Container(
-                  color: Color.fromARGB(255, 236, 26, 26),
-                  child: Center(
-                    child: FloatingActionButton(
-                      elevation: 4,
-                      onPressed: () {
-                        prefs.remove("token");
-                        Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                                builder: ((context) => SignInPage())),
-                            (route) => false);
-                      },
-                      child: Text(
-                        'Logout',
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                )
               ],
             ),
           ),
         ),
-
-        //Body() ,
+        bottomNavigationBar: CurvedNavigationBar(
+          items: items,
+          index: index,
+          onTap: (selectedIndex) {
+            setState(() {
+              index = selectedIndex;
+            });
+          },
+          height: 70,
+          color: Colors.grey.shade600,
+          backgroundColor: Colors.black,
+          animationDuration: const Duration(milliseconds: 300),
+        ),
       ),
     );
   }
 }
-
-
-
-/**
-Container(
-      color: Colors.blue,
-      child: Center(
-        child: FloatingActionButton(
-          elevation: 4,
-          backgroundColor: Colors.red,
-          onPressed: () {
-            prefs.remove("token");
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: ((context) => SignInPage())),
-                (route) => false);
-          },
-          child: Text(
-            'Logout',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        ),
-      ),
-    );
-
-     */

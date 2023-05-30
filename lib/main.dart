@@ -17,10 +17,10 @@ void main() async {
   runApp(MyApp(
       token: prefs.getString('token'),
       user: User(
-        id: prefs.getInt('id'),
-        firstname: prefs.getString('firstname'),
-        lastname: prefs.getString('lastname'),
-        birthdate: prefs.getString('birthdate'),
+        id: prefs.getString('id'),
+        nom_prenom: prefs.getString('nom_prenom'),
+        nom: prefs.getString('nom'),
+        prenom: prefs.getString('prenom'),
         email: prefs.getString('email'),
         image: prefs.getString('image'),
       )));
