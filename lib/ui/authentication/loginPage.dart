@@ -39,7 +39,7 @@ class _SignInPageState extends State<SignInPage> {
   void loginUser() {
     if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
       context.read<AuthenticationBloc>().add(
-          LoginEvent(emailController.text, passwordController.text,role));
+          LoginEvent(emailController.text, passwordController.text));
     }
   }
 
@@ -103,36 +103,7 @@ class _SignInPageState extends State<SignInPage> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10.0)))),
                       ).p4().px24(),
-                      RadioListTile(
-                        title: Text("student"),
-                        value: "student",
-                        groupValue: role,
-                        onChanged: (value) {
-                          setState(() {
-                            role = value.toString();
-                          });
-                        },
-                      ),
-                      RadioListTile(
-                        title: Text("instructor"),
-                        value: "instructor",
-                        groupValue: role,
-                        onChanged: (value) {
-                          setState(() {
-                            role = value.toString();
-                          });
-                        },
-                      ),
-                      RadioListTile(
-                        title: Text("admin"),
-                        value: "admin",
-                        groupValue: role,
-                        onChanged: (value) {
-                          setState(() {
-                            role = value.toString();
-                          });
-                        },
-                      ),
+                      
                       GestureDetector(
                         onTap: () {
                           loginUser();

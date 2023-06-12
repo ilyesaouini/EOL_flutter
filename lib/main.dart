@@ -1,3 +1,4 @@
+import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
 import 'package:copihass/ui/account/Home.dart';
 import 'package:copihass/ui/account/bloc/account_bloc.dart';
 
@@ -40,9 +41,10 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<AuthenticationBloc>(create: (_) => AuthenticationBloc()),
         BlocProvider<AccountBloc>(create: (_) => AccountBloc()),
+        BlocProvider<AbsenceBloc>(create: (_) => AbsenceBloc()),
       ],
       child: MaterialApp(
-          title: 'Flutter Demo',
+          title: 'ESPRIT',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             primaryColor: Colors.black,

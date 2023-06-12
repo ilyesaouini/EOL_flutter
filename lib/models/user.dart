@@ -1,4 +1,4 @@
-import 'dart:ffi';
+
 
 class User {
   String? id;
@@ -17,7 +17,6 @@ class User {
     this.prenom,
     this.email,
     this.date_de_naissance,
-    
     this.tel,
     this.image,
   });

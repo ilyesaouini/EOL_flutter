@@ -6,8 +6,8 @@ abstract class AuthenticationEvent {}
 class LoginEvent extends AuthenticationEvent {
   final email;
   final password;
-  final role;
-  LoginEvent(this.email, this.password, this.role);
+  
+  LoginEvent(this.email, this.password);
 }
 
 class RegistreEvent extends AuthenticationEvent {

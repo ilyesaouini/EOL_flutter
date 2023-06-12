@@ -1,44 +1,22 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:copihass/ui/account/NavBar.dart';
+import 'package:copihass/ui/emploi/emploi.dart';
+import 'package:copihass/ui/reclamation/reclamation.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:http/http.dart' as http;
-import 'package:copihass/config.dart';
-import 'package:copihass/ui/account/components/profile_pic.dart';
 
 import 'package:copihass/ui/authentication/loginPage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/user.dart';
-import '../authentication/bloc/authentication_bloc.dart';
+
 import 'bloc/account_bloc.dart';
 import 'components/profile_menu.dart';
-
-final items = const [
-  Icon(
-    Icons.home,
-    size: 30,
-  ),
-  Icon(
-    Icons.timelapse,
-    size: 30,
-  ),
-  Icon(
-    Icons.view_quilt_rounded,
-    size: 30,
-  ),
-  Icon(
-    Icons.person,
-    size: 30,
-  ),
-];
-int index = 1;
 
 class Home extends StatefulWidget {
   final User user;
@@ -51,6 +29,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   File? file;
   late SharedPreferences prefs;
+
   void initSharedPref() async {
     prefs = await SharedPreferences.getInstance();
   }
@@ -83,6 +62,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        drawer: NavBar(),
         appBar: AppBar(
             backgroundColor: Color.fromARGB(255, 236, 26, 26),
             title: Text(
@@ -127,6 +107,10 @@ class _HomeState extends State<Home> {
                         child: file == null
                             ? Image.asset("assets/profile_image.png")
                             : Image.file(file!),
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(75)),
                       ),
                       Positioned(
                         right: -16,
@@ -141,11 +125,10 @@ class _HomeState extends State<Home> {
                                 borderRadius: BorderRadius.circular(50),
                                 side: const BorderSide(color: Colors.white),
                               ),
-                              backgroundColor: const Color(0xFFF5F6F9),
+                              backgroundColor: Color.fromARGB(255, 46, 46, 47),
                             ),
                             onPressed: pickercamera,
-                            child: SvgPicture.asset(
-                                "assets/icons/Camera Icon.svg"),
+                            child: Icon(Icons.add_a_photo),
                           ),
                         ),
                       )
@@ -155,7 +138,7 @@ class _HomeState extends State<Home> {
                 SizedBox(height: 20),
                 ProfileMenu(
                   text: widget.user.nom_prenom ?? "N/A",
-                  icon: "assets/icons/User Icon.svg",
+                  icon: "assets/icons/UserIcon.svg",
                   press: () => {},
                 ),
                 ProfileMenu(
@@ -176,19 +159,6 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
-        ),
-        bottomNavigationBar: CurvedNavigationBar(
-          items: items,
-          index: index,
-          onTap: (selectedIndex) {
-            setState(() {
-              index = selectedIndex;
-            });
-          },
-          height: 70,
-          color: Colors.grey.shade600,
-          backgroundColor: Colors.black,
-          animationDuration: const Duration(milliseconds: 300),
         ),
       ),
     );

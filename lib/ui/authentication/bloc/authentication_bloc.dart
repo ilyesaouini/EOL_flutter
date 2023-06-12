@@ -31,7 +31,6 @@ class AuthenticationBloc
         var reqBody = {
           "email": event.email,
           "password": event.password,
-          "role": event.role,
         };
 
         var response = await http.post(Uri.parse(login),
@@ -53,7 +52,7 @@ class AuthenticationBloc
           usermodel.image = "";
           usermodel.tel = user[1];
           prefs.setString("lastname", user[2]);
-          prefs.setString("email", user[6]);
+          prefs.setString("email", user[1]);
           prefs.setString("birthdate", user[5]);
           prefs.setString("image", "");
           emit(LoginSuccesState(usermodel));
@@ -63,10 +62,12 @@ class AuthenticationBloc
       } else if (event is RegistreEvent) {
         var user = [];
         initSharedPref();
-        var emailController;
-        var passwordController;
-        
-        var regBody = {"email": event.email, "password": event.password,"role":event.role};
+
+        var regBody = {
+          "email": event.email,
+          "password": event.password,
+          "role": event.role
+        };
 
         var response = await http.patch(Uri.parse(registration),
             headers: {"Content-Type": "application/json"},
@@ -77,7 +78,7 @@ class AuthenticationBloc
         if (response.statusCode == 200) {
           var myToken = jsonResponse['token'];
           prefs.setString('token', myToken);
-           prefs.setString("id", user[0]);
+          
           user = jsonResponse['user'];
           usermodel.id = user[0];
           usermodel.nom_prenom = user[1];
