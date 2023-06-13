@@ -1,5 +1,6 @@
 import 'package:copihass/ui/absence/absence.dart';
 import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
+import 'package:copihass/ui/absence1/absence1.dart';
 import 'package:copihass/ui/note/note.dart';
 import 'package:copihass/ui/reclamation/reclamation.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -8,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class NavBar extends StatelessWidget {
-  const NavBar( {super.key});
+  const NavBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class NavBar extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text('user:' ),
+            accountName: Text('user:'),
             accountEmail: Text(
               'email',
             ),
@@ -71,7 +72,8 @@ class NavBar extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.access_alarms),
             title: const Text('Emploi'),
-            onTap: (() => print('object')),
+            onTap: (() => Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: ((context) => const AbsPage())))),
           ),
           ListTile(
             leading: const Icon(Icons.add_moderator_rounded),

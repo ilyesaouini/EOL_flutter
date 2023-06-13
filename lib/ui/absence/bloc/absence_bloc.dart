@@ -14,7 +14,7 @@ part 'absence_state.dart';
 
 late SharedPreferences prefs;
 final usermodel = new User();
-final absencemodel = new Absence();
+//final absencemodel = new Absence();
 void initSharedPref() async {
   prefs = await SharedPreferences.getInstance();
 }
@@ -31,10 +31,10 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
         print(jsonResponse);
         if (response.statusCode == 200) {
           absence = jsonResponse['absence'];
-          absencemodel.id_absence = absence[0];
+          //        absencemodel.id_absence = absence[0];
 
           prefs.setString("id_absnece", absence[0].toString());
-          emit(AbsenceLoaded(absencemodel));
+          //      emit(AbsenceLoaded(absencemodel));
         } else {
           print("Something error");
         }
