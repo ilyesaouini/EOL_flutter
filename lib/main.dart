@@ -16,6 +16,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   runApp(MyApp(
+      prefs: prefs,
       token: prefs.getString('token'),
       user: User(
         id: prefs.getString('id'),
@@ -28,9 +29,11 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  final prefs;
   final token;
   final User user;
   const MyApp({
+    @required this.prefs,
     @required this.token,
     required this.user,
     Key? key,
@@ -41,6 +44,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<AuthenticationBloc>(create: (_) => AuthenticationBloc()),
         BlocProvider<AccountBloc>(create: (_) => AccountBloc(),),
+        BlocProvider<AbsenceBloc>(create: (_) => AbsenceBloc(),),
       ],
       child: MaterialApp(
           title: 'ESPRIT',
@@ -50,7 +54,7 @@ class MyApp extends StatelessWidget {
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
           home: (token != null && JwtDecoder.isExpired(token) == false)
-              ? Home(user)
+              ? Home(prefs)
               : SignInPage()),
     );
   }

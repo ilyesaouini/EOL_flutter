@@ -30,6 +30,10 @@ class _SignInPageState extends State<SignInPage> {
     // TODO: implement initState
     super.initState();
     initSharedPref();
+
+    emailController.text = "mohamedilyess.aouini@esprit.tn";
+    passwordController.text = "123456";
+    
   }
 
   void initSharedPref() async {
@@ -38,8 +42,9 @@ class _SignInPageState extends State<SignInPage> {
 
   void loginUser() {
     if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-      context.read<AuthenticationBloc>().add(
-          LoginEvent(emailController.text, passwordController.text));
+      context
+          .read<AuthenticationBloc>()
+          .add(LoginEvent(emailController.text, passwordController.text));
     }
   }
 
@@ -49,7 +54,7 @@ class _SignInPageState extends State<SignInPage> {
       listener: (context, state) {
         if (state is LoginSuccesState) {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Home(state.user)));
+              MaterialPageRoute(builder: (context) => Home(state.sharedPreferences)));
         }
       },
       builder: (context, state) {
@@ -103,7 +108,6 @@ class _SignInPageState extends State<SignInPage> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10.0)))),
                       ).p4().px24(),
-                      
                       GestureDetector(
                         onTap: () {
                           loginUser();

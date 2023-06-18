@@ -7,45 +7,23 @@ import '../account/NavBar.dart';
 import '../account/bloc/account_bloc.dart';
 import '../authentication/loginPage.dart';
 
-class reclamationPage extends StatefulWidget {
-  const reclamationPage({super.key});
+class ReclamationPage extends StatefulWidget {
+  const ReclamationPage({super.key});
 
   @override
-  State<reclamationPage> createState() => _reclamationPageState();
+  State<ReclamationPage> createState() => _ReclamationPageState();
 }
 
-class _reclamationPageState extends State<reclamationPage> {
-  late SharedPreferences prefs;
-  void initSharedPref() async {
-    prefs = await SharedPreferences.getInstance();
-  }
+class _ReclamationPageState extends State<ReclamationPage> {
 
   @override
   void initState() {
-    initSharedPref();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: NavBar(),
-      appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 236, 26, 26),
-        title: Text('Reclamation'),
-        actions: [
-          IconButton(
-              onPressed: () {
-                prefs.remove("token");
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: ((context) => SignInPage())),
-                    (route) => false);
-              },
-              icon: Icon(Icons.logout_outlined))
-        ],
-      ),
-      body: Container(
+    return Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           decoration: const BoxDecoration(
@@ -87,7 +65,6 @@ class _reclamationPageState extends State<reclamationPage> {
                 ),
               ),
             ),
-          )),
-    );
+          ));
   }
 }

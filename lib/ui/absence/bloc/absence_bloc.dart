@@ -26,21 +26,24 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
     on<GetAbsenceList>((event, emit) async {
       if (event is GetAbsenceList) {
         initSharedPref();
-        var absence = [];
-        var response = await http.get(Uri.parse(absenceurl));
+        List<Absence> absenceList = [];
+        var url = "${absenceurl}?role=etudiant";
+        var response = await http.get(Uri.parse(url));
+        print(response.request!.url.toString());
         debugPrint(response.body.toString());
         var jsonResponse = jsonDecode(response.body);
         print(jsonResponse);
         if (response.statusCode == 200) {
-          absence = jsonResponse["absence"];
+          if (jsonResponse["absence"] != null) {
+            jsonResponse["absence"].forEach((jsonElement) {
+              absenceList.add(Absence.fromJson(jsonElement));
+            });
+          }
 
-          absencemodel = Absence.fromJson(absence[0]);
-          var list = [absencemodel];
-          // prefs.setString("id_absnece", absence[0]);
-
-          emit(AbsenceLoaded(list));
+          emit(AbsenceLoaded(absenceList));
         } else {
           print("Something error");
+          emit(AbsenceLoaded(absenceList));
         }
       }
     });
