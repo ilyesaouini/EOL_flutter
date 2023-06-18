@@ -1,17 +1,17 @@
 import 'dart:convert';
 
 class Absence {
-  final int id_absence;
-  final String date_absence;
-  final String module;
+   int? id_absence;
+   String? date_absence;
+   String? module;
 
-  final String etudiant;
+   String? etudiant;
 
   Absence({
-    required this.id_absence,
-    required this.date_absence,
-    required this.module,
-    required this.etudiant,
+     this.id_absence,
+     this.date_absence,
+     this.module,
+     this.etudiant,
   });
 
   Map<String, dynamic> toMap() {
@@ -22,7 +22,7 @@ class Absence {
       'etudiant': etudiant,
     };
   }
-
+/*
   factory Absence.fromMap(Map<String, dynamic> map) {
     return Absence(
       id_absence: map['id_absence']?.toInt() ?? 0,
@@ -36,4 +36,15 @@ class Absence {
 
   factory Absence.fromJson(String source) =>
       Absence.fromMap(json.decode(source));
+
+*/
+factory Absence.fromJson(dynamic json){
+
+  return Absence(
+      id_absence: json['id_absence'],
+      date_absence: json['date_absence'] ,
+      module: json['module'],
+      etudiant: json['etudiant'],
+    );
+}
 }

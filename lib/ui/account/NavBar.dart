@@ -1,6 +1,6 @@
 import 'package:copihass/ui/absence/absence.dart';
 import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
-import 'package:copihass/ui/absence1/absence1.dart';
+
 import 'package:copihass/ui/note/note.dart';
 import 'package:copihass/ui/reclamation/reclamation.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -73,7 +73,7 @@ class NavBar extends StatelessWidget {
             leading: const Icon(Icons.access_alarms),
             title: const Text('Emploi'),
             onTap: (() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: ((context) => const AbsPage())))),
+                MaterialPageRoute(builder: ((context) => const absencePage())))),
           ),
           ListTile(
             leading: const Icon(Icons.add_moderator_rounded),

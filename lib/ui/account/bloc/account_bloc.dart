@@ -17,7 +17,7 @@ void initSharedPref() async {
 class AccountBloc extends Bloc<AccountEvent, AccountState> {
   AccountBloc() : super(AccountInitial()) {
     on<AccountEvent>((event, emit) async {
-      if (event is UpladImageEvent) {
+      if (event is UploadImageEvent) {
        
 
        var respone =

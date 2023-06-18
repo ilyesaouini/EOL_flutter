@@ -49,7 +49,7 @@ class _HomeState extends State<Home> {
     String base64 = base64Encode(file!.readAsBytesSync());
     var data = base64;
     print(widget.user.id);
-    context.read<AccountBloc>().add(UpladImageEvent(widget.user.id, data));
+    context.read<AccountBloc>().add(UploadImageEvent(widget.user.id, data));
   }
 
   @override

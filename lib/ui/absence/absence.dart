@@ -71,7 +71,7 @@ Widget _buildListABsence() {
               } else if (state is AbsenceLoading) {
                 return _buildLoading();
               } else if (state is AbsenceLoaded) {
-                return _buildCard(context, state.absenceModel);
+                return _buildCard(context, Absence());
               } else if (state is AbsenceError) {
                 return Container();
               } else {
@@ -85,7 +85,7 @@ Widget _buildListABsence() {
 
 Widget _buildCard(BuildContext context, Absence absence) {
   return ListView.builder(
-    itemCount: absence.id_absence,
+    itemCount: 5,
     itemBuilder: (context, index) {
       return Container(
         margin: const EdgeInsets.all(8.0),

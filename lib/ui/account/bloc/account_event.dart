@@ -3,8 +3,8 @@ part of 'account_bloc.dart';
 @immutable
 abstract class AccountEvent {}
 
-class UpladImageEvent extends AccountEvent {
+class UploadImageEvent extends AccountEvent {
   final id;
   final image;
-   UpladImageEvent(this.id,this.image);
+   UploadImageEvent(this.id,this.image);
 }

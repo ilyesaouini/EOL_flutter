@@ -40,8 +40,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<AuthenticationBloc>(create: (_) => AuthenticationBloc()),
-        BlocProvider<AccountBloc>(create: (_) => AccountBloc()),
-        BlocProvider<AbsenceBloc>(create: (_) => AbsenceBloc()),
+        BlocProvider<AccountBloc>(create: (_) => AccountBloc(),),
       ],
       child: MaterialApp(
           title: 'ESPRIT',

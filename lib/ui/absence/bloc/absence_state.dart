@@ -12,7 +12,7 @@ class AbsenceInitial extends AbsenceState {}
 class AbsenceLoading extends AbsenceState {}
 
 class AbsenceLoaded extends AbsenceState {
-  final Absence absenceModel;
+  final List<dynamic> absenceModel;
   const AbsenceLoaded(this.absenceModel);
 }
 
