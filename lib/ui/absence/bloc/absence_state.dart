@@ -12,8 +12,8 @@ class AbsenceInitial extends AbsenceState {}
 class AbsenceLoading extends AbsenceState {}
 
 class AbsenceLoaded extends AbsenceState {
-  final List<dynamic> absenceModel;
-  const AbsenceLoaded(this.absenceModel);
+  final List<Absence> responseList;
+  const AbsenceLoaded(this.responseList);
 }
 
 class AbsenceError extends AbsenceState {

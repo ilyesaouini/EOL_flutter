@@ -138,7 +138,7 @@ class _HomeState extends State<Home> {
                 SizedBox(height: 20),
                 ProfileMenu(
                   text: widget.user.nom_prenom ?? "N/A",
-                  icon: "assets/icons/UserIcon.svg",
+                  icon: "assets/icons/user.svg",
                   press: () => {},
                 ),
                 ProfileMenu(

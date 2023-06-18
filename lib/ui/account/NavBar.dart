@@ -1,4 +1,4 @@
-import 'package:copihass/ui/absence/absence.dart';
+import 'package:copihass/ui/absence/absence_page.dart';
 import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
 
 import 'package:copihass/ui/note/note.dart';
@@ -61,7 +61,7 @@ class NavBar extends StatelessWidget {
             title: const Text('Absences'),
             onTap: (() =>
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => const absencePage(),
+                  builder: (context) =>  AbsencePage(),
                 ))),
           ),
           ListTile(
@@ -73,7 +73,8 @@ class NavBar extends StatelessWidget {
             leading: const Icon(Icons.access_alarms),
             title: const Text('Emploi'),
             onTap: (() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: ((context) => const absencePage())))),
+                MaterialPageRoute(
+                    builder: ((context) =>  AbsencePage())))),
           ),
           ListTile(
             leading: const Icon(Icons.add_moderator_rounded),
