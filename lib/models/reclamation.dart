@@ -7,7 +7,7 @@ class Reclamation {
   String? enseignant;
   String? reclamation;
   String? status;
-  
+
   Reclamation({
     this.id_reclamation,
     this.description,
@@ -15,7 +15,6 @@ class Reclamation {
     this.module,
     this.etudiant,
     this.enseignant,
-  
     this.reclamation,
     this.status,
   });

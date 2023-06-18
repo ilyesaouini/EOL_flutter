@@ -43,7 +43,6 @@ class AuthenticationBloc
           var myToken = jsonResponse['token'];
           user = jsonResponse['user'];
           prefs.setString('token', myToken);
-          prefs.setString("id", user[0]);
           usermodel.nom_prenom = user[1];
           usermodel.nom = user[2];
           usermodel.prenom = user[3];
@@ -51,11 +50,15 @@ class AuthenticationBloc
           usermodel.date_de_naissance = user[5];
           usermodel.image = "";
           usermodel.tel = user[1];
-          prefs.setString("lastname", user[2]);
-          prefs.setString("email", user[1]);
-          prefs.setString("birthdate", user[5]);
+          prefs.setString("id", usermodel.id ?? "");
+          prefs.setString("nom", usermodel.nom ?? "");
+          prefs.setString("prenom", usermodel.prenom ?? "");
+          prefs.setString("nom_prenom", usermodel.nom_prenom ?? "");
+          prefs.setString("email", usermodel.email ?? "");
+          prefs.setString(
+              "date_de_naissance", usermodel.date_de_naissance ?? "");
           prefs.setString("image", "");
-          emit(LoginSuccesState(usermodel));
+          emit(LoginSuccesState(prefs));
         } else {
           print('Something went wrong');
         }
@@ -78,7 +81,7 @@ class AuthenticationBloc
         if (response.statusCode == 200) {
           var myToken = jsonResponse['token'];
           prefs.setString('token', myToken);
-          
+
           user = jsonResponse['user'];
           usermodel.id = user[0];
           usermodel.nom_prenom = user[1];
@@ -87,9 +90,16 @@ class AuthenticationBloc
           usermodel.prenom = user[3];
           usermodel.date_de_naissance = user[5];
           usermodel.tel = user[7];
-
+          prefs.setString("id", usermodel.id ?? "");
+          prefs.setString("nom", usermodel.nom ?? "");
+          prefs.setString("prenom", usermodel.prenom ?? "");
+          prefs.setString("nom_prenom", usermodel.nom_prenom ?? "");
+          prefs.setString("email", usermodel.email ?? "");
+          prefs.setString(
+              "date_de_naissance", usermodel.date_de_naissance ?? "");
+          prefs.setString("image", "");
           // Navigator.push( context, MaterialPageRoute(builder: (context) => Home()));
-          emit(RegistreSuccesState(usermodel));
+          emit(RegistreSuccesState(prefs));
         } else {
           print("SomeThing Went Wrong");
         }

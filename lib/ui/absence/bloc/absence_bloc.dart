@@ -27,7 +27,9 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
       if (event is GetAbsenceList) {
         initSharedPref();
         List<Absence> absenceList = [];
-        var response = await http.get(Uri.parse(absenceurl));
+        var url = "${absenceurl}?role=etudiant";
+        var response = await http.get(Uri.parse(url));
+        print(response.request!.url.toString());
         debugPrint(response.body.toString());
         var jsonResponse = jsonDecode(response.body);
         print(jsonResponse);

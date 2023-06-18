@@ -8,13 +8,13 @@ class AuthenticationInitial extends AuthenticationState {}
 class LoginErrorState extends AuthenticationState {}
 
 class LoginSuccesState extends AuthenticationState {
-  final User user;
-  LoginSuccesState(this.user);
+  final SharedPreferences sharedPreferences;
+  LoginSuccesState(this.sharedPreferences);
 }
 
 class RegistreSuccesState extends AuthenticationState {
-  final User user;
-  RegistreSuccesState(this.user);
+  final SharedPreferences prefs;
+  RegistreSuccesState(this.prefs);
 }
 
 class RegistreErrorState extends AuthenticationState {}

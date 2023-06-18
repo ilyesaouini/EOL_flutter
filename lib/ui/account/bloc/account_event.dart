@@ -8,3 +8,10 @@ class UploadImageEvent extends AccountEvent {
   final image;
    UploadImageEvent(this.id,this.image);
 }
+
+
+class OnDrawerIemSelectedEvent extends AccountEvent {
+
+  final int selectedPosition;
+  OnDrawerIemSelectedEvent({required this.selectedPosition});
+}

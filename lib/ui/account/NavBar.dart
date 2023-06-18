@@ -1,23 +1,31 @@
 import 'package:copihass/ui/absence/absence_page.dart';
 import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
+import 'package:copihass/ui/account/bloc/account_bloc.dart';
 
 import 'package:copihass/ui/note/note.dart';
 import 'package:copihass/ui/reclamation/reclamation.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class NavBar extends StatelessWidget {
-  const NavBar({super.key});
+class DrawerWidget extends StatefulWidget {
+  final int selectedItemPosition;
+  final GlobalKey<ScaffoldState> scaffoldKey;
+
+  const DrawerWidget(
+      {super.key,
+      required this.scaffoldKey,
+      required this.selectedItemPosition});
 
   @override
-  Widget build(BuildContext context) {
-    late SharedPreferences prefs;
-    void initSharedPref() async {
-      prefs = await SharedPreferences.getInstance();
-    }
+  State<DrawerWidget> createState() => _DrawerWidgetState();
+}
 
+class _DrawerWidgetState extends State<DrawerWidget> {
+  @override
+  Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -46,45 +54,52 @@ class NavBar extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.person),
             title: const Text('Profile'),
-            onTap: (() => print('object')),
-          ),
+            onTap: () {
+              _onItemSelected(0);
+            },          ),
           ListTile(
             leading: const Icon(Icons.note),
             title: const Text('Notes'),
-            onTap: (() =>
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => const notePage(),
-                ))),
+            onTap: () {
+              _onItemSelected(1);
+            },
           ),
           ListTile(
             leading: const Icon(Icons.school),
             title: const Text('Absences'),
-            onTap: (() =>
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) =>  AbsencePage(),
-                ))),
-          ),
+            onTap: () {
+              _onItemSelected(2);
+            },          ),
           ListTile(
             leading: const Icon(Icons.score),
             title: const Text('Résultat'),
-            onTap: (() => print('object')),
-          ),
+            onTap: () {
+              _onItemSelected(3);
+            },          ),
           ListTile(
             leading: const Icon(Icons.access_alarms),
             title: const Text('Emploi'),
-            onTap: (() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                    builder: ((context) =>  AbsencePage())))),
-          ),
+            onTap: () {
+              _onItemSelected(4);
+            },          ),
           ListTile(
             leading: const Icon(Icons.add_moderator_rounded),
             title: const Text('Reclamation'),
-            onTap: (() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                    builder: ((context) => const reclamationPage())))),
-          ),
+            onTap: () {
+              _onItemSelected(5);
+            },          ),
         ],
       ),
     );
+  }
+
+  _onItemSelected(int index) {
+    if (widget.selectedItemPosition != index) {
+      widget.selectedItemPosition == index;
+      context
+          .read<AccountBloc>()
+          .add(OnDrawerIemSelectedEvent(selectedPosition: index));
+    }
+    widget.scaffoldKey.currentState!.closeDrawer();
   }
 }

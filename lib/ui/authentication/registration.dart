@@ -41,7 +41,7 @@ class _RegistrationState extends State<Registration> {
       listener: (context, state) {
         if (state is RegistreSuccesState) {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Home(usermodel)));
+              MaterialPageRoute(builder: (context) => Home(state.prefs)));
         }
       },
       builder: (context, state) {
