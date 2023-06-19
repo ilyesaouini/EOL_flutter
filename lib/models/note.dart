@@ -12,7 +12,7 @@ class Note {
     this.module,
     this.etudiant,
   });
-  Note.fromJson(Map<String, dynamic> json) {
+  Note.fromJson(dynamic json) {
     id_note = json['id_note'];
     note = json['note'];
     module = json['module'];

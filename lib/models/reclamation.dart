@@ -18,4 +18,16 @@ class Reclamation {
     this.reclamation,
     this.status,
   });
+
+  Reclamation.fromJson(dynamic json){
+
+    id_reclamation = json['id_reclamtion'];
+    description = json['description'];
+    reponse = json['reponse'];
+    module = json['module'];
+    etudiant = json['etudiant'];
+    enseignant = json['enseignant'];
+    reclamation = json['reclamation'];
+    status = json['status'];
+  }
 }

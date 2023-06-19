@@ -1,6 +1,24 @@
 part of 'reclamation_bloc.dart';
 
 @immutable
-abstract class ReclamationState {}
+abstract class ReclamationState extends Equatable{
+  const ReclamationState();
+
+  @override
+  List<Object> get props => [];
+}
 
 class ReclamationInitial extends ReclamationState {}
+
+
+class ReclamationLoading extends ReclamationState {}
+
+class ReclamationLoaded extends ReclamationState {
+  final List<Reclamation> responseList;
+  const ReclamationLoaded(this.responseList);
+}
+
+class ReclamationError extends ReclamationState {
+  final String? message;
+  const ReclamationError(this.message);
+}

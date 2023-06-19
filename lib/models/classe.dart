@@ -6,7 +6,7 @@ class Classe {
     this.id_classe,
     this.description,
   });
-  Classe.fromJson(Map<String, dynamic> json) {
+  Classe.fromJson(dynamic json) {
     id_classe = json['id_classe'];
      description = json['description'];
   }

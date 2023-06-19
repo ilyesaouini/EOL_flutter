@@ -6,7 +6,7 @@ class Annee {
     this.id_anne,
     this.description,
   });
-  Annee.fromJson(Map<String, dynamic> json) {
+  Annee.fromJson(dynamic json) {
     id_anne = json['id_anne'];
     description = json['description'];
   }

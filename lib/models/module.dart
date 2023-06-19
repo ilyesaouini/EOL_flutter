@@ -10,7 +10,7 @@ class Module{
     this.credit,
     this.enseignant,
   });
-  Module.fromJson(Map<String, dynamic> json) {
+  Module.fromJson(dynamic json) {
     id_module = json['id_module'];
     nom = json['nom'];
     credit = json['credit'];

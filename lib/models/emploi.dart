@@ -9,7 +9,7 @@ class Emploi {
     this.description,
     
   });
-  Emploi.fromJson(Map<String, dynamic> json) {
+  Emploi.fromJson(dynamic json) {
     id_emploi = json['id_emploi'];
      description = json['description'];
   }
