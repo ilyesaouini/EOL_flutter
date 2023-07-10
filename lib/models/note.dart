@@ -1,21 +1,38 @@
 import 'dart:ffi';
 
 class Note {
-  int? id_note;
-  Float? note;
+  int? code_note;
   String? module;
   String? etudiant;
+  Float? note_cc;
+  Float? note_tp;
+  Float? note_examen;
+  String? abs_cc;
+  String? abs_tp;
+  String? abs_examen;
 
   Note({
-    this.id_note,
-    this.note,
+    this.code_note,
     this.module,
     this.etudiant,
+    this.note_cc,
+    this.note_tp,
+    this.note_examen,
+    this.abs_cc,
+    this.abs_tp,
+    this.abs_examen,
   });
-  Note.fromJson(dynamic json) {
-    id_note = json['id_note'];
-    note = json['note'];
-    module = json['module'];
-    etudiant = json['etudiant'];
+  factory Note.fromJson(dynamic json) {
+    return Note(
+      code_note: json['code_note'],
+      module: json['module'],
+      etudiant: json['etudiant'],
+      note_cc:  json['note_cc'],
+      note_tp:  json['note_tp'],
+      note_examen:  json['note_examen'],
+      abs_cc: json['abs_cc'],
+      abs_tp: json['abs_tp'],
+      abs_examen: json['abs_examen'],
+    );
   }
 }

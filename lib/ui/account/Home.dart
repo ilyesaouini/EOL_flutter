@@ -6,6 +6,7 @@ import 'package:copihass/ui/account/profile_page.dart';
 import 'package:copihass/ui/emploi/emploi.dart';
 import 'package:copihass/ui/note/note.dart';
 import 'package:copihass/ui/reclamation/reclamation.dart';
+import 'package:copihass/ui/resultat/resultat.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -38,11 +39,11 @@ class _HomeState extends State<Home> {
   void initState() {
     bodyWidgetsList = [
       ProfilePage(prefs: widget.prefs),
-      NotePage(),
-      AbsencePage(),
-      AbsencePage(),
+      NotePage(prefs: widget.prefs),
+      AbsencePage(prefs: widget.prefs),
+      ResultatPage(prefs: widget.prefs),
       EmploiPage(),
-      ReclamationPage(),
+      ReclamationPage(prefs: widget.prefs),
     ];
     initSharedPref();
     super.initState();

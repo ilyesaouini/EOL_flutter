@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/note.dart';
 
 class NotePage extends StatefulWidget {
-  const NotePage({super.key});
+  
+  final SharedPreferences prefs;
+  const NotePage({required this.prefs,super.key});
 
   @override
   State<NotePage> createState() => _NotePageState();
@@ -52,7 +55,16 @@ class _NotePageState extends State<NotePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            "Absence: ${noteList[index].etudiant}",
+                            "Etudiant: ${noteList[index].etudiant}",
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            "Module: ${noteList[index].module}",
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            
+                            "Note: ${noteList[index].note_cc.toString()}",
                           ),
                           const SizedBox(height: 10),
                         ],

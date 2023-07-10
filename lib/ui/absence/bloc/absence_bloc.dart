@@ -23,9 +23,10 @@ void initSharedPref() async {
 
 class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
   AbsenceBloc() : super(AbsenceInitial()) {
-    on<GetAbsenceList>((event, emit) async {
+    on<AbsenceEvent>((event, emit) async {
       if (event is GetAbsenceList) {
         initSharedPref();
+
         List<Absence> absenceList = [];
         var url = "${absenceurl}?role=etudiant";
         var response = await http.get(Uri.parse(url));
@@ -45,6 +46,21 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
           print("Something error");
           emit(AbsenceLoaded(absenceList));
         }
+      } else if (event is GetAbsenceById) {
+        var id = event.absenceId;
+        var url = " ${absencebyidurl}/${id}";
+        var response = await http.get(Uri.parse(url));
+        print(response.request!.url.toString());
+        debugPrint(response.body.toString());
+        var jsonResponse = jsonDecode(response.body);
+        print(jsonResponse);
+        if (response.statusCode == 200) {
+          absencemodel = Absence.fromJson(jsonResponse['data']);
+        }
+      } else if (event is ReclamationEvent) {
+        var url = "${addreclamationurl}?role=etudiant";
+        var response = await http.post(Uri.parse(url),
+        body: {'description': event.description,'module': event.module, 'etudiant':event.etudiant});
       }
     });
   }

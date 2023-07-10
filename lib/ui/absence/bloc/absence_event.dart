@@ -7,4 +7,19 @@ abstract class AbsenceEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetAbsenceList extends AbsenceEvent{}
+class GetAbsenceList extends AbsenceEvent {}
+
+class ReclamationEvent extends AbsenceEvent {
+  final description;
+  final module;
+  final etudiant;
+ 
+
+  ReclamationEvent(this.description,
+  this.module,
+  this.etudiant);
+}
+class GetAbsenceById extends AbsenceEvent{
+  final String? absenceId;
+  const GetAbsenceById({ required this.absenceId});
+}

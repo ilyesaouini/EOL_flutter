@@ -20,3 +20,12 @@ class AbsenceError extends AbsenceState {
   final String? message;
   const AbsenceError(this.message);
 }
+
+class ReclamationSuccesState extends AbsenceState {}
+
+class ReclamationErrorState extends AbsenceState {}
+
+class AbsenceDetailsLoaded extends AbsenceState {
+  final Absence absence;
+  const AbsenceDetailsLoaded(this.absence);
+}

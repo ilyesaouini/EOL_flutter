@@ -17,6 +17,9 @@ late SharedPreferences prefs;
 final usermodel = new User();
 
 Note notemodel = new Note();
+void initSharedPref() async {
+  prefs = await SharedPreferences.getInstance();
+}
 
 class NoteBloc extends Bloc<NoteEvent, NoteState> {
   NoteBloc() : super(NoteInitial()) {
@@ -29,8 +32,8 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
       var jsonResponse = jsonDecode(response.body);
       print(jsonResponse);
       if (response.statusCode == 200) {
-        if (jsonResponse["absence"] != null) {
-          jsonResponse["absence"].forEach((jsonElement) {
+        if (jsonResponse != null) {
+          jsonResponse.forEach((jsonElement) {
             noteList.add(Note.fromJson(jsonElement));
           });
         }
@@ -42,6 +45,4 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
       }
     });
   }
-
- 
 }

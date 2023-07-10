@@ -13,7 +13,7 @@ part 'reclamation_state.dart';
 class ReclamationBloc extends Bloc<ReclamationEvent, ReclamationState> {
   ReclamationBloc() : super(ReclamationInitial()) {
     on<GetReclamationList>((event, emit) async {
-     List<Reclamation> reclamationList = [];
+      List<Reclamation> reclamationList = [];
       var url = "${reclamationurl}?role=etudiant";
       var response = await http.get(Uri.parse(url));
       print(response.request!.url.toString());
@@ -21,8 +21,8 @@ class ReclamationBloc extends Bloc<ReclamationEvent, ReclamationState> {
       var jsonResponse = jsonDecode(response.body);
       print(jsonResponse);
       if (response.statusCode == 200) {
-        if (jsonResponse["absence"] != null) {
-          jsonResponse["absence"].forEach((jsonElement) {
+        if (jsonResponse != null) {
+          jsonResponse.forEach((jsonElement) {
             reclamationList.add(Reclamation.fromJson(jsonElement));
           });
         }
@@ -34,6 +34,4 @@ class ReclamationBloc extends Bloc<ReclamationEvent, ReclamationState> {
       }
     });
   }
-
- 
 }

@@ -4,6 +4,9 @@ import 'package:copihass/ui/account/bloc/account_bloc.dart';
 
 import 'package:copihass/ui/authentication/bloc/authentication_bloc.dart';
 import 'package:copihass/ui/authentication/loginPage.dart';
+import 'package:copihass/ui/note/bloc/note_bloc.dart';
+import 'package:copihass/ui/reclamation/bloc/reclamation_bloc.dart';
+import 'package:copihass/ui/resultat/bloc/resultat_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -43,8 +46,21 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<AuthenticationBloc>(create: (_) => AuthenticationBloc()),
-        BlocProvider<AccountBloc>(create: (_) => AccountBloc(),),
-        BlocProvider<AbsenceBloc>(create: (_) => AbsenceBloc(),),
+        BlocProvider<AccountBloc>(
+          create: (_) => AccountBloc(),
+        ),
+        BlocProvider<AbsenceBloc>(
+          create: (_) => AbsenceBloc(),
+        ),
+        BlocProvider<NoteBloc>(
+          create: (_) => NoteBloc(),
+        ),
+        BlocProvider<ReclamationBloc>(
+          create: (_) => ReclamationBloc(),
+        ),
+        BlocProvider<ResultatBloc>
+        (create: (_) => ResultatBloc(),)
+         
       ],
       child: MaterialApp(
           title: 'ESPRIT',

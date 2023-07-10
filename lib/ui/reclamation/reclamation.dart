@@ -11,7 +11,8 @@ import '../authentication/loginPage.dart';
 import 'bloc/reclamation_bloc.dart';
 
 class ReclamationPage extends StatefulWidget {
-  const ReclamationPage({super.key});
+  final SharedPreferences prefs;
+  const ReclamationPage({required this.prefs,super.key});
 
   @override
   State<ReclamationPage> createState() => _ReclamationPageState();
@@ -55,7 +56,27 @@ class _ReclamationPageState extends State<ReclamationPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            "Absence: ${reclamationList[index].etudiant}",
+                            "Description: ${reclamationList[index].description}",
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            "Reponse: ${reclamationList[index].reponse}",
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            "Module: ${reclamationList[index].module}",
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            "Enseignant: ${reclamationList[index].enseignant}",
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            "Re-reclamation: ${reclamationList[index].reclamation}",
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            "Status: ${reclamationList[index].status}",
                           ),
                           const SizedBox(height: 10),
                         ],
