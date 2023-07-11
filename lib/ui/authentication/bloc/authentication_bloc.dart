@@ -58,6 +58,7 @@ class AuthenticationBloc
           prefs.setString(
               "date_de_naissance", usermodel.date_de_naissance ?? "");
           prefs.setString("image", "");
+          prefs.setString("role", usermodel.role ?? "");
           emit(LoginSuccesState(prefs));
         } else {
           print('Something went wrong');

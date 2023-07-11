@@ -22,3 +22,11 @@ class ReclamationError extends ReclamationState {
   final String? message;
   const ReclamationError(this.message);
 }
+
+class AddReclamationSuccesState extends ReclamationState{
+
+}
+
+class AddReclamationErrorState extends ReclamationState {
+  
+}

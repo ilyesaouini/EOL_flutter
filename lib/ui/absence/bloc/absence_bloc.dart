@@ -57,7 +57,7 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
         if (response.statusCode == 200) {
           absencemodel = Absence.fromJson(jsonResponse['data']);
         }
-      } else if (event is ReclamationEvent) {
+      } else if (event is AddReclamationAbsence) {
         var url = "${addreclamationurl}?role=etudiant";
         var response = await http.post(Uri.parse(url),
         body: {'description': event.description,'module': event.module, 'etudiant':event.etudiant});

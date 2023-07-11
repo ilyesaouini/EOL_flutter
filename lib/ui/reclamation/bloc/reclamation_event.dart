@@ -6,6 +6,12 @@ abstract class ReclamationEvent {
 
   @override
   List<Object> get props => [];
-
 }
-class GetReclamationList extends ReclamationEvent{}
+
+class GetReclamationList extends ReclamationEvent {}
+
+class AddReclamationSimpleEvent extends ReclamationEvent {
+  final id;
+  final description;
+  AddReclamationSimpleEvent(this.id,this.description);
+}

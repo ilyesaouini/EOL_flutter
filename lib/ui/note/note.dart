@@ -8,9 +8,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../models/note.dart';
 
 class NotePage extends StatefulWidget {
-  
   final SharedPreferences prefs;
-  const NotePage({required this.prefs,super.key});
+  const NotePage({required this.prefs, super.key});
 
   @override
   State<NotePage> createState() => _NotePageState();
@@ -63,8 +62,7 @@ class _NotePageState extends State<NotePage> {
                           ),
                           const SizedBox(height: 10),
                           Text(
-                            
-                            "Note: ${noteList[index].note_cc.toString()}",
+                            "Note: ${noteList[index].note_examen.toString()}",
                           ),
                           const SizedBox(height: 10),
                         ],

@@ -1,20 +1,20 @@
 import 'dart:convert';
 
-import 'package:bloc/bloc.dart';
 import 'package:copihass/config.dart';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+
 import '../../../models/note.dart';
-import '../../../models/user.dart';
 
 part 'note_event.dart';
 part 'note_state.dart';
 
 late SharedPreferences prefs;
-final usermodel = new User();
 
 Note notemodel = new Note();
 void initSharedPref() async {

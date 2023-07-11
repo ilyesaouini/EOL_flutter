@@ -28,6 +28,7 @@ void main() async {
         prenom: prefs.getString('prenom'),
         email: prefs.getString('email'),
         image: prefs.getString('image'),
+        role: prefs.getString('role'),
       )));
 }
 
@@ -58,9 +59,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<ReclamationBloc>(
           create: (_) => ReclamationBloc(),
         ),
-        BlocProvider<ResultatBloc>
-        (create: (_) => ResultatBloc(),)
-         
+        BlocProvider<ResultatBloc>(
+          create: (_) => ResultatBloc(),
+        )
       ],
       child: MaterialApp(
           title: 'ESPRIT',

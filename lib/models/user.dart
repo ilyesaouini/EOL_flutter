@@ -1,5 +1,3 @@
-
-
 class User {
   String? id;
   String? nom_prenom;
@@ -9,7 +7,8 @@ class User {
   String? date_de_naissance;
   String? image;
   String? tel;
-  
+  String? role;
+
   User({
     this.id,
     this.nom_prenom,
@@ -19,5 +18,6 @@ class User {
     this.date_de_naissance,
     this.tel,
     this.image,
+    this.role
   });
 }

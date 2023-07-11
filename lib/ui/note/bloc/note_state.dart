@@ -1,6 +1,5 @@
 part of 'note_bloc.dart';
 
-
 abstract class NoteState extends Equatable {
   const NoteState();
 
@@ -9,7 +8,6 @@ abstract class NoteState extends Equatable {
 }
 
 class NoteInitial extends NoteState {}
-
 
 class NoteLoading extends NoteState {}
 
@@ -21,4 +19,11 @@ class NoteLoaded extends NoteState {
 class NoteError extends NoteState {
   final String? message;
   const NoteError(this.message);
+}
+
+class AddReclamationSuccessState extends NoteState {}
+
+class ReclamationErrorState extends NoteState {
+  final String? message;
+  const ReclamationErrorState(this.message);
 }

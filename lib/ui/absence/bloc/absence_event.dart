@@ -9,13 +9,13 @@ abstract class AbsenceEvent extends Equatable {
 
 class GetAbsenceList extends AbsenceEvent {}
 
-class ReclamationEvent extends AbsenceEvent {
+class AddReclamationAbsence extends AbsenceEvent {
   final description;
   final module;
   final etudiant;
  
 
-  ReclamationEvent(this.description,
+  AddReclamationAbsence(this.description,
   this.module,
   this.etudiant);
 }

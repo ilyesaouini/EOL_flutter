@@ -18,7 +18,7 @@ class AbsencePage extends StatefulWidget {
 
 class _AbsencePageState extends State<AbsencePage> {
   List<Absence> absenceList = [];
-TextEditingController descriptionController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -27,13 +27,8 @@ TextEditingController descriptionController = TextEditingController();
         GetAbsenceList(),
       );
   }
-  void reclamation(){
-    if (descriptionController.text.isNotempty){
-      context.read<AbsenceBloc>().add(ReclamationEvent())
-    }
-  }
 
-
+ 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AbsenceBloc, AbsenceState>(
