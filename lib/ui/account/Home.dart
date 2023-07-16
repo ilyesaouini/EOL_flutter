@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:copihass/ui/absence/absence_page.dart';
+import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
 import 'package:copihass/ui/account/NavBar.dart';
 import 'package:copihass/ui/account/profile_page.dart';
 import 'package:copihass/ui/emploi/emploi.dart';
+import 'package:copihass/ui/note/bloc/note_bloc.dart';
 import 'package:copihass/ui/note/note.dart';
+import 'package:copihass/ui/reclamation/bloc/reclamation_bloc.dart';
 import 'package:copihass/ui/reclamation/reclamation.dart';
+import 'package:copihass/ui/resultat/bloc/resultat_bloc.dart';
 import 'package:copihass/ui/resultat/resultat.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,7 +49,6 @@ class _HomeState extends State<Home> {
       EmploiPage(),
       ReclamationPage(prefs: widget.prefs),
     ];
-    initSharedPref();
     super.initState();
   }
 
@@ -73,7 +76,7 @@ class _HomeState extends State<Home> {
                 actions: <Widget>[
                   IconButton(
                       onPressed: () {
-                        prefs.remove("token");
+                        widget.prefs.remove("token");
                         Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
@@ -93,4 +96,5 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
 }

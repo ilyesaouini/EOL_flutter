@@ -24,6 +24,8 @@ void initSharedPref() async {
 class NoteBloc extends Bloc<NoteEvent, NoteState> {
   NoteBloc() : super(NoteInitial()) {
     on<GetNoteList>((event, emit) async {
+      emit(NoteLoading());
+
       List<Note> noteList = [];
       var url = "${noteurl}?role=etudiant";
       var response = await http.get(Uri.parse(url));

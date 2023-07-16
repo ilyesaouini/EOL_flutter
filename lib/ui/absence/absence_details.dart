@@ -12,8 +12,8 @@ import 'dart:convert';
 import '../reclamation/bloc/reclamation_bloc.dart';
 
 class AbsenceDetails extends StatefulWidget {
-  final int _id;
-  const AbsenceDetails(this._id, {super.key});
+  final Absence absence;
+  const AbsenceDetails({super.key, required this.absence});
 
   @override
   State<AbsenceDetails> createState() => _AbsenceDetailsState();
@@ -22,29 +22,21 @@ class AbsenceDetails extends StatefulWidget {
 class _AbsenceDetailsState extends State<AbsenceDetails> {
   //util
   TextEditingController descriptionController = TextEditingController();
-  Absence absence = new Absence();
-//Get
-  Future<bool> getAbsence() async {
-    http.Response response =
-        await http.get(Uri.parse(absencebyidurl + widget._id.toString()));
-    print(response.body);
-    absence = Absence.fromJson(response.body);
-
-    return true;
-  }
+  late Absence absence;
 
   @override
   void initState() {
-    // TODO: implement initState
+    absence = widget.absence;
     super.initState();
-    getAbsence();
-  }
-   void reclamation() {
-    if (descriptionController.text.isNotEmpty) {
-      context.read<AbsenceBloc>().add(AddReclamationAbsence("description", "module", "etudiant"));
-    }
   }
 
+  void reclamation() {
+    if (descriptionController.text.isNotEmpty) {
+      context
+          .read<AbsenceBloc>()
+          .add(AddReclamationAbsence("description", "module", "etudiant"));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +44,7 @@ class _AbsenceDetailsState extends State<AbsenceDetails> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
+        padding: EdgeInsets.only(top: 64),
         decoration: const BoxDecoration(
           gradient: LinearGradient(
               colors: [
@@ -77,13 +70,33 @@ class _AbsenceDetailsState extends State<AbsenceDetails> {
             ],
           ),
         ),
-        
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        
-      },),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showCupertinoDialog(
+            context: context,
+            barrierDismissible: true,
+            builder: (context) {
+              return AlertDialog(
+                title: Text("Add reclamation"),
+                content: Container(
+                  height: 256,
+                  color: Colors.blue,
+                ),
+                actionsAlignment: MainAxisAlignment.center,
+                actions: [
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text("Annuler")),
+                  ElevatedButton(onPressed: () {}, child: Text("Confirmer"))
+                ],
+              );
+            },
+          );
+        },
+      ),
     );
-  
-
   }
 }

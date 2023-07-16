@@ -1,4 +1,4 @@
-final url = 'https://85a6-196-235-237-210.eu.ngrok.io/';
+const url = "https://6d05-196-235-38-7.ngrok-free.app/";
 final registration = url + "register";
 final login = url + 'login';
 final imageurl = url + 'image/';

@@ -21,8 +21,8 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
         var respone = await http.patch(Uri.parse(imageurl),
             body: {'id': event.id.toString(), 'image': event.image});
       } else if (event is OnDrawerIemSelectedEvent) {
-        emit(
-            OnDrawerIemSelectedState(selectedPosition: event.selectedPosition));
+        
+        emit(OnDrawerIemSelectedState(selectedPosition: event.selectedPosition));
         emit(DummyState());
       }
     });

@@ -49,7 +49,7 @@ class AuthenticationBloc
           usermodel.email = user[4];
           usermodel.date_de_naissance = user[5];
           usermodel.image = "";
-          usermodel.tel = user[1];
+          usermodel.tel = user[7];
           prefs.setString("id", usermodel.id ?? "");
           prefs.setString("nom", usermodel.nom ?? "");
           prefs.setString("prenom", usermodel.prenom ?? "");
