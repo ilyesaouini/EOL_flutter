@@ -25,6 +25,8 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
   AbsenceBloc() : super(AbsenceInitial()) {
     on<AbsenceEvent>((event, emit) async {
       if (event is GetAbsenceList) {
+        emit(AbsenceLoading());
+
         initSharedPref();
 
         List<Absence> absenceList = [];
@@ -59,8 +61,11 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
         }
       } else if (event is AddReclamationAbsence) {
         var url = "${addreclamationurl}?role=etudiant";
-        var response = await http.post(Uri.parse(url),
-        body: {'description': event.description,'module': event.module, 'etudiant':event.etudiant});
+        var response = await http.post(Uri.parse(url), body: {
+          'description': event.description,
+          'module': event.module,
+          'etudiant': event.etudiant
+        });
       }
     });
   }

@@ -28,7 +28,6 @@ class _AbsencePageState extends State<AbsencePage> {
       );
   }
 
- 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AbsenceBloc, AbsenceState>(
@@ -49,7 +48,7 @@ class _AbsencePageState extends State<AbsencePage> {
                       onTap: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (BuildContext context) {
-                          return AbsenceDetails(absenceList[index].id_absence!);
+                          return AbsenceDetails(absence: absenceList[index]);
                         }));
                       },
                       child: Container(

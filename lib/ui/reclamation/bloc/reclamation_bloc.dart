@@ -14,6 +14,7 @@ class ReclamationBloc extends Bloc<ReclamationEvent, ReclamationState> {
   ReclamationBloc() : super(ReclamationInitial()) {
     on<ReclamationEvent>((event, emit) async {
       if (event is GetReclamationList) {
+        emit(ReclamationLoading());
         List<Reclamation> reclamationList = [];
         var url = "${reclamationurl}?role=etudiant";
         var response = await http.get(Uri.parse(url));
