@@ -21,7 +21,7 @@ class AbsenceEnseignantPage extends StatefulWidget {
 }
 
 class _AbsenceEnseignantPageState extends State<AbsenceEnseignantPage> {
-  List<Plan_Class_Session> classList = [];
+  List<AbsenceNew> classList = [];
   User user = User();
   TextEditingController descriptionController = TextEditingController();
   @override
@@ -31,17 +31,16 @@ class _AbsenceEnseignantPageState extends State<AbsenceEnseignantPage> {
       id: widget.prefs.getString('id'),
       role: widget.prefs.getString('role'),
     );
-    context.read<AbsenceBloc>()
-      ..add(
-        GetClassByEnseignant(idEns: user.id),
-      );
+    context.read<AbsenceBloc>().add(
+          GetAbsenceByEnseignant(idEns: user.id),
+        );
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AbsenceBloc, AbsenceState>(
       listener: (context, state) {
-        if (state is ClassLoaded) {
+        if (state is AbsenceLoaded) {
           classList = state.responseList;
         }
       },
@@ -69,10 +68,10 @@ class _AbsenceEnseignantPageState extends State<AbsenceEnseignantPage> {
                       itemBuilder: (context, index) {
                         return InkWell(
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(
-                                builder: (BuildContext context) {
-                              return ClassDetails(classe: classList[index]);
-                            }));
+                            // Navigator.push(context, MaterialPageRoute(
+                            //     builder: (BuildContext context) {
+                            //   return ClassDetails(classe: classList[index]);
+                            // }));
                           },
                           child: Container(
                             margin: const EdgeInsets.all(8.0),

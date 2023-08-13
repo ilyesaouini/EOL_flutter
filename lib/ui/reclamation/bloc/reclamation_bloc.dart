@@ -12,8 +12,8 @@ part 'reclamation_state.dart';
 
 class ReclamationBloc extends Bloc<ReclamationEvent, ReclamationState> {
   ReclamationBloc() : super(ReclamationInitial()) {
-    on<ReclamationEvent>((event, emit) async {
-      if (event is GetReclamationList) {
+    
+    on<GetReclamationList>((event, emit) async {
         emit(ReclamationLoading());
         List<Reclamation> reclamationList = [];
         var url = "${reclamationurl}";
@@ -34,7 +34,9 @@ class ReclamationBloc extends Bloc<ReclamationEvent, ReclamationState> {
           print("Something error");
           emit(ReclamationLoaded(reclamationList));
         }
-      } else if (event is AddReclamationSimpleEvent) {
+      
+    });
+    on<AddReclamationSimpleEvent>((event, emit) async {
         var reqBody = {"etudiant": event.id, "description": event.description};
 
         var response = await http.post(Uri.parse(addsimplereclamationurl),
@@ -43,21 +45,22 @@ class ReclamationBloc extends Bloc<ReclamationEvent, ReclamationState> {
         if (response.statusCode == 200) {
           emit(AddReclamationSuccesState());
         }
-      } else if (event is ReponseReclamationEvent) {
-        var reqBody = {
-          "id_reclamation": event.id,
-          "reponse": event.reponse,
-          "status": "done"
-        };
-        var response = await http.patch(Uri.parse(reponsereclamationurl),
-            headers: {"Content-Type": "application/json"},
-            body: jsonEncode(reqBody));
-        debugPrint(response.body.toString());
-        print(response.body);
-        if (response.statusCode == 200) {
-          emit(ReponseReclamationSuccesState());
-        }
-      }
     });
+    on<ReponseReclamationEvent>((event, emit) async {
+            var reqBody = {
+              "id_reclamation": event.id,
+              "reponse": event.reponse,
+              "status": "done"
+            };
+            var response = await http.patch(Uri.parse(reponsereclamationurl),
+                headers: {"Content-Type": "application/json"},
+                body: jsonEncode(reqBody));
+            debugPrint(response.body.toString());
+            print(response.body);
+            if (response.statusCode == 200) {
+              emit(ReponseReclamationSuccesState());
+            }
+        });
+
   }
 }

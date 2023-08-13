@@ -31,8 +31,9 @@ class _SignInPageState extends State<SignInPage> {
     super.initState();
     initSharedPref();
 
-    // emailController.text = "mohamedilyess.aouini@esprit.tn";
-    // passwordController.text = "123456";
+
+     emailController.text = "mohamedilyess.aouini@esprit.tn";
+     passwordController.text = "123456";
   }
 
   void initSharedPref() async {

@@ -85,7 +85,7 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           children: [
             SizedBox(
-              height: 200,
+              height: 180,
               width: 115,
               child: Stack(
                 fit: StackFit.expand,

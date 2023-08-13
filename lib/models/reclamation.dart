@@ -20,8 +20,7 @@ class Reclamation {
   });
 
   Reclamation.fromJson(dynamic json) {
-    id_reclamation =
-        json['id_reclamtion'] != null ? int.tryParse('id_reclamation') : null;
+    id_reclamation = json['id_reclamation'];
     description = json['description'];
     reponse = json['reponse'];
     module = json['module'];

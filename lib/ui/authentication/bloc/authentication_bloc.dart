@@ -54,6 +54,9 @@ class AuthenticationBloc
           usermodel.date_de_naissance = user[5];
           usermodel.image = "";
           usermodel.tel = user[7];
+          usermodel.role = jsonResponse['role'];
+          rolemodel.role = jsonResponse['role'];
+          print(user[8]);
 
           prefs.setString("id", usermodel.id ?? "");
           prefs.setString("nom", usermodel.nom ?? "");
