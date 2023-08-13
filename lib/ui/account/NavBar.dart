@@ -1,11 +1,12 @@
-import 'package:copihass/ui/absence/absence_page.dart';
+import 'package:copihass/ui/absence/pages/absence_page.dart';
 import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
 import 'package:copihass/ui/account/bloc/account_bloc.dart';
+import 'package:copihass/ui/class/bloc/class_bloc.dart';
 import 'package:copihass/ui/note/bloc/note_bloc.dart';
 
-import 'package:copihass/ui/note/note.dart';
+import 'package:copihass/ui/note/pages/note.dart';
 import 'package:copihass/ui/reclamation/bloc/reclamation_bloc.dart';
-import 'package:copihass/ui/reclamation/reclamation.dart';
+import 'package:copihass/ui/reclamation/pages/reclamation.dart';
 import 'package:copihass/ui/resultat/bloc/resultat_bloc.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -34,9 +35,9 @@ class _DrawerWidgetState extends State<DrawerWidget> {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text('user:'),
+            accountName: Text('ESPRIT'),
             accountEmail: Text(
-              'email',
+              'se former autrement',
             ),
             currentAccountPicture: CircleAvatar(
               child: Image.asset(
@@ -96,6 +97,13 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               _onItemSelected(5);
             },
           ),
+          ListTile(
+            leading: const Icon(Icons.class_outlined),
+            title: const Text('Class'),
+            onTap: () {
+              _onItemSelected(6);
+            },
+          ),
         ],
       ),
     );
@@ -126,6 +134,9 @@ class _DrawerWidgetState extends State<DrawerWidget> {
         break;
       case 5:
         context.read<ReclamationBloc>().add(GetReclamationList());
+        break;
+      case 6:
+        context.read<ClassBloc>().add(GetListClass());
         break;
     }
   }

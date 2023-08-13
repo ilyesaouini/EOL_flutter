@@ -4,7 +4,7 @@ class Absence {
   int? id_absence;
   String? date_absence;
   String? module;
-
+  
   String? etudiant;
 
   Absence({
@@ -23,22 +23,7 @@ class Absence {
     };
   }
 
-/*
-  factory Absence.fromMap(Map<String, dynamic> map) {
-    return Absence(
-      id_absence: map['id_absence']?.toInt() ?? 0,
-      date_absence: map['date_absence'] ?? '',
-      module: map['module'] ?? '',
-      etudiant: map['etudiant'] ?? '',
-    );
-  }
 
-  String toJson() => json.encode(toMap());
-
-  factory Absence.fromJson(String source) =>
-      Absence.fromMap(json.decode(source));
-
-*/
   factory Absence.fromJson(dynamic json) {
     return Absence(
       id_absence: json['id_absence'],

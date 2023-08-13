@@ -1,5 +1,5 @@
 class Reclamation {
-  String? id_reclamation;
+  int? id_reclamation;
   String? description;
   String? reponse;
   String? module;
@@ -19,9 +19,9 @@ class Reclamation {
     this.status,
   });
 
-  Reclamation.fromJson(dynamic json){
-
-    id_reclamation = json['id_reclamtion'];
+  Reclamation.fromJson(dynamic json) {
+    id_reclamation =
+        json['id_reclamtion'] != null ? int.tryParse('id_reclamation') : null;
     description = json['description'];
     reponse = json['reponse'];
     module = json['module'];

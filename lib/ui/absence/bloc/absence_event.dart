@@ -9,17 +9,25 @@ abstract class AbsenceEvent extends Equatable {
 
 class GetAbsenceList extends AbsenceEvent {}
 
-class AddReclamationAbsence extends AbsenceEvent {
+class AddReclamationAbsenceEvent extends AbsenceEvent {
   final description;
   final module;
   final etudiant;
- 
 
-  AddReclamationAbsence(this.description,
-  this.module,
-  this.etudiant);
+  AddReclamationAbsenceEvent(this.description, this.module, this.etudiant);
 }
-class GetAbsenceById extends AbsenceEvent{
+
+class GetAbsenceByEtudiant extends AbsenceEvent {
   final String? absenceId;
-  const GetAbsenceById({ required this.absenceId});
+  const GetAbsenceByEtudiant({required this.absenceId});
+}
+
+class GetAbsenceByEnseignant extends AbsenceEvent {
+  final String? idEns;
+  const GetAbsenceByEnseignant({required this.idEns});
+}
+
+class GetClassByEnseignant extends AbsenceEvent {
+  final String? idEns;
+  const GetClassByEnseignant({required this.idEns});
 }

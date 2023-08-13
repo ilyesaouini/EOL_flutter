@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:copihass/ui/account/NavBar.dart';
 import 'package:copihass/ui/emploi/emploi.dart';
-import 'package:copihass/ui/reclamation/reclamation.dart';
+import 'package:copihass/ui/reclamation/pages/reclamation.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -58,7 +58,10 @@ class _ProfilePageState extends State<ProfilePage> {
       prenom: widget.prefs.getString('prenom'),
       email: widget.prefs.getString('email'),
       image: widget.prefs.getString('image'),
+      tel: widget.prefs.getString('tel'),
+      role: widget.prefs.getString('role'),
     );
+    print("id =" + user.id.toString());
     super.initState();
   }
 
@@ -138,6 +141,11 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             ProfileMenu(
               text: user.email ?? "N/A",
+              icon: "assets/icons/Question mark.svg",
+              press: () {},
+            ),
+            ProfileMenu(
+              text: user.tel ?? "N/A",
               icon: "assets/icons/Question mark.svg",
               press: () {},
             ),

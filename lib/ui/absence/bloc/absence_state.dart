@@ -12,7 +12,7 @@ class AbsenceInitial extends AbsenceState {}
 class AbsenceLoading extends AbsenceState {}
 
 class AbsenceLoaded extends AbsenceState {
-  final List<Absence> responseList;
+  final List<AbsenceNew> responseList;
   const AbsenceLoaded(this.responseList);
 }
 
@@ -28,4 +28,17 @@ class ReclamationErrorState extends AbsenceState {}
 class AbsenceDetailsLoaded extends AbsenceState {
   final Absence absence;
   const AbsenceDetailsLoaded(this.absence);
+}
+
+class AbsenceEtudiantSuccesState extends AbsenceState {}
+class ClassLoading extends AbsenceState {}
+
+class ClassLoaded extends AbsenceState {
+  final List<Plan_Class_Session> responseList;
+  const ClassLoaded(this.responseList);
+}
+
+class ClassError extends AbsenceState {
+  final String? message;
+  const ClassError(this.message);
 }

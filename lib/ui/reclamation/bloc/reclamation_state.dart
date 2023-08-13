@@ -30,3 +30,9 @@ class AddReclamationSuccesState extends ReclamationState{
 class AddReclamationErrorState extends ReclamationState {
   
 }
+class ReponseReclamationSuccesState extends ReclamationState{
+
+}
+class ReponseReclamationErrorState extends ReclamationState {
+  
+}

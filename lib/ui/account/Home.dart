@@ -1,14 +1,15 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:copihass/ui/absence/absence_page.dart';
+import 'package:copihass/models/role.dart';
+import 'package:copihass/ui/absence/pages/absence_page.dart';
 import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
 import 'package:copihass/ui/account/NavBar.dart';
 import 'package:copihass/ui/account/profile_page.dart';
 import 'package:copihass/ui/emploi/emploi.dart';
 import 'package:copihass/ui/note/bloc/note_bloc.dart';
-import 'package:copihass/ui/note/note.dart';
+import 'package:copihass/ui/note/pages/note.dart';
 import 'package:copihass/ui/reclamation/bloc/reclamation_bloc.dart';
-import 'package:copihass/ui/reclamation/reclamation.dart';
+import 'package:copihass/ui/reclamation/pages/reclamation.dart';
 import 'package:copihass/ui/resultat/bloc/resultat_bloc.dart';
 import 'package:copihass/ui/resultat/resultat.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -23,6 +24,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/user.dart';
 
+import '../absence/pages/absence_enseignant.dart';
 import 'bloc/account_bloc.dart';
 import 'components/profile_menu.dart';
 
@@ -38,17 +40,49 @@ class _HomeState extends State<Home> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   int selectedItemPosition = 0;
   List<Widget> bodyWidgetsList = [];
-
+  User user = User();
+  Role role = Role();
   @override
   void initState() {
-    bodyWidgetsList = [
-      ProfilePage(prefs: widget.prefs),
-      NotePage(prefs: widget.prefs),
-      AbsencePage(prefs: widget.prefs),
-      ResultatPage(prefs: widget.prefs),
-      EmploiPage(),
-      ReclamationPage(prefs: widget.prefs),
-    ];
+    user = User(
+      id: widget.prefs.getString('id'),
+      role: widget.prefs.getString('role'),
+    );
+    role = Role(
+      role: widget.prefs.getString('role'),
+    );
+    print(role.role);
+    if (user.id == "01") {
+      print("role is " + user.role.toString());
+      bodyWidgetsList = [
+        ProfilePage(prefs: widget.prefs),
+        NotePage(prefs: widget.prefs),
+        AbsencePage(prefs: widget.prefs),
+        ResultatPage(prefs: widget.prefs),
+        EmploiPage(),
+        ReclamationPage(prefs: widget.prefs),
+      ];
+    } else if (user.id == "v_18_b1") {
+      print("role is " + user.role.toString());
+      bodyWidgetsList = [
+        ProfilePage(prefs: widget.prefs),
+        NotePage(prefs: widget.prefs),
+        AbsenceEnseignantPage(prefs: widget.prefs),
+        ResultatPage(prefs: widget.prefs),
+        EmploiPage(),
+        ReclamationPage(prefs: widget.prefs),
+      ];
+    } else {
+      print("role is " + user.role.toString());
+      bodyWidgetsList = [
+        ProfilePage(prefs: widget.prefs),
+        NotePage(prefs: widget.prefs),
+        AbsencePage(prefs: widget.prefs),
+        ResultatPage(prefs: widget.prefs),
+        EmploiPage(),
+        ReclamationPage(prefs: widget.prefs),
+      ];
+    }
     super.initState();
   }
 
@@ -96,5 +130,4 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-
 }

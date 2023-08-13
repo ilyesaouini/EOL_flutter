@@ -16,7 +16,7 @@ class ReclamationBloc extends Bloc<ReclamationEvent, ReclamationState> {
       if (event is GetReclamationList) {
         emit(ReclamationLoading());
         List<Reclamation> reclamationList = [];
-        var url = "${reclamationurl}?role=etudiant";
+        var url = "${reclamationurl}";
         var response = await http.get(Uri.parse(url));
         print(response.request!.url.toString());
         debugPrint(response.body.toString());
@@ -35,13 +35,27 @@ class ReclamationBloc extends Bloc<ReclamationEvent, ReclamationState> {
           emit(ReclamationLoaded(reclamationList));
         }
       } else if (event is AddReclamationSimpleEvent) {
-        var reqBody = {"reclamation": event.description};
+        var reqBody = {"etudiant": event.id, "description": event.description};
 
         var response = await http.post(Uri.parse(addsimplereclamationurl),
             headers: {"Content-Type": "application/json"},
             body: jsonEncode(reqBody));
         if (response.statusCode == 200) {
           emit(AddReclamationSuccesState());
+        }
+      } else if (event is ReponseReclamationEvent) {
+        var reqBody = {
+          "id_reclamation": event.id,
+          "reponse": event.reponse,
+          "status": "done"
+        };
+        var response = await http.patch(Uri.parse(reponsereclamationurl),
+            headers: {"Content-Type": "application/json"},
+            body: jsonEncode(reqBody));
+        debugPrint(response.body.toString());
+        print(response.body);
+        if (response.statusCode == 200) {
+          emit(ReponseReclamationSuccesState());
         }
       }
     });

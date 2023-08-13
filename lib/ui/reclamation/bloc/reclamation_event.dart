@@ -13,5 +13,12 @@ class GetReclamationList extends ReclamationEvent {}
 class AddReclamationSimpleEvent extends ReclamationEvent {
   final id;
   final description;
-  AddReclamationSimpleEvent(this.id,this.description);
+  AddReclamationSimpleEvent(this.id, this.description);
+}
+
+class ReponseReclamationEvent extends ReclamationEvent {
+  final id;
+  final reponse;
+  final status;
+  ReponseReclamationEvent(this.id, this.reponse,this.status);
 }

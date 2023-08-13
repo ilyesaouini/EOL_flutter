@@ -4,6 +4,7 @@ import 'package:copihass/ui/account/bloc/account_bloc.dart';
 
 import 'package:copihass/ui/authentication/bloc/authentication_bloc.dart';
 import 'package:copihass/ui/authentication/loginPage.dart';
+import 'package:copihass/ui/class/bloc/class_bloc.dart';
 import 'package:copihass/ui/note/bloc/note_bloc.dart';
 import 'package:copihass/ui/reclamation/bloc/reclamation_bloc.dart';
 import 'package:copihass/ui/resultat/bloc/resultat_bloc.dart';
@@ -18,6 +19,7 @@ import 'models/user.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
+
   runApp(MyApp(
       prefs: prefs,
       token: prefs.getString('token'),
@@ -42,6 +44,7 @@ class MyApp extends StatelessWidget {
     required this.user,
     Key? key,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -61,6 +64,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<ResultatBloc>(
           create: (_) => ResultatBloc(),
+        ),
+        BlocProvider<ClassBloc>(
+          create: (_) => ClassBloc(),
         )
       ],
       child: MaterialApp(

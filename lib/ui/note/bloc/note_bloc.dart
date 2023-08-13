@@ -23,27 +23,36 @@ void initSharedPref() async {
 
 class NoteBloc extends Bloc<NoteEvent, NoteState> {
   NoteBloc() : super(NoteInitial()) {
-    on<GetNoteList>((event, emit) async {
-      emit(NoteLoading());
+    on<NoteEvent>((event, emit) async {
+      if (event is GetNoteList) {
+        emit(NoteLoading());
 
-      List<Note> noteList = [];
-      var url = "${noteurl}?role=etudiant";
-      var response = await http.get(Uri.parse(url));
-      print(response.request!.url.toString());
-      debugPrint(response.body.toString());
-      var jsonResponse = jsonDecode(response.body);
-      print(jsonResponse);
-      if (response.statusCode == 200) {
-        if (jsonResponse != null) {
-          jsonResponse.forEach((jsonElement) {
-            noteList.add(Note.fromJson(jsonElement));
-          });
+        List<Note> noteList = [];
+        var url = "${noteurl}?role=etudiant";
+        var response = await http.get(Uri.parse(url));
+        print(response.request!.url.toString());
+        debugPrint(response.body.toString());
+        var jsonResponse = jsonDecode(response.body);
+        print(jsonResponse);
+        if (response.statusCode == 200) {
+          if (jsonResponse != null) {
+            jsonResponse.forEach((jsonElement) {
+              noteList.add(Note.fromJson(jsonElement));
+            });
+          }
+
+          emit(NoteLoaded(noteList));
+        } else {
+          print("Something error");
+          emit(NoteLoaded(noteList));
         }
-
-        emit(NoteLoaded(noteList));
-      } else {
-        print("Something error");
-        emit(NoteLoaded(noteList));
+      } else if (event is AddReclamationNoteEvent) {
+        var url = "${addreclamationurl}?role=etudiant";
+        var response = await http.post(Uri.parse(url), body: {
+          'description': event.description,
+          'module': event.module,
+          'etudiant': event.etudiant
+        });
       }
     });
   }

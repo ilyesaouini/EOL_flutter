@@ -9,7 +9,9 @@ abstract class NoteEvent extends Equatable {
 
 class GetNoteList extends NoteEvent {}
 
-class AddReclamationNote extends NoteEvent {
+class AddReclamationNoteEvent extends NoteEvent {
   final description;
-  AddReclamationNote(this.description);
+  final module;
+  final etudiant;
+  AddReclamationNoteEvent(this.description, this.module, this.etudiant);
 }

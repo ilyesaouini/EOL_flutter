@@ -31,9 +31,8 @@ class _SignInPageState extends State<SignInPage> {
     super.initState();
     initSharedPref();
 
-    emailController.text = "mohamedilyess.aouini@esprit.tn";
-    passwordController.text = "123456";
-    
+    // emailController.text = "mohamedilyess.aouini@esprit.tn";
+    // passwordController.text = "123456";
   }
 
   void initSharedPref() async {
@@ -53,8 +52,10 @@ class _SignInPageState extends State<SignInPage> {
     return BlocConsumer<AuthenticationBloc, AuthenticationState>(
       listener: (context, state) {
         if (state is LoginSuccesState) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Home(state.sharedPreferences)));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => Home(state.sharedPreferences)));
         }
       },
       builder: (context, state) {

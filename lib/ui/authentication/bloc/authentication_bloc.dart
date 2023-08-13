@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:copihass/models/role.dart';
 import 'package:copihass/utils/utils.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,6 +18,7 @@ part 'authentication_state.dart';
 
 late SharedPreferences prefs;
 final usermodel = new User();
+final rolemodel = new Role();
 void initSharedPref() async {
   prefs = await SharedPreferences.getInstance();
 }
@@ -28,6 +30,7 @@ class AuthenticationBloc
       if (event is LoginEvent) {
         initSharedPref();
         var user = [];
+        var role = [];
         var reqBody = {
           "email": event.email,
           "password": event.password,
@@ -43,6 +46,7 @@ class AuthenticationBloc
           var myToken = jsonResponse['token'];
           user = jsonResponse['user'];
           prefs.setString('token', myToken);
+          usermodel.id = user[0];
           usermodel.nom_prenom = user[1];
           usermodel.nom = user[2];
           usermodel.prenom = user[3];
@@ -50,6 +54,7 @@ class AuthenticationBloc
           usermodel.date_de_naissance = user[5];
           usermodel.image = "";
           usermodel.tel = user[7];
+
           prefs.setString("id", usermodel.id ?? "");
           prefs.setString("nom", usermodel.nom ?? "");
           prefs.setString("prenom", usermodel.prenom ?? "");
@@ -58,13 +63,14 @@ class AuthenticationBloc
           prefs.setString(
               "date_de_naissance", usermodel.date_de_naissance ?? "");
           prefs.setString("image", "");
-          prefs.setString("role", usermodel.role ?? "");
+          prefs.setString("role", rolemodel.role ?? "");
           emit(LoginSuccesState(prefs));
         } else {
           print('Something went wrong');
         }
       } else if (event is RegistreEvent) {
         var user = [];
+        var role = [];
         initSharedPref();
 
         var regBody = {
@@ -91,6 +97,8 @@ class AuthenticationBloc
           usermodel.prenom = user[3];
           usermodel.date_de_naissance = user[5];
           usermodel.tel = user[7];
+          usermodel.role = user[8];
+          rolemodel.role = role[0];
           prefs.setString("id", usermodel.id ?? "");
           prefs.setString("nom", usermodel.nom ?? "");
           prefs.setString("prenom", usermodel.prenom ?? "");
@@ -99,6 +107,7 @@ class AuthenticationBloc
           prefs.setString(
               "date_de_naissance", usermodel.date_de_naissance ?? "");
           prefs.setString("image", "");
+          prefs.setString("role", usermodel.role ?? "no role");
           // Navigator.push( context, MaterialPageRoute(builder: (context) => Home()));
           emit(RegistreSuccesState(prefs));
         } else {

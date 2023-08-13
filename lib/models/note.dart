@@ -4,9 +4,9 @@ class Note {
   int? code_note;
   String? module;
   String? etudiant;
-  double? note_cc;
-  double? note_tp;
-  double? note_examen;
+  int? note_cc;
+  int? note_tp;
+  int? note_examen;
   String? abs_cc;
   String? abs_tp;
   String? abs_examen;
@@ -29,7 +29,7 @@ class Note {
       etudiant: json['etudiant'],
       note_cc: json['note_cc'],
       note_tp: json['note_tp'],
-      note_examen:json['note_examen'],
+      note_examen: json['note_examen'],
       abs_cc: json['abs_cc'],
       abs_tp: json['abs_tp'],
       abs_examen: json['abs_examen'],

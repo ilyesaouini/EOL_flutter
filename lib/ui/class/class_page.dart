@@ -1,14 +1,16 @@
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class classPage extends StatefulWidget {
-  const classPage({super.key});
+class ClassPage extends StatefulWidget {
+  final SharedPreferences prefs;
+  const ClassPage({super.key, required this.prefs});
 
   @override
-  State<classPage> createState() => _classPageState();
+  State<ClassPage> createState() => _ClassPageState();
 }
 
-class _classPageState extends State<classPage> {
+class _ClassPageState extends State<ClassPage> {
   @override
   Widget build(BuildContext context) {
     return Container();

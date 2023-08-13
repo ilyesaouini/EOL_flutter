@@ -1,5 +1,7 @@
 import 'package:copihass/config.dart';
 import 'package:copihass/models/absence.dart';
+import 'package:copihass/models/absencenew.Model.dart';
+import 'package:copihass/models/plan_class_session.dart';
 import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,34 +11,28 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import '../reclamation/bloc/reclamation_bloc.dart';
+import '../../reclamation/bloc/reclamation_bloc.dart';
 
-class AbsenceDetails extends StatefulWidget {
-  final Absence absence;
-  const AbsenceDetails({super.key, required this.absence});
+class ClassDetails extends StatefulWidget {
+  final Plan_Class_Session classe;
+  const ClassDetails({super.key, required this.classe});
 
   @override
-  State<AbsenceDetails> createState() => _AbsenceDetailsState();
+  State<ClassDetails> createState() => _ClassDetailsState();
 }
 
-class _AbsenceDetailsState extends State<AbsenceDetails> {
+class _ClassDetailsState extends State<ClassDetails> {
   //util
   TextEditingController descriptionController = TextEditingController();
-  late Absence absence;
+  late Plan_Class_Session classe;
 
   @override
   void initState() {
-    absence = widget.absence;
+    classe = widget.classe;
     super.initState();
   }
 
-  void reclamation() {
-    if (descriptionController.text.isNotEmpty) {
-      context
-          .read<AbsenceBloc>()
-          .add(AddReclamationAbsence("description", "module", "etudiant"));
-    }
-  }
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -62,11 +58,11 @@ class _AbsenceDetailsState extends State<AbsenceDetails> {
               SizedBox(
                 height: 10,
               ),
-              Text(absence.date_absence ?? "Null"),
+              Text(classe.code_cl?? "Null"),
               SizedBox(
                 height: 10,
               ),
-              Text(absence.module ?? "Null"),
+              Text(classe.code_module ?? "Null"),
             ],
           ),
         ),
@@ -80,8 +76,14 @@ class _AbsenceDetailsState extends State<AbsenceDetails> {
               return AlertDialog(
                 title: Text("Add reclamation"),
                 content: Container(
-                  height: 256,
-                  color: Colors.blue,
+                  child: TextField(
+                    controller: descriptionController,
+                    decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        hintText: "description",
+                        hoverColor: Colors.red),
+                  ),
                 ),
                 actionsAlignment: MainAxisAlignment.center,
                 actions: [
@@ -89,13 +91,29 @@ class _AbsenceDetailsState extends State<AbsenceDetails> {
                       onPressed: () {
                         Navigator.pop(context);
                       },
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.red, // Background color
+                      ),
                       child: Text("Annuler")),
-                  ElevatedButton(onPressed: () {}, child: Text("Confirmer"))
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.grey, // Background color
+                    ),
+                    onPressed: () {
+                      
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      "Confirmer",
+                    ),
+                  )
                 ],
               );
             },
           );
         },
+        child: Icon(Icons.add_alert_sharp),
+        backgroundColor: Colors.grey,
       ),
     );
   }
