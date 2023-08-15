@@ -4,6 +4,7 @@ import 'package:copihass/models/absencenew.Model.dart';
 import 'package:copihass/models/plan_class_session.dart';
 import 'package:copihass/ui/absence/pages/absence_details.dart';
 import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
+import 'package:copihass/ui/absence/pages/addabsences_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -68,10 +69,10 @@ class _AbsenceEnseignantPageState extends State<AbsenceEnseignantPage> {
                       itemBuilder: (context, index) {
                         return InkWell(
                           onTap: () {
-                            // Navigator.push(context, MaterialPageRoute(
-                            //     builder: (BuildContext context) {
-                            //   return ClassDetails(classe: classList[index]);
-                            // }));
+                             Navigator.push(context, MaterialPageRoute(
+                                 builder: (BuildContext context) {
+                               return AddAbsenceDetails(absence: classList[index]);
+                             }));
                           },
                           child: Container(
                             margin: const EdgeInsets.all(8.0),
@@ -89,11 +90,7 @@ class _AbsenceEnseignantPageState extends State<AbsenceEnseignantPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    "aaaaaaaaaAbsence: ${classList[index].code_cl}",
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Text(
-                                    "Date: ${classList[index].code_cl}",
+                                    "Classe: ${classList[index].code_cl}",
                                   ),
                                   const SizedBox(height: 10),
                                   Text(

@@ -51,8 +51,8 @@ class _HomeState extends State<Home> {
     role = Role(
       role: widget.prefs.getString('role'),
     );
-    print(role.role);
-    if (user.id == "01") {
+    print("awaha el role : " + role.role.toString());
+    if (role.role == "01") {
       print("role is " + user.role.toString());
       bodyWidgetsList = [
         ProfilePage(prefs: widget.prefs),
@@ -62,7 +62,7 @@ class _HomeState extends State<Home> {
         EmploiPage(),
         ReclamationPage(prefs: widget.prefs),
       ];
-    } else if (user.id == "v_18_b1") {
+    } else if (role.role == "02") {
       print("role is " + user.role.toString());
       bodyWidgetsList = [
         ProfilePage(prefs: widget.prefs),

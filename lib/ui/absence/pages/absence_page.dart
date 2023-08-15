@@ -71,7 +71,7 @@ class _AbsencePageState extends State<AbsencePage> {
                             margin: const EdgeInsets.all(8.0),
                             padding: const EdgeInsets.all(15),
                             decoration: BoxDecoration(
-                                color: Colors.grey.shade600,
+                                color: Color.fromARGB(255, 201, 201, 201),
                                 borderRadius: BorderRadius.circular(10),
                                 border: Border.all(
                                     color:
@@ -83,15 +83,23 @@ class _AbsencePageState extends State<AbsencePage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    "Absence: ${absenceList[index].code_cl}",
+                                    "Classe : ${absenceList[index].code_cl}",
                                   ),
                                   const SizedBox(height: 10),
                                   Text(
-                                    "Date: ${absenceList[index].code_module}",
+                                    "Code module: ${absenceList[index].code_module}",
                                   ),
                                   const SizedBox(height: 10),
                                   Text(
                                     "Module: ${absenceList[index].id_ens}",
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Text(
+                                    "Date: ${absenceList[index].date_seance.toString()}",
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Text(
+                                    "Annee : ${absenceList[index].annee_deb}",
                                   ),
                                   const SizedBox(height: 10),
                                 ],

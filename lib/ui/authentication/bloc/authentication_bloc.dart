@@ -45,6 +45,7 @@ class AuthenticationBloc
         if (response.statusCode == 200) {
           var myToken = jsonResponse['token'];
           user = jsonResponse['user'];
+          //role = jsonResponse['role'];
           prefs.setString('token', myToken);
           usermodel.id = user[0];
           usermodel.nom_prenom = user[1];
@@ -57,6 +58,8 @@ class AuthenticationBloc
           usermodel.role = jsonResponse['role'];
           rolemodel.role = jsonResponse['role'];
           print(user[8]);
+
+          // rolemodel.role = role[0];
 
           prefs.setString("id", usermodel.id ?? "");
           prefs.setString("nom", usermodel.nom ?? "");

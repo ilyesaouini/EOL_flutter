@@ -12,15 +12,15 @@ import 'dart:convert';
 
 import '../../reclamation/bloc/reclamation_bloc.dart';
 
-class AbsenceDetails extends StatefulWidget {
+class AddAbsenceDetails extends StatefulWidget {
   final AbsenceNew absence;
-  const AbsenceDetails({super.key, required this.absence});
+  const AddAbsenceDetails({super.key, required this.absence});
 
   @override
-  State<AbsenceDetails> createState() => _AbsenceDetailsState();
+  State<AddAbsenceDetails> createState() => _AddAbsenceDetailsState();
 }
 
-class _AbsenceDetailsState extends State<AbsenceDetails> {
+class _AddAbsenceDetailsState extends State<AddAbsenceDetails> {
   //util
   TextEditingController descriptionController = TextEditingController();
   late AbsenceNew absence;
@@ -41,56 +41,55 @@ class _AbsenceDetailsState extends State<AbsenceDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        padding: EdgeInsets.only(top: 64),
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              colors: [
-                Color.fromARGB(255, 236, 26, 26),
-                Color.fromARGB(255, 88, 87, 86)
-              ],
-              begin: FractionalOffset.topLeft,
-              end: FractionalOffset.bottomCenter,
-              stops: [0.0, 0.8],
-              tileMode: TileMode.mirror),
-        ),
-        child: Center(
-          child: Container(
-            margin: const EdgeInsets.all(8.0),
-            padding: const EdgeInsets.all(15),
-            decoration: BoxDecoration(
-                color: Color.fromARGB(255, 201, 201, 201),
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(
-                    color: const Color.fromARGB(255, 17, 17, 17), width: 0.5)),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 10,
+      body: Column(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            padding: EdgeInsets.only(top: 64),
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [
+                    Color.fromARGB(255, 236, 26, 26),
+                    Color.fromARGB(255, 88, 87, 86)
+                  ],
+                  begin: FractionalOffset.topLeft,
+                  end: FractionalOffset.bottomCenter,
+                  stops: [0.0, 0.8],
+                  tileMode: TileMode.mirror),
+            ),
+            child: Center(
+              child: Container(
+                margin: const EdgeInsets.only(bottom: 500, top: 40),
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 201, 201, 201),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                        color: const Color.fromARGB(255, 17, 17, 17),
+                        width: 0.5)),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text("Classe ${absence.code_cl} "),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text("Module: ${absence.code_module}"),
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ],
                 ),
-                Text("Classe ${absence.code_cl} "),
-                SizedBox(
-                  height: 10,
-                ),
-                Text("Module: ${absence.code_module}"),
-                SizedBox(
-                  height: 10,
-                ),
-                Text("Semestre:  ${absence.num_seance.toString()}  "),
-                SizedBox(
-                  height: 10,
-                ),
-                Text("Date seance: ${absence.date_seance.toString()}  "),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(absence.annee_deb ?? "Null"),
-              ],
+              ),
             ),
           ),
-        ),
+          Container(
+            child: Text("ssss"),
+          )
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

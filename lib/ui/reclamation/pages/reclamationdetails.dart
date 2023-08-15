@@ -34,6 +34,7 @@ class _ReclamationDetailsState extends State<ReclamationDetails> {
 
   reponseReclamation(String idrec) {
     if (responeController.text.isNotEmpty) {
+      print("reponse is ${responeController}");
       context
           .read<ReclamationBloc>()
           .add(ReponseReclamationEvent(idrec, responeController.text, "done"));
