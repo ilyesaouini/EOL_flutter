@@ -4,6 +4,7 @@ import 'package:copihass/models/absencenew.Model.dart';
 import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,51 +42,59 @@ class _AddAbsenceDetailsState extends State<AddAbsenceDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            padding: EdgeInsets.only(top: 64),
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [
-                    Color.fromARGB(255, 236, 26, 26),
-                    Color.fromARGB(255, 88, 87, 86)
-                  ],
-                  begin: FractionalOffset.topLeft,
-                  end: FractionalOffset.bottomCenter,
-                  stops: [0.0, 0.8],
-                  tileMode: TileMode.mirror),
-            ),
-            child: Center(
-              child: Container(
-                margin: const EdgeInsets.only(bottom: 500, top: 40),
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 201, 201, 201),
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                        color: const Color.fromARGB(255, 17, 17, 17),
-                        width: 0.5)),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text("Classe ${absence.code_cl} "),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text("Module: ${absence.code_module}"),
-                    SizedBox(
-                      height: 10,
-                    ),
-                  ],
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        leadingWidth: 0,
+        titleSpacing: 0,
+        backgroundColor: Color.fromARGB(255, 236, 26, 26).withOpacity(0.9),
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Color.fromARGB(255, 236, 26, 26),
+        ),
+        title: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          padding: EdgeInsets.only(top: 0),
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 236, 26, 26),
+                  Color.fromARGB(255, 88, 87, 86)
+                ],
+                begin: FractionalOffset.topCenter,
+                end: FractionalOffset.bottomCenter,
+                stops: [0.0, 0.8],
+                tileMode: TileMode.mirror),
+          ),
+          child: Container(
+            height: 64,
+            margin: const EdgeInsets.only(bottom: 0, top: 0),
+            padding: const EdgeInsets.all(0),
+            decoration: BoxDecoration(
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(10)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center ,
+              children: [
+                SizedBox(
+                  height: 10,
                 ),
-              ),
+                Text(
+                  "Classe ${absence.code_cl} ",
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text("Module: ${absence.code_module}"),
+                SizedBox(
+                  height: 10,
+                ),
+              ],
             ),
           ),
+        ),
+      ),
+      body: Column(
+        children: [
           Container(
             child: Text("ssss"),
           )
