@@ -59,5 +59,27 @@ class ReclamationBloc extends Bloc<ReclamationEvent, ReclamationState> {
         emit(ReponseReclamationSuccesState());
       }
     });
+    on<GetReclamtionEtudiant>(
+      (event, emit) async {
+        emit(ReclamationLoading());
+        String? id_et;
+        var url = "${listereclamationetudiant}";
+        var response = await http.get(Uri.parse(url + id_et.toString()));
+        debugPrint(response.body.toString());
+        var jsonResponse = jsonDecode(response.body);
+        List<Reclamation> listreclamation = [];
+        if (jsonResponse["Reclamation"] != null) {
+          jsonResponse["Reclamation"].forEach((jsonElement) {
+            listreclamation.add(Reclamation.fromJson(jsonElement));
+            print("success load list reclamation by etudiant");
+          });
+          emit(ReclamationLoaded(listreclamation));
+        } else {
+          print("something error");
+          emit(ReclamationError("message"));
+          emit(ReclamationLoaded(listreclamation));
+        }
+      },
+    );
   }
 }

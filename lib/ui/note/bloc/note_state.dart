@@ -12,7 +12,7 @@ class NoteInitial extends NoteState {}
 class NoteLoading extends NoteState {}
 
 class NoteLoaded extends NoteState {
-  final List<Note> responseList;
+  final List<NoteNew> responseList;
   const NoteLoaded(this.responseList);
 }
 
@@ -26,4 +26,24 @@ class AddReclamationSuccessState extends NoteState {}
 class ReclamationErrorState extends NoteState {
   final String? message;
   const ReclamationErrorState(this.message);
+}
+
+
+class NotesEtduiantLoading extends NoteState{}
+class NoteEtudiantLoaded extends NoteState {
+  final List<NoteNew> responseList;
+  const NoteEtudiantLoaded(this.responseList);
+}
+
+
+class PanierLoading extends NoteState{}
+
+class PanierLoaded extends NoteState{
+  final List<Plan_Class_Session> responseList;
+  const PanierLoaded(this.responseList);
+
+}
+class PanierErrorState extends NoteState{
+  final String? message;
+  const PanierErrorState(this.message);
 }

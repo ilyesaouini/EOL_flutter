@@ -1,5 +1,6 @@
 import 'package:copihass/config.dart';
 import 'package:copihass/models/absence.dart';
+import 'package:copihass/models/user.dart';
 import 'package:copihass/ui/absence/pages/absence_details.dart';
 import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
 import 'package:flutter/material.dart';
@@ -19,13 +20,18 @@ class AbsencePage extends StatefulWidget {
 
 class _AbsencePageState extends State<AbsencePage> {
   List<AbsenceNew> absenceList = [];
+  User user = User();
   TextEditingController descriptionController = TextEditingController();
   @override
   void initState() {
+    user = User(
+      id: widget.prefs.getString('id'),
+      role: widget.prefs.getString('role'),
+    );
     super.initState();
     context.read<AbsenceBloc>()
       ..add(
-        GetAbsenceList(),
+        GetAbsenceByEtudiant(absenceId: user.id),
       );
   }
 
@@ -91,7 +97,7 @@ class _AbsencePageState extends State<AbsencePage> {
                                   ),
                                   const SizedBox(height: 10),
                                   Text(
-                                    "Module: ${absenceList[index].id_ens}",
+                                    "Module: ${absenceList[index].id_et}",
                                   ),
                                   const SizedBox(height: 10),
                                   Text(

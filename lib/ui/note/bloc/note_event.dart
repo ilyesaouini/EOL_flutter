@@ -15,3 +15,13 @@ class AddReclamationNoteEvent extends NoteEvent {
   final etudiant;
   AddReclamationNoteEvent(this.description, this.module, this.etudiant);
 }
+
+class GetEtudiantNotes extends NoteEvent {
+  final String? id_et;
+  const GetEtudiantNotes({required this.id_et});
+}
+
+class GetPanierList extends NoteEvent{
+  final String id_ens;
+  const GetPanierList ({required this.id_ens});
+}

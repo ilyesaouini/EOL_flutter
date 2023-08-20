@@ -31,3 +31,8 @@ class GetClassByEnseignant extends AbsenceEvent {
   final String? idEns;
   const GetClassByEnseignant({required this.idEns});
 }
+
+class GetListEtudiant extends AbsenceEvent {
+  final String? code_cl;
+  const GetListEtudiant({required this.code_cl});
+}

@@ -31,6 +31,7 @@ class AbsenceDetailsLoaded extends AbsenceState {
 }
 
 class AbsenceEtudiantSuccesState extends AbsenceState {}
+
 class ClassLoading extends AbsenceState {}
 
 class ClassLoaded extends AbsenceState {
@@ -41,4 +42,16 @@ class ClassLoaded extends AbsenceState {
 class ClassError extends AbsenceState {
   final String? message;
   const ClassError(this.message);
+}
+
+class EtdiantLoading extends AbsenceState {}
+
+class EtduiantLoaded extends AbsenceState {
+  final List<User> responseList;
+  const EtduiantLoaded(this.responseList);
+}
+
+class EtudiantError extends AbsenceState {
+  final String? message;
+  const EtudiantError(this.message);
 }

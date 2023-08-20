@@ -1,7 +1,7 @@
 part of 'reclamation_bloc.dart';
 
 @immutable
-abstract class ReclamationState extends Equatable{
+abstract class ReclamationState extends Equatable {
   const ReclamationState();
 
   @override
@@ -9,7 +9,6 @@ abstract class ReclamationState extends Equatable{
 }
 
 class ReclamationInitial extends ReclamationState {}
-
 
 class ReclamationLoading extends ReclamationState {}
 
@@ -23,16 +22,14 @@ class ReclamationError extends ReclamationState {
   const ReclamationError(this.message);
 }
 
-class AddReclamationSuccesState extends ReclamationState{
+class AddReclamationSuccesState extends ReclamationState {}
 
-}
+class AddReclamationErrorState extends ReclamationState {}
 
-class AddReclamationErrorState extends ReclamationState {
-  
-}
-class ReponseReclamationSuccesState extends ReclamationState{
+class ReponseReclamationSuccesState extends ReclamationState {}
 
-}
-class ReponseReclamationErrorState extends ReclamationState {
-  
-}
+class ReponseReclamationErrorState extends ReclamationState {}
+
+class ListReclamationSuccessState extends ReclamationState {}
+
+class ListReclamationErrorState extends ReclamationState {}

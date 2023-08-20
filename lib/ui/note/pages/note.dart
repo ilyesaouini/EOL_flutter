@@ -5,7 +5,9 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../models/note.Model.dart';
 import '../../../models/note.dart';
+import '../../../models/user.dart';
 import 'notedetails.dart';
 
 class NotePage extends StatefulWidget {
@@ -17,12 +19,17 @@ class NotePage extends StatefulWidget {
 }
 
 class _NotePageState extends State<NotePage> {
-  List<Note> noteList = [];
+  List<NoteNew> noteList = [];
+  User user = User();
 
   @override
   void initState() {
+    user = User(
+      id: widget.prefs.getString('id'),
+      role: widget.prefs.getString('role'),
+    );
     super.initState();
-    context.read<NoteBloc>().add(GetNoteList());
+    context.read<NoteBloc>().add(GetEtudiantNotes(id_et: user.id));
   }
 
   @override
@@ -65,28 +72,28 @@ class _NotePageState extends State<NotePage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  "Etudiant: ${noteList[index].etudiant}",
+                                  "Etudiant: ${noteList[index].id_et}",
                                 ),
                                 const SizedBox(height: 10),
                                 Text(
-                                  "Module: ${noteList[index].module}",
+                                  "Module: ${noteList[index].code_module}",
                                 ),
                                 const SizedBox(height: 10),
-                                noteList[index].abs_cc == "o"
+                                noteList[index].absent_cc != "o"
                                     ? Text(
                                         "Note_cc: ${noteList[index].note_cc.toString()}",
                                       )
                                     : Text("Note_cc: __"),
                                 const SizedBox(height: 10),
-                                noteList[index].abs_tp == "o"
+                                noteList[index].absent_tp != "o"
                                     ? Text(
                                         "Note: ${noteList[index].note_tp.toString()}",
                                       )
                                     : Text("Note_tp: __"),
                                 const SizedBox(height: 10),
-                                noteList[index].abs_examen == "o"
+                                noteList[index].absent_exam != "o"
                                     ? Text(
-                                        "Note: ${noteList[index].note_examen.toString()}",
+                                        "Note: ${noteList[index].note_exam.toString()}",
                                       )
                                     : Text("Note_tp: __"),
                                 const SizedBox(height: 10),

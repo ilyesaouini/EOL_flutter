@@ -33,7 +33,7 @@ class _AbsenceEnseignantPageState extends State<AbsenceEnseignantPage> {
       role: widget.prefs.getString('role'),
     );
     context.read<AbsenceBloc>().add(
-          GetAbsenceByEnseignant(idEns: user.id),
+          GetClassByEnseignant(idEns: user.id),
         );
   }
 

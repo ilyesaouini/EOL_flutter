@@ -10,11 +10,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import '../../../models/note.Model.dart';
 import '../../../models/note.dart';
 import '../../reclamation/bloc/reclamation_bloc.dart';
 
 class NoteDetails extends StatefulWidget {
-  final Note note;
+  final NoteNew note;
   const NoteDetails({super.key, required this.note});
 
   @override
@@ -24,7 +25,7 @@ class NoteDetails extends StatefulWidget {
 class _NoteDetailsState extends State<NoteDetails> {
   //util
   TextEditingController descriptionController = TextEditingController();
-  late Note note;
+  late NoteNew note;
 
   @override
   void initState() {
@@ -35,7 +36,7 @@ class _NoteDetailsState extends State<NoteDetails> {
   void reclamation() {
     if (descriptionController.text.isNotEmpty) {
       context.read<NoteBloc>().add(AddReclamationNoteEvent(
-          descriptionController.text, note.module, note.etudiant));
+          descriptionController.text, note.code_module, note.id_et));
     }
   }
 
@@ -63,28 +64,28 @@ class _NoteDetailsState extends State<NoteDetails> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                "Etudiant: ${note.etudiant}",
+                "Etudiant: ${note.id_et}",
               ),
               const SizedBox(height: 10),
               Text(
-                "Module: ${note.module}",
+                "Module: ${note.code_module}",
               ),
               const SizedBox(height: 10),
-              note.abs_cc == "o"
+              note.absent_cc != "o"
                   ? Text(
                       "Note_cc: ${note.note_cc.toString()}",
                     )
                   : Text("Note_cc: __"),
               const SizedBox(height: 10),
-              note.abs_tp == "o"
+              note.absent_tp != "o"
                   ? Text(
                       "Note: ${note.note_tp.toString()}",
                     )
                   : Text("Note_tp: __"),
               const SizedBox(height: 10),
-              note.abs_examen == "o"
+              note.absent_exam != "o"
                   ? Text(
-                      "Note: ${note.note_examen.toString()}",
+                      "Note: ${note.note_exam.toString()}",
                     )
                   : Text("Note_tp: __"),
               const SizedBox(height: 10),

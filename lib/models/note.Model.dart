@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:ffi';
+import "package:flutter/foundation.dart";
 
 class NoteNew {
   String? code_module;
@@ -17,10 +18,10 @@ class NoteNew {
   String? id_ens;
   int? nbr_heure;
   String? type_session;
-  Double? note_exam;
-  Double? note_cc;
-  Double? note_tp;
-  Double? note_ratrap;
+  double? note_exam;
+  double? note_cc;
+  double? note_tp;
+  double? note_ratrap;
   String? absent;
   String? absent_tp;
   String? absent_exam;
@@ -29,28 +30,28 @@ class NoteNew {
   int? numpromotioncs;
   String? niv_acquis_anglais;
   int? niveau_acquis;
-  Double? note_orale;
-  Double? note_ecrit;
+  double? note_orale;
+  double? note_ecrit;
   String? dispense;
   String? absent_orale;
   String? absent_ecrit;
   String? niveau_actuel;
-  Double? note_cc_lang;
-  Double? note_orale_lang;
-  Double? note_ecrit_lang;
-  Double? taux_cc_lang;
-  Double? taux_orale_lang;
+  double? note_cc_lang;
+  double? note_orale_lang;
+  double? note_ecrit_lang;
+  double? taux_cc_lang;
+  double? taux_orale_lang;
   DateTime? date_saisie;
   DateTime? date_last_modif;
-  Double? note_esb_01;
-  Double? note_esb_02;
-  Double? adresse_ip;
-  Double? nom_machine;
-  Double? note_ds1;
-  Double? note_ds2;
-  Double? note_ds3;
-  Double? note_ds4;
-  Double? note_ds5;
+  double? note_esb_01;
+  double? note_esb_02;
+  double? adresse_ip;
+  double? nom_machine;
+  double? note_ds1;
+  double? note_ds2;
+  double? note_ds3;
+  double? note_ds4;
+  double? note_ds5;
 
   NoteNew({
     this.code_module,
@@ -103,7 +104,6 @@ class NoteNew {
     this.note_ds4,
     this.note_ds5,
   });
-
 
   Map<String, dynamic> toMap() {
     return {
@@ -159,58 +159,63 @@ class NoteNew {
     };
   }
 
-  factory NoteNew.fromMap(dynamic map) {
+  factory NoteNew.fromJson(dynamic json) {
     return NoteNew(
-      code_module: map['code_module'],
-      num_panier: map['num_panier'],
-      code_cl: map['code_cl'],
-      annee_deb: map['annee_deb'],
-      annee_fin: map['annee_fin'],
-      id_et: map['id_et'],
-      type_note: map['type_note'],
-      nature_note: map['nature_note'],
-      taux_note: map['taux_note']?.toInt(),
-      observation: map['observation'],
-      date_deroulement: map['date_deroulement'] != null ? DateTime.fromMillisecondsSinceEpoch(map['date_deroulement']) : null,
-      semestre: map['semestre']?.toInt(),
-      id_ens: map['id_ens'],
-      nbr_heure: map['nbr_heure']?.toInt(),
-      type_session: map['type_session'],
-      note_exam: map['note_exam'] ,
-      note_cc: map['note_cc'] ,
-      note_tp: map['note_tp'] ,
-      note_ratrap: map['note_ratrap'] ,
-      absent: map['absent'],
-      absent_tp: map['absent_tp'],
-      absent_exam: map['absent_exam'],
-      absent_cc: map['absent_cc'],
-      utilisateur: map['utilisateur'],
-      numpromotioncs: map['numpromotioncs']?.toInt(),
-      niv_acquis_anglais: map['niv_acquis_anglais'],
-      niveau_acquis: map['niveau_acquis']?.toInt(),
-      note_orale: map['note_orale'] ,
-      note_ecrit: map['note_ecrit'] ,
-      dispense: map['dispense'],
-      absent_orale: map['absent_orale'],
-      absent_ecrit: map['absent_ecrit'],
-      niveau_actuel: map['niveau_actuel'],
-      note_cc_lang: map['note_cc_lang'] ,
-      note_orale_lang: map['note_orale_lang'] ,
-      note_ecrit_lang: map['note_ecrit_lang'] ,
-      taux_cc_lang: map['taux_cc_lang'] ,
-      taux_orale_lang: map['taux_orale_lang'] ,
-      date_saisie: map['date_saisie'] != null ? DateTime.fromMillisecondsSinceEpoch(map['date_saisie']) : null,
-      date_last_modif: map['date_last_modif'] != null ? DateTime.fromMillisecondsSinceEpoch(map['date_last_modif']) : null,
-      note_esb_01: map['note_esb_01'] ,
-      note_esb_02: map['note_esb_02'] ,
-      adresse_ip: map['adresse_ip'] !,
-      nom_machine: map['nom_machine'] ,
-      note_ds1: map['note_ds1'] ,
-      note_ds2: map['note_ds2'] ,
-      note_ds3: map['note_ds3'] ,
-      note_ds4: map['note_ds4'] ,
-      note_ds5: map['note_ds5'] ,
+      code_module: json['code_module'],
+      num_panier: json['num_panier'],
+      code_cl: json['code_cl'],
+      annee_deb: json['annee_deb'],
+      annee_fin: json['annee_fin'],
+      id_et: json['id_et'],
+      type_note: json['type_note'],
+      nature_note: json['nature_note'],
+      taux_note: json['taux_note']?.toInt(),
+      observation: json['observation'],
+      date_deroulement: json['date_deroulement'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(json['date_deroulement'])
+          : null,
+      semestre: json['semestre']?.toInt(),
+      id_ens: json['id_ens'],
+      nbr_heure: json['nbr_heure']?.toInt(),
+      type_session: json['type_session'],
+      note_exam: json['note_exam'],
+      note_cc: json['note_cc'],
+      note_tp: json['note_tp'],
+      // note_ratrap: json['note_ratrap'],
+      absent: json['absent'],
+      absent_tp: json['absent_tp'],
+      absent_exam: json['absent_exam'],
+      absent_cc: json['absent_cc'],
+      utilisateur: json['utilisateur'],
+      numpromotioncs: json['numpromotioncs']?.toInt(),
+      niv_acquis_anglais: json['niv_acquis_anglais'],
+      niveau_acquis: json['niveau_acquis'],
+      note_orale: json['note_orale'],
+      note_ecrit: json['note_ecrit'],
+      dispense: json['dispense'],
+      absent_orale: json['absent_orale'],
+      absent_ecrit: json['absent_ecrit'],
+      niveau_actuel: json['niveau_actuel'],
+      note_cc_lang: json['note_cc_lang'],
+      note_orale_lang: json['note_orale_lang'],
+      note_ecrit_lang: json['note_ecrit_lang'],
+      taux_cc_lang: json['taux_cc_lang'],
+      taux_orale_lang: json['taux_orale_lang'],
+      date_saisie: json['date_saisie'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(json['date_saisie'])
+          : null,
+      date_last_modif: json['date_last_modif'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(json['date_last_modif'])
+          : null,
+      note_esb_01: json['note_esb_01'],
+      note_esb_02: json['note_esb_02'],
+      adresse_ip: json['adresse_ip'],
+      nom_machine: json['nom_machine'],
+      note_ds1: json['note_ds1'],
+      note_ds2: json['note_ds2'],
+      note_ds3: json['note_ds3'],
+      note_ds4: json['note_ds4'],
+      note_ds5: json['note_ds5'],
     );
   }
-
 }

@@ -22,3 +22,8 @@ class ReponseReclamationEvent extends ReclamationEvent {
   final status;
   ReponseReclamationEvent(this.id, this.reponse,this.status);
 }
+
+class GetReclamtionEtudiant extends ReclamationEvent{
+  final String id_et ;
+  const GetReclamtionEtudiant({required this.id_et});
+}

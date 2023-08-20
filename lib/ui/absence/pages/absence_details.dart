@@ -34,7 +34,7 @@ class _AbsenceDetailsState extends State<AbsenceDetails> {
   void reclamation() {
     if (descriptionController.text.isNotEmpty) {
       context.read<AbsenceBloc>().add(AddReclamationAbsenceEvent(
-          descriptionController.text, absence.code_cl, absence.id_et));
+          descriptionController.text, absence.code_module, absence.id_et));
     }
   }
 
