@@ -12,7 +12,6 @@ import '../../../config.dart';
 
 part 'class_event.dart';
 part 'class_state.dart';
-late SharedPreferences prefs;
 final classmodel =new Classe();
 class ClassBloc extends Bloc<ClassEvent, ClassState> {
   ClassBloc() : super(ClassInitial()) {
@@ -20,7 +19,6 @@ class ClassBloc extends Bloc<ClassEvent, ClassState> {
       if(event is GetListClass){
          emit(ClassLoading());
 
-        initSharedPref();
 
         List<Classe> classList = [];
         var url = "${classeurl}?role=etudiant";

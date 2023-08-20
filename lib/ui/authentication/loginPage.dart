@@ -5,6 +5,7 @@ import 'package:copihass/ui/account/Home.dart';
 import 'package:copihass/ui/authentication/bloc/authentication_bloc.dart';
 
 import 'package:copihass/ui/authentication/registration.dart';
+import 'package:copihass/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -31,9 +32,8 @@ class _SignInPageState extends State<SignInPage> {
     super.initState();
     initSharedPref();
 
-
-     emailController.text = "mohamedilyess.aouini@esprit.tn";
-     passwordController.text = "123456";
+    emailController.text = "mohamedilyess.aouini@esprit.tn";
+    passwordController.text = "123456";
   }
 
   void initSharedPref() async {
@@ -53,10 +53,7 @@ class _SignInPageState extends State<SignInPage> {
     return BlocConsumer<AuthenticationBloc, AuthenticationState>(
       listener: (context, state) {
         if (state is LoginSuccesState) {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => Home(state.sharedPreferences)));
+          Utils.openPageAndClearStack(Home(state.sharedPreferences), context);
         }
       },
       builder: (context, state) {

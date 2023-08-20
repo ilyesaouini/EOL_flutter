@@ -4,9 +4,9 @@ class AbsenceNew {
   String? code_cl;
   String? annee_deb;
   int? num_seance;
-  DateTime? date_seance;
+  String? date_seance;
   String? id_ens;
-  DateTime? date_saisie;
+  String? date_saisie;
   String? utilisateur;
   int? semestre;
   String? justification;
@@ -63,8 +63,7 @@ class AbsenceNew {
       code_cl: json['code_cl'],
       annee_deb: json['annee_deb'],
       num_seance: json['num_seance'],
-      date_seance:
-          json['date_seance'] != null ? DateTime.tryParse('date_seance') : null,
+      date_seance: json['date_seance'],
       id_ens: json['id_ens'],
       date_saisie: json['date_saisie'],
       utilisateur: json['utilisateur'],

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:copihass/config.dart';
+import 'package:copihass/locator.dart';
 import 'package:copihass/models/absencenew.Model.dart';
 import 'package:copihass/models/plan_class_session.dart';
 
@@ -16,21 +17,17 @@ import '../../../models/user.dart';
 part 'absence_event.dart';
 part 'absence_state.dart';
 
-late SharedPreferences prefs;
 final usermodel = new User();
 Absence absencemodel = new Absence();
 AbsenceNew absencenewmodel = new AbsenceNew();
 //final absencemodel = new Absence();
-void initSharedPref() async {
-  prefs = await SharedPreferences.getInstance();
-}
+
 
 class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
   AbsenceBloc() : super(AbsenceInitial()) {
     on<GetAbsenceList>((event, emit) async {
       emit(AbsenceLoading());
 
-      initSharedPref();
 
       List<AbsenceNew> absenceList = [];
       var url = "${absenceurl}?role=etudiant";
@@ -65,16 +62,17 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
 
     on<GetAbsenceByEtudiant>(((event, emit) async {
       emit(AbsenceLoading());
-      String? id_etudiant = prefs.getString('id');
-      var url = "${classenseigant}";
+
+      String? id_etudiant = locator.get<SharedPreferences>().getString('id');
+      var url = absenceetudiant;
       var response = await http.get(Uri.parse(url + id_etudiant.toString()));
       debugPrint(response.body.toString());
       var jsonResponse = jsonDecode(response.body);
       print(jsonResponse);
       List<AbsenceNew> absenceList = [];
       if (response.statusCode == 200) {
-        if (jsonResponse["absence"] != null) {
-          jsonResponse["absence"].forEach((jsonElement) {
+        if (jsonResponse['absence'] != null) {
+          jsonResponse['absence'].forEach((jsonElement) {
             absenceList.add(AbsenceNew.fromJson(jsonElement));
           });
         }
@@ -87,10 +85,9 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
     }));
 
     on<GetAbsenceByEnseignant>(((event, emit) async {
-      initSharedPref();
 
       emit(ClassLoading());
-      String? id_enseigant = prefs.getString('id');
+      String? id_enseigant = locator.get<SharedPreferences>().getString('id');
       var url = "${classenseigant}";
       var response = await http.get(Uri.parse(url + id_enseigant.toString()));
       debugPrint(response.body.toString());
@@ -113,7 +110,6 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
     }));
 
     on<GetListEtudiant>(((event, emit) async {
-      initSharedPref();
       emit(EtdiantLoading());
       String? code_cl;
       var url = "${listetudiant}";

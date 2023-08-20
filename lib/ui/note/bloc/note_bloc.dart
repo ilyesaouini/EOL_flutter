@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:copihass/config.dart';
+import 'package:copihass/locator.dart';
 import 'package:copihass/models/plan_class_session.dart';
 import 'package:copihass/models/user.dart';
 
@@ -17,18 +18,11 @@ import '../../../models/note.dart';
 part 'note_event.dart';
 part 'note_state.dart';
 
-late SharedPreferences prefs;
 
 NoteNew notemodel = new NoteNew();
 User? user = new User();
 
-void initSharedPref() async {
-  prefs = await SharedPreferences.getInstance();
-  user = User(
-    id: prefs.getString('id'),
-    role: prefs.getString('role'),
-  );
-}
+
 
 class NoteBloc extends Bloc<NoteEvent, NoteState> {
   NoteBloc() : super(NoteInitial()) {
@@ -69,7 +63,6 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
 
     on<GetEtudiantNotes>(
       (event, emit) async {
-        initSharedPref();
         emit(NotesEtduiantLoading());
         String? id_etudiant = user?.id.toString();
         var url = "${listnote}";
@@ -94,9 +87,8 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
       },
     );
     on<GetPanierList>((event, emit) async {
-      initSharedPref();
       emit(PanierLoading());
-      String? id_ens = prefs.getString('id');
+      String? id_ens = locator.get<SharedPreferences>().getString('id');
       var url = "${classenseigant}";
       var response = await http.get(Uri.parse(url + id_ens.toString()));
       debugPrint(response.body.toString());

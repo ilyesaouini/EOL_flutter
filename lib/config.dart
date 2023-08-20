@@ -1,4 +1,4 @@
-final url = 'https://f8ec-165-51-44-0.ngrok-free.app/';
+final url = 'https://be7b-165-51-44-0.ngrok-free.app/';
 final registration = url + "register";
 final login = url + 'login';
 final imageurl = url + 'image/';
@@ -12,7 +12,7 @@ final absencebyidurl = url + 'absence/';
 final addreclamationurl = url + 'reclamationabsence';
 final addsimplereclamationurl = url + 'reclamationsimple';
 final reponsereclamationurl = url + 'reponse';
-final absenceetudiant = url + 'absenceetudiantnew/';
+final absenceetudiant = url + 'allabsenceetudiant/';
 final absenceenseignant = url + 'absenceenseignantnew';
 final classenseigant = url + 'paniers_ens/';
 final listetudiant = url + 'etudiandsbyclass';

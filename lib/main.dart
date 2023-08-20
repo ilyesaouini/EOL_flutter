@@ -1,3 +1,4 @@
+import 'package:copihass/locator.dart';
 import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
 import 'package:copihass/ui/account/Home.dart';
 import 'package:copihass/ui/account/bloc/account_bloc.dart';
@@ -8,6 +9,7 @@ import 'package:copihass/ui/class/bloc/class_bloc.dart';
 import 'package:copihass/ui/note/bloc/note_bloc.dart';
 import 'package:copihass/ui/reclamation/bloc/reclamation_bloc.dart';
 import 'package:copihass/ui/resultat/bloc/resultat_bloc.dart';
+import 'package:copihass/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,11 +20,15 @@ import 'models/user.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Constants.globalKey = GlobalKey<NavigatorState>();
+  initLocator();
+  
   SharedPreferences prefs = await SharedPreferences.getInstance();
 
   runApp(MyApp(
       prefs: prefs,
       token: prefs.getString('token'),
+      key: Constants.globalKey,
       user: User(
         id: prefs.getString('id'),
         nom_prenom: prefs.getString('nom_prenom'),
@@ -34,7 +40,7 @@ void main() async {
       )));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   final prefs;
   final token;
   final User user;
@@ -45,6 +51,11 @@ class MyApp extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -72,12 +83,13 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
           title: 'ESPRIT',
           debugShowCheckedModeBanner: false,
+          key: widget.key,
           theme: ThemeData(
             primaryColor: Colors.black,
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
-          home: (token != null && JwtDecoder.isExpired(token) == false)
-              ? Home(prefs)
+          home: (widget.token != null && JwtDecoder.isExpired(widget.token) == false)
+              ? Home(widget.prefs)
               : SignInPage()),
     );
   }

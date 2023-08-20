@@ -127,7 +127,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
         context.read<NoteBloc>().add(GetNoteList());
         break;
       case 2:
-        context.read<AbsenceBloc>().add(GetAbsenceList());
+        //context.read<AbsenceBloc>().add(GetAbsenceList());
         break;
       case 3:
         context.read<ResultatBloc>().add(GetResultatList());
