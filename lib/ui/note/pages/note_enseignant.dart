@@ -30,7 +30,7 @@ class _NoteEnseignantPageState extends State<NoteEnseignantPage> {
       role: widget.prefs.getString('role'),
     );
     super.initState();
-    context.read<NoteBloc>().add(GetNoteList());
+    context.read<NoteBloc>().add(GetPanierList(id_ens: user.id.toString()));
   }
 
   @override
@@ -44,23 +44,29 @@ class _NoteEnseignantPageState extends State<NoteEnseignantPage> {
       builder: (context, state) {
         return SafeArea(
           child: Scaffold(
-            body: Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [
-                      Color.fromARGB(255, 236, 26, 26),
-                      Color.fromARGB(255, 88, 87, 86)
-                    ],
-                    begin: FractionalOffset.topLeft,
-                    end: FractionalOffset.bottomCenter,
-                    stops: [0.0, 0.8],
-                    tileMode: TileMode.mirror),
-              ),
-              child: state is NoteInitial || state is PanierLoading
-                  ? NoteListLoader()
-                  : ListView.builder(
+              body: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [
+                    Color.fromARGB(255, 236, 26, 26),
+                    Color.fromARGB(255, 88, 87, 86)
+                  ],
+                  begin: FractionalOffset.topLeft,
+                  end: FractionalOffset.bottomCenter,
+                  stops: [0.0, 0.8],
+                  tileMode: TileMode.mirror),
+            ),
+            child: state is NoteInitial || state is PanierLoading
+                ? NoteListLoader()
+                : RefreshIndicator(
+                    onRefresh: () async {
+                      context
+                          .read<NoteBloc>()
+                          .add(GetPanierList(id_ens: user.id.toString()));
+                    },
+                    child: ListView.builder(
                       itemCount: noteList.length,
                       itemBuilder: (context, index) {
                         return InkWell(
@@ -99,8 +105,8 @@ class _NoteEnseignantPageState extends State<NoteEnseignantPage> {
                         );
                       },
                     ),
-            ),
-          ),
+                  ),
+          )),
         );
       },
     );

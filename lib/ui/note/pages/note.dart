@@ -43,23 +43,27 @@ class _NotePageState extends State<NotePage> {
       builder: (context, state) {
         return SafeArea(
           child: Scaffold(
-            body: Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [
-                      Color.fromARGB(255, 236, 26, 26),
-                      Color.fromARGB(255, 88, 87, 86)
-                    ],
-                    begin: FractionalOffset.topLeft,
-                    end: FractionalOffset.bottomCenter,
-                    stops: [0.0, 0.8],
-                    tileMode: TileMode.mirror),
-              ),
-              child: state is NoteInitial || state is NoteLoading
-                  ? NoteListLoader()
-                  : ListView.builder(
+              body: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [
+                    Color.fromARGB(255, 236, 26, 26),
+                    Color.fromARGB(255, 88, 87, 86)
+                  ],
+                  begin: FractionalOffset.topLeft,
+                  end: FractionalOffset.bottomCenter,
+                  stops: [0.0, 0.8],
+                  tileMode: TileMode.mirror),
+            ),
+            child: state is NoteInitial || state is NoteLoading
+                ? NoteListLoader()
+                : RefreshIndicator(
+                    onRefresh: () async {
+                      context.read<NoteBloc>().add(GetNoteList());
+                    },
+                    child: ListView.builder(
                       itemCount: noteList.length,
                       itemBuilder: (context, index) {
                         return InkWell(
@@ -115,8 +119,8 @@ class _NotePageState extends State<NotePage> {
                         );
                       },
                     ),
-            ),
-          ),
+                  ),
+          )),
         );
       },
     );

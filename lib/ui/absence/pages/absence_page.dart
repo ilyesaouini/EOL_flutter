@@ -62,7 +62,14 @@ class _AbsencePageState extends State<AbsencePage> {
               ),
               child: state is AbsenceInitial || state is AbsenceLoading
                   ? AbsenceListLoader()
-                  : ListView.builder(
+                  : RefreshIndicator(
+                      onRefresh: () async {
+                        context.read<AbsenceBloc>()
+      ..add(
+        GetAbsenceByEtudiant(absenceId: user.id),
+      );
+                      },
+                      child: ListView.builder(
                       itemCount: absenceList.length,
                       itemBuilder: (context, index) {
                         return InkWell(
@@ -115,7 +122,7 @@ class _AbsencePageState extends State<AbsencePage> {
                         );
                       },
                     ),
-            ),
+            ),)
           ),
         );
       },

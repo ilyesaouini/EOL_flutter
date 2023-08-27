@@ -35,9 +35,6 @@ class _ReclamationPageState extends State<ReclamationPage> {
       id: widget.prefs.getString('id'),
     );
     context.read<ReclamationBloc>().add(GetReclamationList());
-    context
-        .read<ReclamationBloc>()
-        .add(AddReclamationSimpleEvent(user.id, descriptionController.text));
   }
 
   addSimpleReclamation() {

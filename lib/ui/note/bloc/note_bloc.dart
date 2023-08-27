@@ -117,8 +117,8 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
       var jsonResponse = jsonDecode(response.body);
       List<Plan_Class_Session> panier = [];
 
-      if (jsonResponse["Plan_Class_Session"] != null) {
-        jsonResponse["Plan_Class_Session"].forEach((jsonElement) {
+      if (jsonResponse != null) {
+        jsonResponse.forEach((jsonElement) {
           panier.add(Plan_Class_Session.fromJson(jsonElement));
           print("success load panier");
         });
