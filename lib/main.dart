@@ -83,7 +83,6 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
           title: 'ESPRIT',
           debugShowCheckedModeBanner: false,
-          key: widget.key,
           theme: ThemeData(
             primaryColor: Colors.black,
             visualDensity: VisualDensity.adaptivePlatformDensity,

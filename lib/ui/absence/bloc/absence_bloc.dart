@@ -94,8 +94,8 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
       print(jsonResponse);
       List<Plan_Class_Session> classelist = [];
       if (response.statusCode == 200) {
-        if (jsonResponse["Plan_Class_Session"] != null) {
-          jsonResponse["Plan_Class_Session"].forEach((jsonElement) {
+        if (jsonResponse != null) {
+          jsonResponse.forEach((jsonElement) {
             classelist.add(Plan_Class_Session.fromJson(jsonElement));
             print("success load");
           });
@@ -110,9 +110,8 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
 
     on<GetListEtudiant>(((event, emit) async {
       emit(EtdiantLoading());
-      String? code_cl;
       var url = "${listetudiant}";
-      var response = await http.get(Uri.parse(url + '/' + code_cl.toString()));
+      var response = await http.get(Uri.parse(url + '/' + event.code_cl.toString()));
       debugPrint(response.body.toString());
       var jsonResponse = jsonDecode(response.body);
       print(jsonResponse);

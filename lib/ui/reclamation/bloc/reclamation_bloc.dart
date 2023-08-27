@@ -102,7 +102,7 @@ class ReclamationBloc extends Bloc<ReclamationEvent, ReclamationState> {
       var response = await http.patch(Uri.parse(reponsereclamationurl),
           headers: {"Content-Type": "application/json"},
           body: jsonEncode(reqBody));
-      debugPrint(response.body.toString());
+      debugPrint(response.toString());
       print(response.body);
       if (response.statusCode == 200) {
         emit(ReponseReclamationSuccesState());

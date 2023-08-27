@@ -5,6 +5,7 @@ import 'package:copihass/models/plan_class_session.dart';
 import 'package:copihass/ui/absence/pages/absence_details.dart';
 import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
 import 'package:copihass/ui/absence/pages/addabsences_page.dart';
+import 'package:copihass/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -48,33 +49,36 @@ class _AbsenceEnseignantPageState extends State<AbsenceEnseignantPage> {
       builder: (context, state) {
         return SafeArea(
           child: Scaffold(
-            body: Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [
-                      Color.fromARGB(255, 236, 26, 26),
-                      Color.fromARGB(255, 88, 87, 86)
-                    ],
-                    begin: FractionalOffset.topLeft,
-                    end: FractionalOffset.bottomCenter,
-                    stops: [0.0, 0.8],
-                    tileMode: TileMode.mirror),
-              ),
-              child: state is AbsenceInitial || state is ClassLoading
-                  ? AbsenceListLoader()
-                  :  RefreshIndicator(
-                      onRefresh: () async {
+              body: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [
+                    Color.fromARGB(255, 236, 26, 26),
+                    Color.fromARGB(255, 88, 87, 86)
+                  ],
+                  begin: FractionalOffset.topLeft,
+                  end: FractionalOffset.bottomCenter,
+                  stops: [0.0, 0.8],
+                  tileMode: TileMode.mirror),
+            ),
+            child: state is AbsenceInitial || state is ClassLoading
+                ? AbsenceListLoader()
+                : RefreshIndicator(
+                    onRefresh: () async {
                       context.read<AbsenceBloc>().add(
-          GetAbsenceByEnseignant(idEns: user.id),
-        );
-                      },
-                      child:ListView.builder(
+                            GetAbsenceByEnseignant(idEns: user.id),
+                          );
+                    },
+                    child: ListView.builder(
                       itemCount: classList.length,
                       itemBuilder: (context, index) {
                         return InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Utils.openPageWithRightSlide(AddAbsenceDetails(
+                                class_session: classList[index]), context);
+                          },
                           child: Container(
                             margin: const EdgeInsets.all(8.0),
                             padding: const EdgeInsets.all(15),
@@ -105,8 +109,8 @@ class _AbsenceEnseignantPageState extends State<AbsenceEnseignantPage> {
                         );
                       },
                     ),
-            ),)
-          ),
+                  ),
+          )),
         );
       },
     );

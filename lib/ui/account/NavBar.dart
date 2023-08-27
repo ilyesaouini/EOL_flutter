@@ -117,6 +117,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   _onDrawerItemSelected(int index) {
     switch (index) {
       case 1:
+      
         context.read<NoteBloc>().add(GetNoteList());
         break;
       case 2:

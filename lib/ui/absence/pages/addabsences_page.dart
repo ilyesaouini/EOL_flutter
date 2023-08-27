@@ -1,6 +1,7 @@
 import 'package:copihass/config.dart';
 import 'package:copihass/models/absence.dart';
 import 'package:copihass/models/absencenew.Model.dart';
+import 'package:copihass/models/plan_class_session.dart';
 import 'package:copihass/models/user.dart';
 import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
 import 'package:copihass/ui/absence/pages/absence_admin.dart';
@@ -16,8 +17,8 @@ import 'dart:convert';
 import '../../reclamation/bloc/reclamation_bloc.dart';
 
 class AddAbsenceDetails extends StatefulWidget {
-  final AbsenceNew absence;
-  const AddAbsenceDetails({super.key, required this.absence});
+  final Plan_Class_Session class_session;
+  const AddAbsenceDetails({super.key, required this.class_session});
 
   @override
   State<AddAbsenceDetails> createState() => _AddAbsenceDetailsState();
@@ -26,22 +27,22 @@ class AddAbsenceDetails extends StatefulWidget {
 class _AddAbsenceDetailsState extends State<AddAbsenceDetails> {
   //util
   TextEditingController descriptionController = TextEditingController();
-  late AbsenceNew absence;
+  late Plan_Class_Session absence;
   List<User> listEtudiant = [];
 
   @override
   void initState() {
-    absence = widget.absence;
+    absence = widget.class_session;
     super.initState();
     context
         .read<AbsenceBloc>()
-        .add(GetListEtudiant(code_cl: absence.code_cl.toString()));
+        .add(GetListEtudiant(code_cl: widget.class_session.code_cl.toString()));
   }
 
   void reclamation() {
     if (descriptionController.text.isNotEmpty) {
       context.read<AbsenceBloc>().add(AddReclamationAbsenceEvent(
-          descriptionController.text, absence.code_cl, absence.id_et));
+          descriptionController.text, absence.code_cl, absence.code_cl));
     }
   }
 

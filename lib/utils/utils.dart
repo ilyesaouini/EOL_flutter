@@ -13,8 +13,8 @@ class Constants {
 
 class Utils {
 
-  static openPageWithRightSlide(Widget widget) {
-    Navigator.of(Constants.globalKey.currentContext!)
+  static openPageWithRightSlide(Widget widget, BuildContext context) {
+    Navigator.of(context!)
         .push(SlideRightRoute(page: widget));
   }
 

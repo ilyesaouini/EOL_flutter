@@ -47,7 +47,6 @@ class _SignInPageState extends State<SignInPage> {
           .read<AuthenticationBloc>()
           .add(LoginEvent(emailController.text, passwordController.text));
 
-      showToastSuccess();
     }else{
       showToastError();
     }
@@ -58,6 +57,7 @@ class _SignInPageState extends State<SignInPage> {
     return BlocConsumer<AuthenticationBloc, AuthenticationState>(
       listener: (context, state) {
         if (state is LoginSuccesState) {
+                showToastSuccess();
           Utils.openPageAndClearStack(Home(state.sharedPreferences), context);
         }
       },

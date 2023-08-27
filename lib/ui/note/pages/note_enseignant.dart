@@ -30,7 +30,7 @@ class _NoteEnseignantPageState extends State<NoteEnseignantPage> {
       role: widget.prefs.getString('role'),
     );
     super.initState();
-    context.read<NoteBloc>().add(GetPanierList(id_ens: user.id.toString()));
+    context.read<NoteBloc>().add(GetNoteList());
   }
 
   @override
@@ -62,9 +62,8 @@ class _NoteEnseignantPageState extends State<NoteEnseignantPage> {
                 ? NoteListLoader()
                 : RefreshIndicator(
                     onRefresh: () async {
-                      context
-                          .read<NoteBloc>()
-                          .add(GetPanierList(id_ens: user.id.toString()));
+    context.read<NoteBloc>().add(GetNoteList());
+
                     },
                     child: ListView.builder(
                       itemCount: noteList.length,

@@ -54,7 +54,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
       } else {
         emit(PanierLoading());
         String? id_ens = locator.get<SharedPreferences>().getString('id');
-        var url = "${classenseigant}";
+  var url = "${classenseigant}";
         var response = await http.get(Uri.parse(url + id_ens.toString()));
         debugPrint(response.body.toString());
         var jsonResponse = jsonDecode(response.body);

@@ -10,7 +10,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import '../../reclamation/bloc/reclamation_bloc.dart';
 
 class AbsenceDetails extends StatefulWidget {
   final AbsenceNew absence;
