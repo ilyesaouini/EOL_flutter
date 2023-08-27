@@ -145,7 +145,7 @@ class _ProfilePageState extends State<ProfilePage> {
               press: () {},
             ),
             ProfileMenu(
-              text: user.tel ?? "N/A",
+              text: user.id ?? "N/A",
               icon: "assets/icons/Question mark.svg",
               press: () {},
             ),

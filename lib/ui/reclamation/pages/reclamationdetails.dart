@@ -59,29 +59,40 @@ class _ReclamationDetailsState extends State<ReclamationDetails> {
                 stops: [0.0, 0.8],
                 tileMode: TileMode.mirror),
           ),
-          child: Center(
-              child: Column(children: [
-            SizedBox(
-              height: 10,
-            ),
-            Text(reclamation.description ?? "Null"),
-            SizedBox(
-              height: 10,
-            ),
-            Text(reclamation.reponse ?? "Null"),
-            SizedBox(
-              height: 10,
-            ),
-            Text(reclamation.module ?? "Null"),
-            SizedBox(
-              height: 10,
-            ),
-            Text(reclamation.enseignant ?? "Null"),
-            SizedBox(
-              height: 10,
-            ),
-            Text(reclamation.status ?? "Null"),
-          ]))),
+          child: Container(
+            margin: const EdgeInsets.only(bottom: 350, top: 100),
+            padding: const EdgeInsets.all(15),
+            decoration: BoxDecoration(
+                color: Colors.grey.shade600,
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                    color: const Color.fromARGB(255, 17, 17, 17), width: 0.5)),
+            height: 10,
+            width: 20,
+            child: Center(
+                child: Column(children: [
+              SizedBox(
+                height: 10,
+              ),
+              Text("Description: ${reclamation.description}" ),
+              SizedBox(
+                height: 10,
+              ),
+              Text("Reponse: ${reclamation.reponse}" ),
+              SizedBox(
+                height: 10,
+              ),
+              Text("Module: ${reclamation.module}" ),
+              SizedBox(
+                height: 10,
+              ),
+              Text("Enseignant: ${reclamation.enseignant}"),
+              SizedBox(
+                height: 10,
+              ),
+              Text("Status: ${reclamation.status} " ),
+            ])),
+          )),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showCupertinoDialog(

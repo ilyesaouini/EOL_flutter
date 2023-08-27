@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ResultatPage extends StatefulWidget {
   final SharedPreferences prefs;
-  const ResultatPage({required this.prefs,super.key});
+  const ResultatPage({required this.prefs, super.key});
 
   @override
   State<ResultatPage> createState() => _ResultatPageState();
@@ -33,7 +33,19 @@ class _ResultatPageState extends State<ResultatPage> {
       },
       builder: (context, state) {
         return Container(
-          color: Colors.white,
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 236, 26, 26),
+                  Color.fromARGB(255, 88, 87, 86)
+                ],
+                begin: FractionalOffset.topLeft,
+                end: FractionalOffset.bottomCenter,
+                stops: [0.0, 0.8],
+                tileMode: TileMode.mirror),
+          ),
           child: state is ResultatInitial || state is ResultatLoading
               ? ResultatListLoader()
               : ListView.builder(

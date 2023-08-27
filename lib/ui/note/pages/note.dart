@@ -29,7 +29,7 @@ class _NotePageState extends State<NotePage> {
       role: widget.prefs.getString('role'),
     );
     super.initState();
-    context.read<NoteBloc>().add(GetEtudiantNotes(id_et: user.id));
+    context.read<NoteBloc>().add(GetNoteList());
   }
 
   @override
@@ -44,7 +44,19 @@ class _NotePageState extends State<NotePage> {
         return SafeArea(
           child: Scaffold(
             body: Container(
-              color: Colors.white,
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [
+                      Color.fromARGB(255, 236, 26, 26),
+                      Color.fromARGB(255, 88, 87, 86)
+                    ],
+                    begin: FractionalOffset.topLeft,
+                    end: FractionalOffset.bottomCenter,
+                    stops: [0.0, 0.8],
+                    tileMode: TileMode.mirror),
+              ),
               child: state is NoteInitial || state is NoteLoading
                   ? NoteListLoader()
                   : ListView.builder(

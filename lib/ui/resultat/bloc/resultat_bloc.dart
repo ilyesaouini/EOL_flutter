@@ -8,6 +8,7 @@ import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../../../config.dart';
+import '../../../locator.dart';
 import '../../../models/inscription.dart';
 import '../../../models/user.dart';
 
@@ -17,21 +18,18 @@ part 'resultat_state.dart';
 late SharedPreferences prefs;
 final usermodel = new User();
 Inscription absencemodel = new Inscription();
-//final absencemodel = new Absence();
-void initSharedPref() async {
-  prefs = await SharedPreferences.getInstance();
-}
+
 
 class ResultatBloc extends Bloc<ResultatEvent, ResultatState> {
   ResultatBloc() : super(ResultatInitial()) {
     on<GetResultatList>((event, emit) async {
       emit(ResultatLoading());
 
-      initSharedPref();
+     String? id_etudiant = locator.get<SharedPreferences>().getString('id');
 
       List<Inscription> absenceList = [];
-      var url = "${inscriptionurl}?role=etudiant";
-      var response = await http.get(Uri.parse(url));
+      var url = "${inscriptionurl}";
+      var response = await http.get(Uri.parse(url+ id_etudiant.toString()));
       print(response.request!.url.toString());
       debugPrint(response.body.toString());
       var jsonResponse = jsonDecode(response.body);

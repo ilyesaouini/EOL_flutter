@@ -22,7 +22,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Constants.globalKey = GlobalKey<NavigatorState>();
   initLocator();
-  
+
   SharedPreferences prefs = await SharedPreferences.getInstance();
 
   runApp(MyApp(
@@ -88,7 +88,8 @@ class _MyAppState extends State<MyApp> {
             primaryColor: Colors.black,
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
-          home: (widget.token != null && JwtDecoder.isExpired(widget.token) == false)
+          home: (widget.token != null &&
+                  JwtDecoder.isExpired(widget.token) == false)
               ? Home(widget.prefs)
               : SignInPage()),
     );

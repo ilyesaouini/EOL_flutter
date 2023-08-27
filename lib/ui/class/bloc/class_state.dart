@@ -12,7 +12,7 @@ class ClassInitial extends ClassState {}
 class ClassLoading extends ClassState {}
 
 class ClassLoaded extends ClassState {
-  final List<Classe> classList;
+  final List<Plan_Class_Session> classList;
   const ClassLoaded(this.classList);
 }
 

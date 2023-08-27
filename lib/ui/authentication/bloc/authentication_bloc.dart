@@ -57,7 +57,7 @@ class AuthenticationBloc
           usermodel.tel = user[7];
           usermodel.role = jsonResponse['role'];
           rolemodel.role = jsonResponse['role'];
-          print(user[8]);
+          
 
           // rolemodel.role = role[0];
 

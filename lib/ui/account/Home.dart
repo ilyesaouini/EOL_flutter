@@ -25,6 +25,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../models/user.dart';
 
 import '../absence/pages/absence_enseignant.dart';
+import '../note/pages/note_enseignant.dart';
+import '../reclamation/pages/reclamation_admin.dart';
+import '../reclamation/pages/reclamation_enseignant.dart';
 import 'bloc/account_bloc.dart';
 import 'components/profile_menu.dart';
 
@@ -66,11 +69,11 @@ class _HomeState extends State<Home> {
       print("role is " + user.role.toString());
       bodyWidgetsList = [
         ProfilePage(prefs: widget.prefs),
-        NotePage(prefs: widget.prefs),
+        NoteEnseignantPage(prefs: widget.prefs),
         AbsenceEnseignantPage(prefs: widget.prefs),
         ResultatPage(prefs: widget.prefs),
         EmploiPage(),
-        ReclamationPage(prefs: widget.prefs),
+        ReclamationEnseignantPage(prefs: widget.prefs),
       ];
     } else {
       print("role is " + user.role.toString());
@@ -80,7 +83,7 @@ class _HomeState extends State<Home> {
         AbsencePage(prefs: widget.prefs),
         ResultatPage(prefs: widget.prefs),
         EmploiPage(),
-        ReclamationPage(prefs: widget.prefs),
+        ReclamationAdminPage(prefs: widget.prefs),
       ];
     }
     super.initState();

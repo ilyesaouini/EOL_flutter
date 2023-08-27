@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:copihass/ui/account/Home.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:copihass/ui/authentication/bloc/authentication_bloc.dart';
 
@@ -45,6 +46,10 @@ class _SignInPageState extends State<SignInPage> {
       context
           .read<AuthenticationBloc>()
           .add(LoginEvent(emailController.text, passwordController.text));
+
+      showToastSuccess();
+    }else{
+      showToastError();
     }
   }
 
@@ -110,6 +115,7 @@ class _SignInPageState extends State<SignInPage> {
                       GestureDetector(
                         onTap: () {
                           loginUser();
+                          //showToastSuccess();
                         },
                         child: HStack([
                           VxBox(child: "LogIn".text.white.makeCentered().p16())
@@ -142,4 +148,18 @@ class _SignInPageState extends State<SignInPage> {
       },
     );
   }
+
+  void showToastSuccess() => Fluttertoast.showToast(
+      msg: "Login success",
+      fontSize: 16,
+      backgroundColor: Colors.grey.shade400,
+      textColor: Colors.black,
+      gravity: ToastGravity.BOTTOM);
+
+  void showToastError() => Fluttertoast.showToast(
+      msg: "Check mail and password please",
+      fontSize: 16,
+      backgroundColor: Colors.grey.shade400,
+      textColor: Colors.black,
+      gravity: ToastGravity.BOTTOM);
 }

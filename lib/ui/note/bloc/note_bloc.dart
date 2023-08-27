@@ -18,36 +18,58 @@ import '../../../models/note.dart';
 part 'note_event.dart';
 part 'note_state.dart';
 
-
 NoteNew notemodel = new NoteNew();
 User? user = new User();
-
-
 
 class NoteBloc extends Bloc<NoteEvent, NoteState> {
   NoteBloc() : super(NoteInitial()) {
     on<GetNoteList>((event, emit) async {
       emit(NoteLoading());
-
+      emit(PanierLoading());
+      String? id_etudiant = locator.get<SharedPreferences>().getString('id');
+      String? role = locator.get<SharedPreferences>().getString('role');
+      print("the role is ${role}");
       List<NoteNew> noteList = [];
-      var url = "${listnote}";
-      var response = await http.get(Uri.parse(url));
-      print(response.request!.url.toString());
-      debugPrint(response.body.toString());
-      var jsonResponse = jsonDecode(response.body);
-      print(jsonResponse);
-      if (response.statusCode == 200) {
-        print("ssssssss");
+      if (role == "01") {
+        emit(NoteLoading());
+        var url = "${listnote}";
+        var response = await http.get(Uri.parse(url + id_etudiant.toString()));
+        debugPrint(response.body.toString());
+        var jsonResponse = jsonDecode(response.body);
+        print(jsonResponse);
+        List<NoteNew> notes = [];
+        if (response.statusCode == 200) {
+          if (jsonResponse != null) {
+            jsonResponse.forEach((jsonElement) {
+              notes.add(NoteNew.fromJson(jsonElement));
+              print("succes load");
+            });
+            emit(NoteLoaded(notes));
+          }
+        } else {
+          print("SOmething error");
+          emit(NoteError("error"));
+          emit(NoteLoaded(notes));
+        }
+      } else {
+        emit(PanierLoading());
+        String? id_ens = locator.get<SharedPreferences>().getString('id');
+        var url = "${classenseigant}";
+        var response = await http.get(Uri.parse(url + id_ens.toString()));
+        debugPrint(response.body.toString());
+        var jsonResponse = jsonDecode(response.body);
+        List<Plan_Class_Session> panier = [];
+
         if (jsonResponse != null) {
           jsonResponse.forEach((jsonElement) {
-            noteList.add(NoteNew.fromJson(jsonElement));
+            panier.add(Plan_Class_Session.fromJson(jsonElement));
+            print("success load panier");
           });
+          emit(PanierLoaded(panier));
+        } else {
+          print("Something error");
+          emit(PanierErrorState("error"));
         }
-
-        emit(NoteLoaded(noteList));
-      } else {
-        print("Something error");
-        emit(NoteLoaded(noteList));
       }
     });
     on<AddReclamationNoteEvent>(
@@ -64,7 +86,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
     on<GetEtudiantNotes>(
       (event, emit) async {
         emit(NotesEtduiantLoading());
-        String? id_etudiant = user?.id.toString();
+        String? id_etudiant = locator.get<SharedPreferences>().getString('id');
         var url = "${listnote}";
         var response = await http.get(Uri.parse(url + id_etudiant!));
         debugPrint(response.body.toString());

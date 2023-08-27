@@ -7,44 +7,44 @@ class Plan_Class_Session {
   String? annee_deb;
   String? annee_fin;
   String? description;
-  Double? nb_heures;
-  Double? coef;
+  double? nb_heures;
+  int? coef;
 
-  Double? num_semestre;
-  Double? num_periode;
-  DateTime? date_debut;
-  DateTime? date_fin;
-  DateTime? date_examen;
-  Double? nbr_horaire_realises;
+  double? num_semestre;
+  double? num_periode;
+  String? date_debut;
+  String? date_fin;
+  String? date_examen;
+  double? nbr_horaire_realises;
   String? acomptabiliseur;
   String? id_ens;
   String? id_ens2;
-  Double? nbr_heures_ens;
-  Double? nbr_heures_ens2;
+  double? nbr_heures_ens;
+  double? nbr_heures_ens2;
   String? surveillant;
   String? heure_exam;
   String? salle_exam;
   String? surveillant2;
   String? salle_exam2;
-  Double? periode;
+  double? periode;
   int? numpromotioncs;
   int? ap_cs;
-  Double? charge_p1;
-  Double? charge_p2;
-  Double? charge_ens1_p1;
-  Double? charge_ens1_p2;
-  Double? charge_ens2_p1;
-  Double? charge_ens2_p2;
+  double? charge_p1;
+  double? charge_p2;
+  double? charge_ens1_p1;
+  double? charge_ens1_p2;
+  double? charge_ens2_p1;
+  double? charge_ens2_p2;
   String? seance_unique;
   String? id_ens3;
   String? id_ens4;
   String? id_ens5;
-  Double? charge_ens3_p1;
-  Double? charge_ens3_p2;
-  Double? charge_ens4_p1;
-  Double? charge_ens4_p2;
-  Double? charge_ens5_p1;
-  Double? charge_ens5_p2;
+  double? charge_ens3_p1;
+  double? charge_ens3_p2;
+  double? charge_ens4_p1;
+  double? charge_ens4_p2;
+  double? charge_ens5_p1;
+  double? charge_ens5_p2;
   String? code_ue;
   int? nbr_etcs;
   String? type_epreuve;
@@ -59,10 +59,10 @@ class Plan_Class_Session {
   DateTime? date_creation;
   DateTime? date_last_maj;
   String? designation_new;
-  Double? chargep1add;
-  Double? chargep2add;
+  double? chargep1add;
+  double? chargep2add;
   int? code_plan;
-  Double? nbheuradd;
+  double? nbheuradd;
   String? calcul_rat;
   String? existe_cc;
   String? existe_tp;
@@ -74,10 +74,10 @@ class Plan_Class_Session {
   String? actif;
   int? contact;
   String? id_ens6;
-  Double? charge_ens6_p1;
-  Double? charge_ens6_p2;
+  double? charge_ens6_p1;
+  double? charge_ens6_p2;
   String? observation;
-  Double? coef_mine_pont;
+  double? coef_mine_pont;
 
   Plan_Class_Session({
     this.code_module,
@@ -167,7 +167,7 @@ class Plan_Class_Session {
       description: json['description'],
       nb_heures: json['nb_heures'],
       coef: json['coef'],
-      num_semestre: json['num_semestre'],
+      //num_semestre: json['num_semestre'],
       num_periode: json['num_periode'],
       date_debut: json['date_debut'],
       date_fin: json['date_fin'],

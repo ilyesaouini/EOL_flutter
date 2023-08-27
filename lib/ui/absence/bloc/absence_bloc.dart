@@ -22,12 +22,10 @@ Absence absencemodel = new Absence();
 AbsenceNew absencenewmodel = new AbsenceNew();
 //final absencemodel = new Absence();
 
-
 class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
   AbsenceBloc() : super(AbsenceInitial()) {
     on<GetAbsenceList>((event, emit) async {
       emit(AbsenceLoading());
-
 
       List<AbsenceNew> absenceList = [];
       var url = "${absenceurl}?role=etudiant";
@@ -64,6 +62,8 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
       emit(AbsenceLoading());
 
       String? id_etudiant = locator.get<SharedPreferences>().getString('id');
+      String? role = locator.get<SharedPreferences>().getString('role');
+      print("the ros is ${role}");
       var url = absenceetudiant;
       var response = await http.get(Uri.parse(url + id_etudiant.toString()));
       debugPrint(response.body.toString());
@@ -85,7 +85,6 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
     }));
 
     on<GetAbsenceByEnseignant>(((event, emit) async {
-
       emit(ClassLoading());
       String? id_enseigant = locator.get<SharedPreferences>().getString('id');
       var url = "${classenseigant}";
