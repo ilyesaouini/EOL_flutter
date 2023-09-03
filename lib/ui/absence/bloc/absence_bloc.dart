@@ -17,9 +17,9 @@ import '../../../models/user.dart';
 part 'absence_event.dart';
 part 'absence_state.dart';
 
-final usermodel = new User();
-Absence absencemodel = new Absence();
-AbsenceNew absencenewmodel = new AbsenceNew();
+final usermodel = User();
+Absence absencemodel = Absence();
+AbsenceNew absencenewmodel =  AbsenceNew();
 //final absencemodel = new Absence();
 
 class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
@@ -28,7 +28,7 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
       emit(AbsenceLoading());
 
       List<AbsenceNew> absenceList = [];
-      var url = "${absenceurl}?role=etudiant";
+      var url = absenceurl;
       var response = await http.get(Uri.parse(url));
       print(response.request!.url.toString());
       debugPrint(response.body.toString());
@@ -49,7 +49,7 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
     });
     on<AddReclamationAbsenceEvent>(
       (event, emit) async {
-        var url = "${addreclamationurl}?role=etudiant";
+        var url = "${addreclamationurl}";
         var response = await http.post(Uri.parse(url), body: {
           'description': event.description,
           'module': event.module,
@@ -111,14 +111,15 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
     on<GetListEtudiant>(((event, emit) async {
       emit(EtdiantLoading());
       var url = "${listetudiant}";
-      var response = await http.get(Uri.parse(url + '/' + event.code_cl.toString()));
+      var response =
+          await http.get(Uri.parse(url + '/' + event.code_cl.toString()));
       debugPrint(response.body.toString());
       var jsonResponse = jsonDecode(response.body);
       print(jsonResponse);
       List<User> etudiant = [];
       if (response.statusCode == 200) {
-        if (jsonResponse['users'] != null) {
-          jsonResponse['users'].forEach(
+        if (jsonResponse != null) {
+          jsonResponse.forEach(
               (jsonElement) => etudiant.add(User.fromJson(jsonElement)));
           print("success load");
           emit(EtduiantLoaded(etudiant));
@@ -129,6 +130,21 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
         emit(EtduiantLoaded(etudiant));
       }
     }));
+
+    on<AddAbsence>(
+      (event, emit) async {
+        var url = "${addabsence}";
+        var response = await http.post(Uri.parse(url), body: {
+          'id_et': event.id_et,
+          'code_cl': event.code_cl,
+          'code_module': event.code_module,
+          'num_seance': event.num_seance,
+          'date_seance': event.date_seance,
+          'dat_saisie': event.date_saisie,
+          'id_ens': event.id_ens
+        });
+      },
+    );
   }
 }
 /*

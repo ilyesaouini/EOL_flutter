@@ -55,3 +55,7 @@ class EtudiantError extends AbsenceState {
   final String? message;
   const EtudiantError(this.message);
 }
+
+class AddAbsenceSuccesState extends AbsenceState {}
+
+class AddAbsenceErrorState extends AbsenceState {}

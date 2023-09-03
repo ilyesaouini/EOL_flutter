@@ -11,47 +11,47 @@ class NoteNew {
   String? id_et;
   String? type_note;
   String? nature_note;
-  int? taux_note;
+  num? taux_note;
   String? observation;
   DateTime? date_deroulement;
-  int? semestre;
+  num? semestre;
   String? id_ens;
-  int? nbr_heure;
+  num? nbr_heure;
   String? type_session;
-  double? note_exam;
-  double? note_cc;
-  double? note_tp;
-  double? note_ratrap;
+  num? note_exam;
+  num? note_cc;
+  num? note_tp;
+  num? note_ratrap;
   String? absent;
   String? absent_tp;
   String? absent_exam;
   String? absent_cc;
   String? utilisateur;
-  int? numpromotioncs;
+  num? numpromotioncs;
   String? niv_acquis_anglais;
-  int? niveau_acquis;
-  double? note_orale;
-  double? note_ecrit;
+  num? niveau_acquis;
+  num? note_orale;
+  num? note_ecrit;
   String? dispense;
   String? absent_orale;
   String? absent_ecrit;
   String? niveau_actuel;
-  double? note_cc_lang;
-  double? note_orale_lang;
-  double? note_ecrit_lang;
-  double? taux_cc_lang;
-  double? taux_orale_lang;
+  num? note_cc_lang;
+  num? note_orale_lang;
+  num? note_ecrit_lang;
+  num? taux_cc_lang;
+  num? taux_orale_lang;
   DateTime? date_saisie;
   DateTime? date_last_modif;
-  double? note_esb_01;
-  double? note_esb_02;
-  double? adresse_ip;
-  double? nom_machine;
-  double? note_ds1;
-  double? note_ds2;
-  double? note_ds3;
-  double? note_ds4;
-  double? note_ds5;
+  num? note_esb_01;
+  num? note_esb_02;
+  num? adresse_ip;
+  num? nom_machine;
+  num? note_ds1;
+  num? note_ds2;
+  num? note_ds3;
+  num? note_ds4;
+  num? note_ds5;
 
   NoteNew({
     this.code_module,
@@ -169,14 +169,14 @@ class NoteNew {
       id_et: json['id_et'],
       type_note: json['type_note'],
       nature_note: json['nature_note'],
-      taux_note: json['taux_note']?.toInt(),
+      taux_note: json['taux_note'],
       observation: json['observation'],
       date_deroulement: json['date_deroulement'] != null
           ? DateTime.fromMillisecondsSinceEpoch(json['date_deroulement'])
           : null,
-      semestre: json['semestre']?.toInt(),
+      semestre: json['semestre'],
       id_ens: json['id_ens'],
-      nbr_heure: json['nbr_heure']?.toInt(),
+      nbr_heure: json['nbr_heure'],
       type_session: json['type_session'],
       note_exam: json['note_exam'],
       note_cc: json['note_cc'],
@@ -187,7 +187,7 @@ class NoteNew {
       absent_exam: json['absent_exam'],
       absent_cc: json['absent_cc'],
       utilisateur: json['utilisateur'],
-      numpromotioncs: json['numpromotioncs']?.toInt(),
+      numpromotioncs: json['numpromotioncs'],
       niv_acquis_anglais: json['niv_acquis_anglais'],
       niveau_acquis: json['niveau_acquis'],
       note_orale: json['note_orale'],

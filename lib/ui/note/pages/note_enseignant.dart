@@ -62,8 +62,7 @@ class _NoteEnseignantPageState extends State<NoteEnseignantPage> {
                 ? NoteListLoader()
                 : RefreshIndicator(
                     onRefresh: () async {
-    context.read<NoteBloc>().add(GetNoteList());
-
+                      context.read<NoteBloc>().add(GetNoteList());
                     },
                     child: ListView.builder(
                       itemCount: noteList.length,
@@ -91,13 +90,28 @@ class _NoteEnseignantPageState extends State<NoteEnseignantPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  "Etudiant: ${noteList[index].code_cl}",
+                                  "Classe: ${noteList[index].code_cl}",
                                 ),
                                 const SizedBox(height: 10),
                                 Text(
                                   "Module: ${noteList[index].code_module}",
                                 ),
                                 const SizedBox(height: 10),
+                                Text(
+                                  "Date debut: ${noteList[index].date_debut}",
+                                ),
+                                const SizedBox(height: 10),
+                                Text(
+                                  "Date fin: ${noteList[index].date_fin}",
+                                ),
+                                const SizedBox(height: 10),
+                                Text(
+                                  "Date examen: ${noteList[index].date_examen}",
+                                ),
+                                const SizedBox(height: 10),
+                                Text(
+                                  "Coef: ${noteList[index].coef}",
+                                ),
                               ],
                             ),
                           ),

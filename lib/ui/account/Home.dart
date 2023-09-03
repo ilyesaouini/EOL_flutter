@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:copihass/models/role.dart';
+import 'package:copihass/ui/absence/pages/absence_admin.dart';
 import 'package:copihass/ui/absence/pages/absence_page.dart';
 import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
 import 'package:copihass/ui/account/NavBar.dart';
@@ -80,7 +81,7 @@ class _HomeState extends State<Home> {
       bodyWidgetsList = [
         ProfilePage(prefs: widget.prefs),
         NotePage(prefs: widget.prefs),
-        AbsencePage(prefs: widget.prefs),
+        AbsenceAdminPage(prefs: widget.prefs),
         ResultatPage(prefs: widget.prefs),
         EmploiPage(),
         ReclamationAdminPage(prefs: widget.prefs),

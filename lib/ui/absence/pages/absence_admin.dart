@@ -10,14 +10,14 @@ import '../../../models/absencenew.Model.dart';
 import '../../account/NavBar.dart';
 import '../../authentication/loginPage.dart';
 
-class AbsencePage extends StatefulWidget {
+class AbsenceAdminPage extends StatefulWidget {
   final SharedPreferences prefs;
-  const AbsencePage({required this.prefs, super.key});
+  const AbsenceAdminPage({required this.prefs, super.key});
   @override
-  State<AbsencePage> createState() => _AbsencePageState();
+  State<AbsenceAdminPage> createState() => _AbsenceAdminPageState();
 }
 
-class _AbsencePageState extends State<AbsencePage> {
+class _AbsenceAdminPageState extends State<AbsenceAdminPage> {
   List<AbsenceNew> absenceList = [];
   TextEditingController descriptionController = TextEditingController();
   @override
