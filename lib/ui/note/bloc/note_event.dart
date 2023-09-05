@@ -13,7 +13,8 @@ class AddReclamationNoteEvent extends NoteEvent {
   final description;
   final module;
   final etudiant;
-  AddReclamationNoteEvent(this.description, this.module, this.etudiant);
+  final enseignant;
+  AddReclamationNoteEvent(this.description, this.module, this.etudiant, this.enseignant);
 }
 
 class GetEtudiantNotes extends NoteEvent {

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -36,7 +37,10 @@ class _NoteDetailsState extends State<NoteDetails> {
   void reclamation() {
     if (descriptionController.text.isNotEmpty) {
       context.read<NoteBloc>().add(AddReclamationNoteEvent(
-          descriptionController.text, note.code_module, note.id_et));
+          descriptionController.text,
+          note.code_module,
+          note.id_et,
+          note.id_ens));
     }
   }
 
@@ -127,6 +131,7 @@ class _NoteDetailsState extends State<NoteDetails> {
                     ),
                     onPressed: () {
                       reclamation();
+                      showToastSuccess();
                       Navigator.pop(context);
                     },
                     child: Text(
@@ -144,3 +149,10 @@ class _NoteDetailsState extends State<NoteDetails> {
     );
   }
 }
+
+void showToastSuccess() => Fluttertoast.showToast(
+    msg: "Add reclamation successfuly",
+    fontSize: 16,
+    backgroundColor: Colors.grey.shade400,
+    textColor: Colors.black,
+    gravity: ToastGravity.BOTTOM);

@@ -21,7 +21,8 @@ class _RegistrationState extends State<Registration> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   String? role;
-
+  // show the password or not
+  bool _isObscure = true;
   bool _isNotValidate = false;
 
   void registerUser() async {
@@ -68,11 +69,15 @@ class _RegistrationState extends State<Registration> {
                     children: <Widget>[
                       CommonLogo(),
                       HeightBox(10),
-                      "CREATE YOUR ACCOUNT".text.size(22).yellow100.make(),
+                      "CREER VOTRE COMPTE".text.size(22).yellow100.make(),
+                      SizedBox(
+                        height: 30,
+                      ),
                       TextField(
                         controller: emailController,
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
+                            prefixIcon: const Icon(Icons.mail),
                             filled: true,
                             fillColor: Colors.white,
                             errorStyle: TextStyle(color: Colors.white),
@@ -84,17 +89,19 @@ class _RegistrationState extends State<Registration> {
                                     BorderRadius.all(Radius.circular(10.0)))),
                       ).p4().px24(),
                       TextField(
+                        obscureText: _isObscure,
                         controller: passwordController,
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
                             suffixIcon: IconButton(
-                              icon: Icon(Icons.copy),
-                              onPressed: () {
-                                final data = ClipboardData(
-                                    text: passwordController.text);
-                                Clipboard.setData(data);
-                              },
-                            ),
+                                icon: Icon(_isObscure
+                                    ? Icons.visibility
+                                    : Icons.visibility_off),
+                                onPressed: () {
+                                  setState(() {
+                                    _isObscure = !_isObscure;
+                                  });
+                                }),
                             prefixIcon: IconButton(
                               icon: Icon(Icons.password),
                               onPressed: () {
@@ -113,41 +120,80 @@ class _RegistrationState extends State<Registration> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10.0)))),
                       ).p4().px24(),
-                      RadioListTile(
-                        title: Text("student"),
-                        value: "student",
-                        groupValue: role,
-                        onChanged: (value) {
-                          setState(() {
-                            role = value.toString();
-                          });
-                        },
+                      SizedBox(
+                        height: 50,
                       ),
-                      RadioListTile(
-                        title: Text("instructor"),
-                        value: "instructor",
-                        groupValue: role,
-                        onChanged: (value) {
-                          setState(() {
-                            role = value.toString();
-                          });
-                        },
+                      Container(
+                        height: 50,
+                        width: 250,
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 201, 201, 201),
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                                color: const Color.fromARGB(255, 17, 17, 17),
+                                width: 0.5)),
+                        child: RadioListTile(
+                          title: Text("etudiant"),
+                          value: "student",
+                          groupValue: role,
+                          onChanged: (value) {
+                            setState(() {
+                              role = value.toString();
+                            });
+                          },
+                        ),
                       ),
-                      RadioListTile(
-                        title: Text("admin"),
-                        value: "admin",
-                        groupValue: role,
-                        onChanged: (value) {
-                          setState(() {
-                            role = value.toString();
-                          });
-                        },
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        height: 50,
+                        width: 250,
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 201, 201, 201),
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                                color: const Color.fromARGB(255, 17, 17, 17),
+                                width: 0.5)),
+                        child: RadioListTile(
+                          title: Text("enseignant"),
+                          value: "instructor",
+                          groupValue: role,
+                          onChanged: (value) {
+                            setState(() {
+                              role = value.toString();
+                            });
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        height: 50,
+                        width: 250,
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 201, 201, 201),
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                                color: const Color.fromARGB(255, 17, 17, 17),
+                                width: 0.5)),
+                        child: RadioListTile(
+                          title: Text("administrateur"),
+                          value: "admin",
+                          groupValue: role,
+                          onChanged: (value) {
+                            setState(() {
+                              role = value.toString();
+                            });
+                          },
+                        ),
                       ),
                       HStack([
                         GestureDetector(
                           onTap: () => {registerUser()},
                           child: VxBox(
-                                  child: "Register"
+                                  child: "Enregistrer"
                                       .text
                                       .white
                                       .makeCentered()
@@ -161,15 +207,15 @@ class _RegistrationState extends State<Registration> {
                       ]),
                       GestureDetector(
                         onTap: () {
-                          print("Sign In");
+                          print("Se connecter");
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => SignInPage()));
                         },
                         child: HStack([
-                          "Already Registered?".text.make(),
-                          " Sign In".text.white.make()
+                          "Avez vous dèjà un compte?".text.make(),
+                          " Se connecter".text.white.make()
                         ]).centered(),
                       )
                     ],

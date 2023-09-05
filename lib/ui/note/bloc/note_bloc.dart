@@ -51,10 +51,10 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
           emit(NoteError("error"));
           emit(NoteLoaded(notes));
         }
-      } else {
+      } else if (role == "02") {
         emit(PanierLoading());
         String? id_ens = locator.get<SharedPreferences>().getString('id');
-  var url = "${classenseigant}";
+        var url = "${classenseigant}";
         var response = await http.get(Uri.parse(url + id_ens.toString()));
         debugPrint(response.body.toString());
         var jsonResponse = jsonDecode(response.body);
@@ -70,6 +70,27 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
           print("Something error");
           emit(PanierErrorState("error"));
         }
+      } else {
+        emit(NoteLoading());
+        var url = "${noteurl}";
+        var response = await http.get(Uri.parse(url));
+        debugPrint(response.body.toString());
+        var jsonResponse = jsonDecode(response.body);
+        print(jsonResponse);
+        List<NoteNew> notes = [];
+        if (response.statusCode == 200) {
+          if (jsonResponse != null) {
+            jsonResponse.forEach((jsonElement) {
+              notes.add(NoteNew.fromJson(jsonElement));
+              print("succes load");
+            });
+            emit(NoteLoaded(notes));
+          }
+        } else {
+          print("SOmething error");
+          emit(NoteError("error"));
+          emit(NoteLoaded(notes));
+        }
       }
     });
     on<AddReclamationNoteEvent>(
@@ -78,7 +99,8 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
         var response = await http.post(Uri.parse(url), body: {
           'description': event.description,
           'module': event.module,
-          'etudiant': event.etudiant
+          'etudiant': event.etudiant,
+          'enseignant': event.enseignant
         });
       },
     );

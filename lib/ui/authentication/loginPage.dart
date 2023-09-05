@@ -21,6 +21,8 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+  // show the password or not
+  bool _isObscure = true;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   String? role;
@@ -46,7 +48,7 @@ class _SignInPageState extends State<SignInPage> {
       context
           .read<AuthenticationBloc>()
           .add(LoginEvent(emailController.text, passwordController.text));
-    } 
+    }
   }
 
   @override
@@ -56,9 +58,9 @@ class _SignInPageState extends State<SignInPage> {
         if (state is LoginSuccesState) {
           showToastSuccess();
           Utils.openPageAndClearStack(Home(state.sharedPreferences), context);
-        }else {
-      showToastError();
-    }
+        } else {
+          showToastError();
+        }
       },
       builder: (context, state) {
         return SafeArea(
@@ -84,11 +86,12 @@ class _SignInPageState extends State<SignInPage> {
                     children: <Widget>[
                       CommonLogo(),
                       const HeightBox(10),
-                      "Sign-In".text.size(22).black.make(),
+                      "Se connecter".text.size(22).yellow100.make(),
                       TextField(
                         controller: emailController,
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
+                            prefixIcon: const Icon(Icons.mail),
                             filled: true,
                             fillColor: Colors.white,
                             hintText: "Email",
@@ -99,9 +102,20 @@ class _SignInPageState extends State<SignInPage> {
                                     BorderRadius.all(Radius.circular(10.0)))),
                       ).p4().px24(),
                       TextField(
+                        obscureText: _isObscure,
                         controller: passwordController,
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
+                            prefixIcon: const Icon(Icons.lock),
+                            suffixIcon: IconButton(
+                                icon: Icon(_isObscure
+                                    ? Icons.visibility
+                                    : Icons.visibility_off),
+                                onPressed: () {
+                                  setState(() {
+                                    _isObscure = !_isObscure;
+                                  });
+                                }),
                             filled: true,
                             fillColor: Colors.white,
                             hintText: "Password",
@@ -137,7 +151,7 @@ class _SignInPageState extends State<SignInPage> {
                   height: 25,
                   color: Colors.redAccent,
                   child: Center(
-                      child: "Create a new Account..! Sign Up"
+                      child: "Créer nouveau compte..! Inscription"
                           .text
                           .white
                           .makeCentered())),

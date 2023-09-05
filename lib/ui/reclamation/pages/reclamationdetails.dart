@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../models/user.dart';
@@ -74,15 +75,15 @@ class _ReclamationDetailsState extends State<ReclamationDetails> {
               SizedBox(
                 height: 10,
               ),
-              Text("Description: ${reclamation.description}" ),
+              Text("Description: ${reclamation.description}"),
               SizedBox(
                 height: 10,
               ),
-              Text("Reponse: ${reclamation.reponse}" ),
+              Text("Reponse: ${reclamation.reponse}"),
               SizedBox(
                 height: 10,
               ),
-              Text("Module: ${reclamation.module}" ),
+              Text("Module: ${reclamation.module}"),
               SizedBox(
                 height: 10,
               ),
@@ -90,7 +91,7 @@ class _ReclamationDetailsState extends State<ReclamationDetails> {
               SizedBox(
                 height: 10,
               ),
-              Text("Status: ${reclamation.status} " ),
+              Text("Status: ${reclamation.status} "),
             ])),
           )),
       floatingActionButton: FloatingActionButton(
@@ -100,7 +101,7 @@ class _ReclamationDetailsState extends State<ReclamationDetails> {
             barrierDismissible: true,
             builder: (context) {
               return AlertDialog(
-                title: Text("Add reponse"),
+                title: Text("Ajouter reponse"),
                 content: Container(
                   child: TextField(
                     controller: responeController,
@@ -127,6 +128,7 @@ class _ReclamationDetailsState extends State<ReclamationDetails> {
                     ),
                     onPressed: () {
                       reponseReclamation(reclamation.id_reclamation.toString());
+                      showToastSuccess();
                       Navigator.pop(context);
                       _controller;
                     },
@@ -145,3 +147,10 @@ class _ReclamationDetailsState extends State<ReclamationDetails> {
     );
   }
 }
+
+void showToastSuccess() => Fluttertoast.showToast(
+    msg: "Add reponse successfuly",
+    fontSize: 16,
+    backgroundColor: Colors.grey.shade400,
+    textColor: Colors.black,
+    gravity: ToastGravity.BOTTOM);

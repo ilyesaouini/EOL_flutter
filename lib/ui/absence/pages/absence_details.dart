@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
 
 class AbsenceDetails extends StatefulWidget {
   final AbsenceNew absence;
@@ -33,7 +33,7 @@ class _AbsenceDetailsState extends State<AbsenceDetails> {
   void reclamation() {
     if (descriptionController.text.isNotEmpty) {
       context.read<AbsenceBloc>().add(AddReclamationAbsenceEvent(
-          descriptionController.text, absence.code_module, absence.id_et));
+          descriptionController.text, absence.code_module, absence.id_et, absence.id_ens));
     }
   }
 
@@ -58,7 +58,7 @@ class _AbsenceDetailsState extends State<AbsenceDetails> {
         child: Center(
           child: Container(
             margin: const EdgeInsets.all(8.0),
-            padding: const EdgeInsets.all(15),
+            padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
                 color: Color.fromARGB(255, 201, 201, 201),
                 borderRadius: BorderRadius.circular(10),
@@ -85,7 +85,6 @@ class _AbsenceDetailsState extends State<AbsenceDetails> {
                 SizedBox(
                   height: 10,
                 ),
-                Text(absence.annee_deb ?? "Null"),
               ],
             ),
           ),
@@ -98,7 +97,7 @@ class _AbsenceDetailsState extends State<AbsenceDetails> {
             barrierDismissible: true,
             builder: (context) {
               return AlertDialog(
-                title: Text("Add reclamation"),
+                title: Text("Ajouter reclamation"),
                 content: Container(
                   child: TextField(
                     controller: descriptionController,
@@ -125,6 +124,7 @@ class _AbsenceDetailsState extends State<AbsenceDetails> {
                     ),
                     onPressed: () {
                       reclamation();
+                      showToastSuccess();
                       Navigator.pop(context);
                     },
                     child: Text(
@@ -142,3 +142,10 @@ class _AbsenceDetailsState extends State<AbsenceDetails> {
     );
   }
 }
+
+void showToastSuccess() => Fluttertoast.showToast(
+    msg: "Add reclamation successfuly",
+    fontSize: 16,
+    backgroundColor: Colors.grey.shade400,
+    textColor: Colors.black,
+    gravity: ToastGravity.BOTTOM);

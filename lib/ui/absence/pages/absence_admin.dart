@@ -90,17 +90,20 @@ class _AbsenceAdminPageState extends State<AbsenceAdminPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    "Absence: ${absenceList[index].code_cl}",
+                                    "Classe: ${absenceList[index].code_cl}",
                                   ),
                                   const SizedBox(height: 10),
                                   Text(
-                                    "Date: ${absenceList[index].code_module}",
+                                    "Date: ${absenceList[index].date_seance}",
                                   ),
                                   const SizedBox(height: 10),
                                   Text(
                                     "Module: ${absenceList[index].id_ens}",
                                   ),
                                   const SizedBox(height: 10),
+                                  Text(
+                                    "id_etudiant: ${absenceList[index].id_et}",
+                                  ),
                                 ],
                               ),
                             ),

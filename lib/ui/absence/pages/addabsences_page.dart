@@ -27,6 +27,7 @@ class _AddAbsenceDetailsState extends State<AddAbsenceDetails> {
   int _indexgroup = 0;
   @override
   void initState() {
+    print("date:  " + DateTime.now().toString());
     absence = widget.class_session;
     super.initState();
     context
@@ -34,9 +35,20 @@ class _AddAbsenceDetailsState extends State<AddAbsenceDetails> {
         .add(GetListEtudiant(code_cl: widget.class_session.code_cl.toString()));
   }
 
-  void addAbsence(String? id) {
+  void addAbsence(String? id_et) {
+    print(id_et.toString() +
+        "/ " +
+        absence.code_cl.toString() +
+        "/ " +
+        absence.code_module.toString() +
+        "/ " +
+        absence.annee_deb.toString() +
+        "/ " +
+        absence.id_ens.toString() +
+        "/ " +
+        _indexgroup.toString());
     context.read<AbsenceBloc>().add(AddAbsence(
-        '193JMT0325',
+        id_et,
         absence.code_cl,
         absence.code_module,
         absence.annee_deb,
@@ -109,7 +121,7 @@ class _AddAbsenceDetailsState extends State<AddAbsenceDetails> {
                       onPressed: () {
                         for (var i = 0; i < listetudiant.length; i++) {}
                       },
-                      child: Text('Select All'),
+                      child: Text('Tout'),
                     )
                   ],
                 ),
@@ -194,9 +206,9 @@ class _AddAbsenceDetailsState extends State<AddAbsenceDetails> {
                                             Text(
                                                 "nom/prénom : ${listEtudiant[index].nom_prenom}"),
                                             const SizedBox(height: 10),
+                                            CheckboxExample()
                                           ],
                                         ),
-                                        CheckboxExample()
                                       ]),
                                 ),
                               );
@@ -266,4 +278,13 @@ class _CheckboxExampleState extends State<CheckboxExample> {
       },
     );
   }
+}
+
+class CheckBox {
+  User? user;
+  bool? value;
+  CheckBox({
+    this.user,
+    this.value = false,
+  });
 }

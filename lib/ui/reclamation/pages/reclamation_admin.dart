@@ -40,13 +40,6 @@ class _ReclamationAdminPageState extends State<ReclamationAdminPage> {
         .add(AddReclamationSimpleEvent(user.id, descriptionController.text));
   }
 
-  addSimpleReclamation() {
-    if (user.id != null && descriptionController.text.isNotEmpty) {
-      context.read<ReclamationBloc>().add(AddReclamationSimpleEvent(
-          user.id.toString(), descriptionController.text));
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ReclamationBloc, ReclamationState>(
@@ -137,55 +130,6 @@ class _ReclamationAdminPageState extends State<ReclamationAdminPage> {
                         },
                       ),
                     ),
-            ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                showCupertinoDialog(
-                  context: context,
-                  barrierDismissible: true,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: Text("Add reclamation"),
-                      content: Container(
-                        child: TextField(
-                          controller: descriptionController,
-                          decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.white,
-                              hintText: "description",
-                              hoverColor: Colors.red),
-                        ),
-                      ),
-                      actionsAlignment: MainAxisAlignment.center,
-                      actions: [
-                        ElevatedButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.red, // Background color
-                            ),
-                            child: Text("Annuler")),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.grey, // Background color
-                          ),
-                          onPressed: () {
-                            addSimpleReclamation();
-                            Navigator.pop(context);
-                            _controller;
-                          },
-                          child: Text(
-                            "Confirmer",
-                          ),
-                        )
-                      ],
-                    );
-                  },
-                );
-              },
-              child: Icon(Icons.add_alert_sharp),
-              backgroundColor: Colors.grey,
             ),
           ),
         );

@@ -53,6 +53,21 @@ class User {
    );
     
   }
+  factory User.fromJson1(dynamic json) {
+   return User(
+
+      id :json['id'],
+      nom_prenom: json['nom_prenom'],
+      nom: json['nom'],
+      prenom: json['prenom'],
+      email: json['email'],
+      date_de_naissance: json['date_de_naissance'],
+      image: json['image'],
+      tel: json['tel'],
+      role: json['role']
+   );
+    
+  }
 
   String toJson() => json.encode(toMap());
 

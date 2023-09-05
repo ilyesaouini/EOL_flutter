@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../models/user.dart';
@@ -201,3 +202,9 @@ class ReclamationListLoader extends StatelessWidget {
     );
   }
 }
+void showToastSuccess() => Fluttertoast.showToast(
+      msg: "Add reclamation successfuly",
+      fontSize: 16,
+      backgroundColor: Colors.grey.shade400,
+      textColor: Colors.black,
+      gravity: ToastGravity.BOTTOM);

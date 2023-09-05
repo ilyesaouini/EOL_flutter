@@ -13,8 +13,10 @@ class AddReclamationAbsenceEvent extends AbsenceEvent {
   final description;
   final module;
   final etudiant;
+  final enseignant;
 
-  AddReclamationAbsenceEvent(this.description, this.module, this.etudiant);
+  AddReclamationAbsenceEvent(
+      this.description, this.module, this.etudiant, this.enseignant);
 }
 
 class GetAbsenceByEtudiant extends AbsenceEvent {
@@ -42,19 +44,19 @@ class AddAbsence extends AbsenceEvent {
   final String? code_cl;
   final String? code_module;
   final String? annee_deb;
-  final num? num_seance;
+  final int? num_seance;
   final String? date_seance;
   final String? date_saisie;
   final String? id_ens;
-  
+
   AddAbsence(
-      this.id_et,
-      this.code_cl,
-      this.code_module,
-      this.annee_deb,
-      this.num_seance,
-      this.date_seance,
-      this.date_saisie,
-      this.id_ens,
-      );
+    this.id_et,
+    this.code_cl,
+    this.code_module,
+    this.annee_deb,
+    this.num_seance,
+    this.date_seance,
+    this.date_saisie,
+    this.id_ens,
+  );
 }
