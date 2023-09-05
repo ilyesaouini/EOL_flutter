@@ -25,6 +25,7 @@ class _AddAbsenceDetailsState extends State<AddAbsenceDetails> {
   late Plan_Class_Session absence;
   List<User> listEtudiant = [];
   int _indexgroup = 0;
+  bool allChecked = false;
   @override
   void initState() {
     print("date:  " + DateTime.now().toString());
@@ -119,7 +120,19 @@ class _AddAbsenceDetailsState extends State<AddAbsenceDetails> {
                         foregroundColor: Colors.white,
                       ),
                       onPressed: () {
-                        for (var i = 0; i < listetudiant.length; i++) {}
+                        if (allChecked) {
+                          listEtudiant.forEach((element) {
+                            element.isChecked = false;
+                          });
+                          allChecked = false;
+                        } else {
+                          listEtudiant.forEach((element) {
+                            element.isChecked = true;
+                          });
+                          allChecked = true;
+                        }
+
+                        setState(() {});
                       },
                       child: Text('Tout'),
                     )
@@ -206,7 +219,17 @@ class _AddAbsenceDetailsState extends State<AddAbsenceDetails> {
                                             Text(
                                                 "nom/prénom : ${listEtudiant[index].nom_prenom}"),
                                             const SizedBox(height: 10),
-                                            CheckboxExample()
+                                            Checkbox(
+                                              checkColor: Colors.white,
+                                              value:
+                                                  listEtudiant[index].isChecked,
+                                              onChanged: (bool? value) {
+                                                listEtudiant[index].isChecked =
+                                                    !listEtudiant[index]
+                                                        .isChecked;
+                                                setState(() {});
+                                              },
+                                            )
                                           ],
                                         ),
                                       ]),
@@ -239,43 +262,6 @@ class AbsenceListLoader extends StatelessWidget {
       child: CircularProgressIndicator(
         color: Colors.red,
       ),
-    );
-  }
-}
-
-class CheckboxExample extends StatefulWidget {
-  const CheckboxExample({super.key});
-
-  @override
-  State<CheckboxExample> createState() => _CheckboxExampleState();
-}
-
-class _CheckboxExampleState extends State<CheckboxExample> {
-  bool isChecked = false;
-
-  @override
-  Widget build(BuildContext context) {
-    Color getColor(Set<MaterialState> states) {
-      const Set<MaterialState> interactiveStates = <MaterialState>{
-        MaterialState.pressed,
-        MaterialState.hovered,
-        MaterialState.focused,
-      };
-      if (states.any(interactiveStates.contains)) {
-        return Colors.grey;
-      }
-      return Colors.red;
-    }
-
-    return Checkbox(
-      checkColor: Colors.white,
-      fillColor: MaterialStateProperty.resolveWith(getColor),
-      value: isChecked,
-      onChanged: (bool? value) {
-        setState(() {
-          isChecked = value!;
-        });
-      },
     );
   }
 }

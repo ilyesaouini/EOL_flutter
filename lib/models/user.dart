@@ -10,6 +10,7 @@ class User {
   String? image;
   String? tel;
   String? role;
+  bool isChecked = false;
   
 
   User({
