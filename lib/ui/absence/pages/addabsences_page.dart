@@ -24,7 +24,7 @@ class _AddAbsenceDetailsState extends State<AddAbsenceDetails> {
   TextEditingController descriptionController = TextEditingController();
   late Plan_Class_Session absence;
   List<User> listEtudiant = [];
-  int _indexgroup = 0;
+  int? _indexgroup;
   bool allChecked = false;
   @override
   void initState() {
@@ -211,16 +211,23 @@ class _AddAbsenceDetailsState extends State<AddAbsenceDetails> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
                                       children: <Widget>[
-                                        Column(
+                                        Row(
                                           children: [
-                                            Text(
-                                                "id_etudiant : ${listEtudiant[index].id}"),
-                                            const SizedBox(height: 10),
-                                            Text(
-                                                "nom/prénom : ${listEtudiant[index].nom_prenom}"),
+                                            Column(
+                                              children: [
+                                                Text(
+                                                    "id_etudiant : ${listEtudiant[index].id}"),
+                                                const SizedBox(height: 10),
+                                                Text(
+                                                    "nom/prénom : ${listEtudiant[index].nom_prenom}"),
+                                              ],
+                                            ),
                                             const SizedBox(height: 10),
                                             Checkbox(
-                                              checkColor: Colors.white,
+                                              checkColor: Colors.black,
+                                              focusColor: Colors.black,
+                                              hoverColor: Colors.black,
+                                              activeColor: Colors.red,
                                               value:
                                                   listEtudiant[index].isChecked,
                                               onChanged: (bool? value) {
@@ -243,7 +250,9 @@ class _AddAbsenceDetailsState extends State<AddAbsenceDetails> {
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               for (var i = 0; i < listEtudiant.length; i++) {
-                addAbsence(listEtudiant[i].id);
+                if (listEtudiant[i].isChecked == true) {
+                  addAbsence(listEtudiant[i].id);
+                }
               }
             },
             backgroundColor: Colors.grey,

@@ -108,9 +108,11 @@ class _ReclamationPageState extends State<ReclamationPage> {
                                     "Description: ${reclamationList[index].description}",
                                   ),
                                   const SizedBox(height: 10),
-                                  Text(
-                                    "Reponse: ${reclamationList[index].reponse}",
-                                  ),
+                                  (reclamationList[index].reponse == null)
+                                      ? Text(
+                                          "Reponse: ${reclamationList[index].reponse}",
+                                        )
+                                      : Text("__"),
                                   const SizedBox(height: 10),
                                   Text(
                                     "Module: ${reclamationList[index].module}",
@@ -202,9 +204,10 @@ class ReclamationListLoader extends StatelessWidget {
     );
   }
 }
+
 void showToastSuccess() => Fluttertoast.showToast(
-      msg: "Add reclamation successfuly",
-      fontSize: 16,
-      backgroundColor: Colors.grey.shade400,
-      textColor: Colors.black,
-      gravity: ToastGravity.BOTTOM);
+    msg: "Add reclamation successfuly",
+    fontSize: 16,
+    backgroundColor: Colors.grey.shade400,
+    textColor: Colors.black,
+    gravity: ToastGravity.BOTTOM);

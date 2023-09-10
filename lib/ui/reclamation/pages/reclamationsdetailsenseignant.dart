@@ -11,16 +11,18 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../models/user.dart';
 
-class ReclamationDetails extends StatefulWidget {
+class ReclamationDetailsEnseignant extends StatefulWidget {
   final Reclamation reclamation;
 
-  const ReclamationDetails({super.key, required this.reclamation});
+  const ReclamationDetailsEnseignant({super.key, required this.reclamation});
 
   @override
-  State<ReclamationDetails> createState() => _ReclamationDetailsState();
+  State<ReclamationDetailsEnseignant> createState() =>
+      _ReclamationDetailsEnseignantState();
 }
 
-class _ReclamationDetailsState extends State<ReclamationDetails> {
+class _ReclamationDetailsEnseignantState
+    extends State<ReclamationDetailsEnseignant> {
   //util
   TextEditingController responeController = TextEditingController();
   final _controller = InputDecoration();
@@ -79,12 +81,9 @@ class _ReclamationDetailsState extends State<ReclamationDetails> {
               SizedBox(
                 height: 10,
               ),
-              (reclamation.reponse == null)
-                                      ? Text(
-                                          "Reponse: ${reclamation.reponse}",
-                                        )
-                                      : Text("__"),
-              Text("Reponse: ${reclamation.reponse}"),
+              reclamation.reponse == null
+                  ? Text("Reponse: ${reclamation.reponse}")
+                  : Text("Reponse:__"),
               SizedBox(
                 height: 10,
               ),
@@ -92,9 +91,63 @@ class _ReclamationDetailsState extends State<ReclamationDetails> {
               SizedBox(
                 height: 10,
               ),
+              Text("Enseignant: ${reclamation.enseignant}"),
+              SizedBox(
+                height: 10,
+              ),
               Text("Status: ${reclamation.status} "),
             ])),
           )),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showCupertinoDialog(
+            context: context,
+            barrierDismissible: true,
+            builder: (context) {
+              return AlertDialog(
+                title: Text("Ajouter reponse"),
+                content: Container(
+                  child: TextField(
+                    controller: responeController,
+                    decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        hintText: "reponse",
+                        hoverColor: Colors.red),
+                  ),
+                ),
+                actionsAlignment: MainAxisAlignment.center,
+                actions: [
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.red, // Background color
+                      ),
+                      child: Text("Annuler")),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.grey, // Background color
+                    ),
+                    onPressed: () {
+                      reponseReclamation(reclamation.id_reclamation.toString());
+                      showToastSuccess();
+                      Navigator.pop(context);
+                      _controller;
+                    },
+                    child: Text(
+                      "Confirmer",
+                    ),
+                  )
+                ],
+              );
+            },
+          );
+        },
+        child: Icon(Icons.add_alert_sharp),
+        backgroundColor: Colors.grey,
+      ),
     );
   }
 }

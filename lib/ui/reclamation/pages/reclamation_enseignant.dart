@@ -1,5 +1,6 @@
 import 'package:copihass/models/reclamation.dart';
 import 'package:copihass/ui/reclamation/pages/reclamationdetails.dart';
+import 'package:copihass/ui/reclamation/pages/reclamationsdetailsenseignant.dart';
 import 'package:copihass/ui/reclamation/widgets/dialog_box.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -82,7 +83,7 @@ class _ReclamationEnseignantPageState extends State<ReclamationEnseignantPage> {
                             onTap: () {
                               Navigator.push(context, MaterialPageRoute(
                                   builder: (BuildContext context) {
-                                return ReclamationDetails(
+                                return ReclamationDetailsEnseignant(
                                     reclamation: reclamationList[index]);
                               }));
                             },
@@ -104,9 +105,11 @@ class _ReclamationEnseignantPageState extends State<ReclamationEnseignantPage> {
                                     "Description: ${reclamationList[index].description}",
                                   ),
                                   const SizedBox(height: 10),
-                                  Text(
-                                    "Reponse: ${reclamationList[index].reponse}",
-                                  ),
+                                  (reclamationList[index].reponse?.length == 0)
+                                      ? Text(
+                                          "Reponse: ${reclamationList[index].reponse}",
+                                        )
+                                      : Text("Reponse:__"),
                                   const SizedBox(height: 10),
                                   Text(
                                     "Module: ${reclamationList[index].module}",

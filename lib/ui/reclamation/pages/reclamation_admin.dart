@@ -103,6 +103,11 @@ class _ReclamationAdminPageState extends State<ReclamationAdminPage> {
                                     "Description: ${reclamationList[index].description}",
                                   ),
                                   const SizedBox(height: 10),
+                                  (reclamationList[index].reponse == null)
+                                      ? Text(
+                                          "Reponse: ${reclamationList[index].reponse}",
+                                        )
+                                      : Text("__"),
                                   Text(
                                     "Reponse: ${reclamationList[index].reponse}",
                                   ),

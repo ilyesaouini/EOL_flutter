@@ -11,19 +11,17 @@ class User {
   String? tel;
   String? role;
   bool isChecked = false;
-  
 
-  User({
-    this.id,
-    this.nom_prenom,
-    this.nom,
-    this.prenom,
-    this.email,
-    this.date_de_naissance,
-    this.tel,
-    this.image,
-    this.role
-  });
+  User(
+      {this.id,
+      this.nom_prenom,
+      this.nom,
+      this.prenom,
+      this.email,
+      this.date_de_naissance,
+      this.tel,
+      this.image,
+      this.role});
 
   Map<String, dynamic> toMap() {
     return {
@@ -40,37 +38,29 @@ class User {
   }
 
   factory User.fromJson(dynamic json) {
-   return User(
-
-      id :json['id'],
-      nom_prenom: json['nom_prenom'],
-      nom: json['nom'],
-      prenom: json['prenom'],
-      email: json['email'],
-      date_de_naissance: json['date_de_naissance'],
-      image: json['image'],
-      tel: json['tel'],
-      role: json['role']
-   );
-    
+    return User(
+        id: json['id'],
+        nom_prenom: json['nom_prenom'],
+        nom: json['nom'],
+        prenom: json['prenom'],
+        email: json['email'],
+        date_de_naissance: json['date_de_naissance'],
+        image: json['image'],
+        tel: json['tel'],
+        role: json['role']);
   }
   factory User.fromJson1(dynamic json) {
-   return User(
-
-      id :json['id'],
-      nom_prenom: json['nom_prenom'],
-      nom: json['nom'],
-      prenom: json['prenom'],
-      email: json['email'],
-      date_de_naissance: json['date_de_naissance'],
-      image: json['image'],
-      tel: json['tel'],
-      role: json['role']
-   );
-    
+    return User(
+        id: json['id_etudiant'],
+        nom_prenom: json['nom_prenom'],
+        nom: json['nom'],
+        prenom: json['prenom'],
+        email: json['email'],
+        date_de_naissance: json['date_de_naissance'],
+        image: json['image'],
+        tel: json['tel'],
+        role: json['role']);
   }
 
   String toJson() => json.encode(toMap());
-
-  
 }

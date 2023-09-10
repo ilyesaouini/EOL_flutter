@@ -87,21 +87,20 @@ class ReclamationBloc extends Bloc<ReclamationEvent, ReclamationState> {
       var reqBody = {"etudiant": event.id, "description": event.description};
 
       var response = await http.post(Uri.parse(addsimplereclamationurl),
-          headers: {"Content-Type": "application/json"},
           body: jsonEncode(reqBody));
       if (response.statusCode == 200) {
         emit(AddReclamationSuccesState());
       }
     });
     on<ReponseReclamationEvent>((event, emit) async {
-      var reqBody = {
+      var repBody = {
         "id_reclamation": event.id,
         "reponse": event.reponse,
         "status": "done"
       };
       var response = await http.patch(Uri.parse(reponsereclamationurl),
           headers: {"Content-Type": "application/json"},
-          body: jsonEncode(reqBody));
+          body: jsonEncode(repBody));
       debugPrint(response.toString());
       print(response.body);
       if (response.statusCode == 200) {
