@@ -6,7 +6,8 @@ import 'package:copihass/ui/absence/pages/absence_page.dart';
 import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
 import 'package:copihass/ui/account/NavBar.dart';
 import 'package:copihass/ui/account/profile_page.dart';
-import 'package:copihass/ui/emploi/emploi.dart';
+import 'package:copihass/ui/emploi/pages/addemploi.dart';
+import 'package:copihass/ui/emploi/pages/emploi.dart';
 import 'package:copihass/ui/note/bloc/note_bloc.dart';
 import 'package:copihass/ui/note/pages/note.dart';
 import 'package:copihass/ui/reclamation/bloc/reclamation_bloc.dart';
@@ -83,7 +84,7 @@ class _HomeState extends State<Home> {
         NotePage(prefs: widget.prefs),
         AbsenceAdminPage(prefs: widget.prefs),
         ResultatPage(prefs: widget.prefs),
-        EmploiPage(),
+        AddEmploiPage(),
         ReclamationAdminPage(prefs: widget.prefs),
       ];
     }

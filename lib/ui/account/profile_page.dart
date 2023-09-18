@@ -1,13 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:copihass/ui/account/NavBar.dart';
-import 'package:copihass/ui/emploi/emploi.dart';
-import 'package:copihass/ui/reclamation/pages/reclamation.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 
-import 'package:copihass/ui/authentication/loginPage.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:image_picker/image_picker.dart';

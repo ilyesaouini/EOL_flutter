@@ -244,8 +244,10 @@ class _AddAbsenceDetailsState extends State<AddAbsenceDetails> {
                               );
                             },
                           )),
+                
               ],
             ),
+            
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
