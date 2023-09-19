@@ -48,8 +48,9 @@ dependencies:
   dio: ^5.2.1
   get_it: ^7.6.0
   group_button: ^5.3.3
-  file_picker: 
- 
+  
+   #syncfusion_flutter_pdfviewer: ^21.2.3
+  
 
   
   # The following adds the Cupertino Icons font to your application.

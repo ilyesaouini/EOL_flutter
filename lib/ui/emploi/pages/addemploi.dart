@@ -1,8 +1,7 @@
-import 'dart:html';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:file_picker/file_picker.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -51,7 +50,7 @@ class _AddEmploiPageState extends State<AddEmploiPage> {
 
 Future UploadPdf() async {
   var dio = Dio();
-  FilePickerResult? result = await FilePicker.platform.pickFiles();
+  //FilePickerResult? result = await FilePicker.platform.pickFiles();
 /*
   if (result != null) {
     var myfile = file(result.files.single.path ?? "");
