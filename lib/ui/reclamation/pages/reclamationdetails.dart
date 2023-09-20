@@ -80,11 +80,10 @@ class _ReclamationDetailsState extends State<ReclamationDetails> {
                 height: 10,
               ),
               (reclamation.reponse == null)
-                                      ? Text(
-                                          "Reponse: ${reclamation.reponse}",
-                                        )
-                                      : Text("__"),
-              Text("Reponse: ${reclamation.reponse}"),
+                  ? Text(
+                      "Reponse: ${reclamation.reponse}",
+                    )
+                  : Text("__"),
               SizedBox(
                 height: 10,
               ),

@@ -123,10 +123,6 @@ class _ReclamationPageState extends State<ReclamationPage> {
                                   ),
                                   const SizedBox(height: 10),
                                   Text(
-                                    "Re-reclamation: ${reclamationList[index].id_reclamation}",
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Text(
                                     "Status: ${reclamationList[index].status}",
                                   ),
                                   const SizedBox(height: 10),

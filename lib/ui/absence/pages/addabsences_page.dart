@@ -244,10 +244,15 @@ class _AddAbsenceDetailsState extends State<AddAbsenceDetails> {
                               );
                             },
                           )),
-                
+                // Liste des étudiants
+                Container(
+                  child: ElevatedButton(
+                    child: Text("liste des absences"),
+                    onPressed: () {},
+                  ),
+                )
               ],
             ),
-            
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {

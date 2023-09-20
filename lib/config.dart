@@ -1,4 +1,4 @@
-final url = 'https://7d92-196-234-253-18.ngrok-free.app/';
+final url = 'https://e580-196-235-49-240.ngrok-free.app/';
 final registration = url + "register";
 final login = url + 'login2';
 final imageurl = url + 'image/';
@@ -21,3 +21,5 @@ final listetudiant = url + 'etudiantbyclasse';
 final listnote = url + 'notesnewetudiant/';
 final listereclamationetudiant = url + "reclamationetudiant/";
 final addabsence = url + "postabsence1/";
+
+final listeabsence = url + "absenseignantclasse";

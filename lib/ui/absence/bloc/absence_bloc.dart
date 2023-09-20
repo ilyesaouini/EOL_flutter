@@ -146,5 +146,31 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
         });
       },
     );
+    on<AbsenceList>(
+      (event, emit) async {
+        emit(AbsenceLoading());
+        var url = "${listeabsence}";
+        var response = await http.get(Uri.parse(url +
+            '/' +
+            event.code_cl.toString() +
+            '/' +
+            event.code_module.toString() +
+            '/' +
+            event.id_ens.toString()));
+        debugPrint(response.body.toString());
+        var jsonResponse = jsonDecode(response.body);
+        print(jsonResponse);
+        List<AbsenceNew> absenceList = [];
+        if (response.statusCode == 200) {
+          if (jsonResponse['absence'] != null) {
+            jsonResponse['absence'].forEach((jsonElement) {
+              absenceList.add(AbsenceNew.fromJson(jsonElement));
+            });
+          }
+
+          emit(AbsenceLoaded(absenceList));
+        }
+      },
+    );
   }
 }

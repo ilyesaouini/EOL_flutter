@@ -60,3 +60,10 @@ class AddAbsence extends AbsenceEvent {
     this.id_ens,
   );
 }
+
+class AbsenceList extends AbsenceEvent {
+  final String? code_cl;
+  final String? code_module;
+  final String? id_ens;
+  AbsenceList(this.code_cl, this.code_module, this.id_ens);
+}
