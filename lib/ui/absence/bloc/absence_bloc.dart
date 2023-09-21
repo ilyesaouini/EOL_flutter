@@ -139,7 +139,7 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
           'id_et': event.id_et,
           'code_cl': event.code_cl,
           'code_module': event.code_module,
-          'num_seance': event.num_seance,
+          'num_seance': event.num_seance.toString(),
           'date_seance': event.date_seance,
           'dat_saisie': event.date_saisie,
           'id_ens': event.id_ens

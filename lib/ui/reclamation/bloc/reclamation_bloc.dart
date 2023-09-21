@@ -94,7 +94,7 @@ class ReclamationBloc extends Bloc<ReclamationEvent, ReclamationState> {
     });
     on<ReponseReclamationEvent>((event, emit) async {
       var repBody = {
-        "id_reclamation": event.id,
+        "id": event.id,
         "reponse": event.reponse,
         "status": "done"
       };
