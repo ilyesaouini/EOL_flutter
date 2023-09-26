@@ -39,6 +39,7 @@ class _ProfilePageState extends State<ProfilePage> {
     if (file == null) return;
 
     String base64 = base64Encode(file!.readAsBytesSync());
+    
     var data = base64;
     print(user.id);
     context.read<AccountBloc>().add(UploadImageEvent(user.id, data));

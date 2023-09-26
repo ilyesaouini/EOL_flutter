@@ -136,13 +136,14 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
       (event, emit) async {
         var url = "${addabsence}";
         var response = await http.post(Uri.parse(url), body: {
-          'id_et': event.id_et,
-          'code_cl': event.code_cl,
-          'code_module': event.code_module,
-          'num_seance': event.num_seance.toString(),
-          'date_seance': event.date_seance,
-          'dat_saisie': event.date_saisie,
-          'id_ens': event.id_ens
+          'ID_ET': event.id_et,
+          'CODE_MODULE': event.code_module,
+          'CODE_CL': event.code_cl,
+          'ANNEE_DEB': event.annee_deb.toString(),
+          'NUM_SEANCE': event.num_seance.toString(),
+          'DATE_SEANCE': event.date_seance.toString(),
+          'ID_ENS': event.id_ens,
+          'DATE_SAISIE': event.date_saisie.toString()
         });
       },
     );

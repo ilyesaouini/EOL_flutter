@@ -64,7 +64,7 @@ class _HomeState extends State<Home> {
         NotePage(prefs: widget.prefs),
         AbsencePage(prefs: widget.prefs),
         ResultatPage(prefs: widget.prefs),
-        EmploiPage(),
+        EmploiPage(prefs: widget.prefs),
         ReclamationPage(prefs: widget.prefs),
       ];
     } else if (role.role == "02") {
@@ -74,7 +74,7 @@ class _HomeState extends State<Home> {
         NoteEnseignantPage(prefs: widget.prefs),
         AbsenceEnseignantPage(prefs: widget.prefs),
         ResultatPage(prefs: widget.prefs),
-        EmploiPage(),
+        EmploiPage(prefs: widget.prefs),
         ReclamationEnseignantPage(prefs: widget.prefs),
       ];
     } else {

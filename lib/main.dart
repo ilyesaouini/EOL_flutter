@@ -6,6 +6,7 @@ import 'package:copihass/ui/account/bloc/account_bloc.dart';
 import 'package:copihass/ui/authentication/bloc/authentication_bloc.dart';
 import 'package:copihass/ui/authentication/loginPage.dart';
 import 'package:copihass/ui/class/bloc/class_bloc.dart';
+import 'package:copihass/ui/emploi/bloc/emploi_bloc.dart';
 import 'package:copihass/ui/note/bloc/note_bloc.dart';
 import 'package:copihass/ui/reclamation/bloc/reclamation_bloc.dart';
 import 'package:copihass/ui/resultat/bloc/resultat_bloc.dart';
@@ -78,6 +79,9 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider<ClassBloc>(
           create: (_) => ClassBloc(),
+        ),
+        BlocProvider<EmploiBloc>(
+          create: (context) => EmploiBloc(),
         )
       ],
       child: MaterialApp(

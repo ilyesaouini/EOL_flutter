@@ -81,7 +81,7 @@ class _ReclamationDetailsEnseignantState
               SizedBox(
                 height: 10,
               ),
-              reclamation.reponse == null
+              reclamation.reponse != null
                   ? Text("Reponse: ${reclamation.reponse}")
                   : Text("Reponse:__"),
               SizedBox(

@@ -1,5 +1,5 @@
 import 'package:copihass/config.dart';
-
+import 'package:date_format/date_format.dart';
 import 'package:copihass/models/plan_class_session.dart';
 import 'package:copihass/models/user.dart';
 import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
@@ -11,6 +11,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:group_button/group_button.dart';
 
+import 'listeabsencepage.dart';
+
 class AddAbsenceDetails extends StatefulWidget {
   final Plan_Class_Session class_session;
   const AddAbsenceDetails({super.key, required this.class_session});
@@ -21,6 +23,7 @@ class AddAbsenceDetails extends StatefulWidget {
 
 class _AddAbsenceDetailsState extends State<AddAbsenceDetails> {
   //util
+
   TextEditingController descriptionController = TextEditingController();
   late Plan_Class_Session absence;
   List<User> listEtudiant = [];
@@ -48,8 +51,9 @@ class _AddAbsenceDetailsState extends State<AddAbsenceDetails> {
         absence.id_ens.toString() +
         "/ " +
         _indexgroup.toString());
+
     context.read<AbsenceBloc>().add(AddAbsence(
-        id_et,
+        id_et.toString(),
         absence.code_cl,
         absence.code_module,
         absence.annee_deb,
@@ -77,66 +81,78 @@ class _AddAbsenceDetailsState extends State<AddAbsenceDetails> {
             systemOverlayStyle: SystemUiOverlayStyle(
               statusBarColor: Color.fromARGB(255, 236, 26, 26),
             ),
-            title: Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              padding: EdgeInsets.only(top: 0),
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [
-                      Color.fromARGB(255, 236, 26, 26),
-                      Color.fromARGB(255, 88, 87, 86)
-                    ],
-                    begin: FractionalOffset.topCenter,
-                    end: FractionalOffset.bottomCenter,
-                    stops: [0.0, 0.8],
-                    tileMode: TileMode.mirror),
-              ),
+            title: InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (BuildContext context) {
+                  return ListAbsence(
+                    code_cl: absence.code_cl,
+                    code_module: absence.code_module,
+                    id_ens: absence.id_ens,
+                  );
+                }));
+              },
               child: Container(
-                height: 64,
-                margin: const EdgeInsets.only(bottom: 0, top: 0),
-                padding: const EdgeInsets.all(0),
-                decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "Classe ${absence.code_cl} ",
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text("Module: ${absence.code_module}"),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        foregroundColor: Colors.white,
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                padding: EdgeInsets.only(top: 0),
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [
+                        Color.fromARGB(255, 236, 26, 26),
+                        Color.fromARGB(255, 88, 87, 86)
+                      ],
+                      begin: FractionalOffset.topCenter,
+                      end: FractionalOffset.bottomCenter,
+                      stops: [0.0, 0.8],
+                      tileMode: TileMode.mirror),
+                ),
+                child: Container(
+                  height: 64,
+                  margin: const EdgeInsets.only(bottom: 0, top: 0),
+                  padding: const EdgeInsets.all(0),
+                  decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 10,
                       ),
-                      onPressed: () {
-                        if (allChecked) {
-                          listEtudiant.forEach((element) {
-                            element.isChecked = false;
-                          });
-                          allChecked = false;
-                        } else {
-                          listEtudiant.forEach((element) {
-                            element.isChecked = true;
-                          });
-                          allChecked = true;
-                        }
+                      Text(
+                        "Classe ${absence.code_cl} ",
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text("Module: ${absence.code_module}"),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.white,
+                        ),
+                        onPressed: () {
+                          if (allChecked) {
+                            listEtudiant.forEach((element) {
+                              element.isChecked = false;
+                            });
+                            allChecked = false;
+                          } else {
+                            listEtudiant.forEach((element) {
+                              element.isChecked = true;
+                            });
+                            allChecked = true;
+                          }
 
-                        setState(() {});
-                      },
-                      child: Text('Tout'),
-                    )
-                  ],
+                          setState(() {});
+                        },
+                        child: Text('Tout'),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -146,7 +162,7 @@ class _AddAbsenceDetailsState extends State<AddAbsenceDetails> {
               children: [
                 Row(
                   children: [
-                    Text('Seance:  '),
+                    Text('Seance: '),
                     GroupButton(
                       options: GroupButtonOptions(selectedColor: Colors.red),
                       onSelected: (value, index, isSelected) => {

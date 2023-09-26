@@ -105,7 +105,7 @@ class _ReclamationEnseignantPageState extends State<ReclamationEnseignantPage> {
                                     "Description: ${reclamationList[index].description}",
                                   ),
                                   const SizedBox(height: 10),
-                                  (reclamationList[index].reponse?.length == 0)
+                                  (reclamationList[index].reponse?.length != 0)
                                       ? Text(
                                           "Reponse: ${reclamationList[index].reponse}",
                                         )
@@ -117,10 +117,6 @@ class _ReclamationEnseignantPageState extends State<ReclamationEnseignantPage> {
                                   const SizedBox(height: 10),
                                   Text(
                                     "Enseignant: ${reclamationList[index].enseignant}",
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Text(
-                                    "Re-reclamation: ${reclamationList[index].id_reclamation}",
                                   ),
                                   const SizedBox(height: 10),
                                   Text(

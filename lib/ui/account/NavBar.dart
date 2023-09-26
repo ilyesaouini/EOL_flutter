@@ -1,3 +1,4 @@
+import 'package:copihass/models/emploi.dart';
 import 'package:copihass/ui/absence/pages/absence_page.dart';
 import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
 import 'package:copihass/ui/account/bloc/account_bloc.dart';
@@ -13,6 +14,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../emploi/bloc/emploi_bloc.dart';
 
 class DrawerWidget extends StatefulWidget {
   final int selectedItemPosition;
@@ -117,7 +120,6 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   _onDrawerItemSelected(int index) {
     switch (index) {
       case 1:
-      
         context.read<NoteBloc>().add(GetNoteList());
         break;
       case 2:
@@ -126,11 +128,14 @@ class _DrawerWidgetState extends State<DrawerWidget> {
       case 3:
         context.read<ResultatBloc>().add(GetResultatList());
         break;
+      case 4:
+        context.read<EmploiBloc>().add(GetEmploi());
+        break;
       case 5:
         context.read<ReclamationBloc>().add(GetReclamationList());
         break;
       case 6:
-        context.read<ClassBloc>().add(GetListClass());
+        context.read<EmploiBloc>().add(GetEmploi());
         break;
     }
   }
