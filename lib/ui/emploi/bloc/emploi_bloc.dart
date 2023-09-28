@@ -15,7 +15,10 @@ class EmploiBloc extends Bloc<EmploiEvent, EmploiState> {
   EmploiBloc() : super(EmploiInitial()) {
     on<AddEmploi>((event, emit) async {
       var url = addpdf;
-      var response = await http.post(Uri.parse(url));
+       var map = new Map<String, dynamic>();
+    map['file'] = event.file;
+    
+      var response = await http.post(Uri.parse(url ),body:map);
     });
     on<GetEmploi>(
       (event, emit) async {

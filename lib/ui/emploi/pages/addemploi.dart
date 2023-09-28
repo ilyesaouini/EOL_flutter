@@ -24,7 +24,7 @@ class _AddEmploiPageState extends State<AddEmploiPage> {
   File? fileToDisplay;
 
   void addemploi(File file) {
-    context.read<EmploiBloc>().add(AddEmploi(_fileName));
+    context.read<EmploiBloc>().add(AddEmploi(file));
   }
 
   Future<void> pickFile() async {

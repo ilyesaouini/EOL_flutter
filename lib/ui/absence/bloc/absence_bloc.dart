@@ -20,7 +20,7 @@ part 'absence_state.dart';
 final usermodel = User();
 Absence absencemodel = Absence();
 AbsenceNew absencenewmodel = AbsenceNew();
-//final absencemodel = new Absence();
+
 
 class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
   AbsenceBloc() : super(AbsenceInitial()) {
