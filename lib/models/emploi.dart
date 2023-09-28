@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 class Emploi {
   int? id_emploi;
   String? emploi;
@@ -5,6 +7,7 @@ class Emploi {
   String? date_ajout;
   String? path;
   String? name;
+  Uint8List? fileBuffer;
 
   Emploi(
       {this.id_emploi,

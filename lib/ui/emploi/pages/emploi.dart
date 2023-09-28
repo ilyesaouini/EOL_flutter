@@ -4,6 +4,8 @@ import 'dart:typed_data';
 import 'package:copihass/models/emploi.dart';
 import 'package:copihass/ui/emploi/bloc/emploi_bloc.dart';
 import 'package:copihass/ui/emploi/pages/affichage_emploi.dart';
+import 'package:copihass/ui/emploi/pages/pdf_viewer_page.dart';
+import 'package:copihass/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,8 +23,8 @@ class _EmploiPageState extends State<EmploiPage> {
   List<Emploi> listeemploi = [];
   @override
   void initState() {
-    super.initState();
     context.read<EmploiBloc>().add(GetEmploi());
+    super.initState();
   }
 
   @override
@@ -66,16 +68,10 @@ class _EmploiPageState extends State<EmploiPage> {
                               ),
                               TextButton(
                                   onPressed: () {
-                                    Uint8List base64 = base64Decode(
-                                        listeemploi[index].emploi!);
-                                    print(base64);
-                                    Navigator.push(context, MaterialPageRoute(
-                                        builder: (BuildContext context) {
-                                      return Affichage(
-                                        emploi: listeemploi[index],base64: base64,
-                                      );
-                                    }));
-                                    convert(listeemploi[index].emploi!,);
+                                    if(listeemploi[index].fileBuffer != null){
+                                   Utils.openPageWithRightSlide(
+                                        PdfViewerWidget(fileBuffer: listeemploi[index].fileBuffer!), context);
+                                    } 
                                   },
                                   child: Text("aperçu")),
                               ElevatedButton(

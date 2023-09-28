@@ -1,4 +1,4 @@
-final url = 'https://2c1b-196-234-164-254.ngrok-free.app/';
+final url = 'https://76ad-165-51-122-194.ngrok-free.app/';
 final registration = url + "register";
 final login = url + 'login2';
 final imageurl = url + 'image/';
