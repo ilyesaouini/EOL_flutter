@@ -141,9 +141,9 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
           'CODE_CL': event.code_cl,
           'ANNEE_DEB': event.annee_deb.toString(),
           'NUM_SEANCE': event.num_seance.toString(),
-          'DATE_SEANCE': event.date_seance.toString(),
+          
           'ID_ENS': event.id_ens,
-          'DATE_SAISIE': event.date_saisie.toString()
+          
         });
       },
     );

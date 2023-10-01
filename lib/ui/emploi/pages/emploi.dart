@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:copihass/models/emploi.dart';
@@ -6,8 +7,11 @@ import 'package:copihass/ui/emploi/bloc/emploi_bloc.dart';
 import 'package:copihass/ui/emploi/pages/affichage_emploi.dart';
 import 'package:copihass/ui/emploi/pages/pdf_viewer_page.dart';
 import 'package:copihass/utils/utils.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class EmploiPage extends StatefulWidget {
@@ -58,24 +62,41 @@ class _EmploiPageState extends State<EmploiPage> {
                     itemCount: listeemploi.length,
                     itemBuilder: (context, index) {
                       return Container(
+                        margin: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(15),
+                        decoration: BoxDecoration(
+                            color: Colors.grey.shade600,
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                                color: const Color.fromARGB(255, 17, 17, 17),
+                                width: 0.5)),
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              SizedBox(
+                                height: 15,
+                                width: 20,
+                              ),
                               Text(" ${listeemploi[index].name}"),
                               SizedBox(
-                                width: 10,
+                                width: 100,
                               ),
-                              TextButton(
-                                  onPressed: () {
-                                    if(listeemploi[index].fileBuffer != null){
-                                   Utils.openPageWithRightSlide(
-                                        PdfViewerWidget(fileBuffer: listeemploi[index].fileBuffer!), context);
-                                    } 
-                                  },
-                                  child: Text("aperçu")),
-                              ElevatedButton(
-                                  onPressed: () {}, child: Icon(Icons.download))
+                              Positioned(
+                                top: -1,
+                                child: TextButton(
+                                    onPressed: () {
+                                      if (listeemploi[index].fileBuffer !=
+                                          null) {
+                                        Utils.openPageWithRightSlide(
+                                            PdfViewerWidget(
+                                                fileBuffer: listeemploi[index]
+                                                    .fileBuffer!),
+                                            context);
+                                      }
+                                    },
+                                    child: Icon(Icons.remove_red_eye_outlined)),
+                              ),
                             ]),
                       );
                     },

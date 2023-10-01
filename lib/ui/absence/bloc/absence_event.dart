@@ -45,8 +45,7 @@ class AddAbsence extends AbsenceEvent {
   final String? code_module;
   final String? annee_deb;
   final int? num_seance;
-  final String? date_seance;
-  final String? date_saisie;
+
   final String? id_ens;
 
   AddAbsence(
@@ -55,8 +54,7 @@ class AddAbsence extends AbsenceEvent {
     this.code_module,
     this.annee_deb,
     this.num_seance,
-    this.date_seance,
-    this.date_saisie,
+    
     this.id_ens,
   );
 }

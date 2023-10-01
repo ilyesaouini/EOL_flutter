@@ -2,7 +2,7 @@
 import 'package:copihass/utils/route_transition.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 
 class Constants {
   static GlobalKey<NavigatorState> globalKey = GlobalKey<NavigatorState>();
@@ -14,7 +14,7 @@ class Constants {
 class Utils {
 
   static openPageWithRightSlide(Widget widget, BuildContext context) {
-    Navigator.of(context!)
+    Navigator.of(context)
         .push(SlideRightRoute(page: widget));
   }
 

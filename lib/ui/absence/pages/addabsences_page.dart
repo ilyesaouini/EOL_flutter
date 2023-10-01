@@ -58,8 +58,6 @@ class _AddAbsenceDetailsState extends State<AddAbsenceDetails> {
         absence.code_module,
         absence.annee_deb,
         _indexgroup,
-        DateTime.now().toString(),
-        DateTime.now().toString(),
         absence.id_ens));
   }
 

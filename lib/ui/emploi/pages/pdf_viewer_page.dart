@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
@@ -24,12 +23,14 @@ class _PdfViewerWidgetState extends State<PdfViewerWidget> {
           pageLayoutMode: PdfPageLayoutMode.continuous,
           canShowPaginationDialog: false,
           onHyperlinkClicked: (details) {},
-          onPageChanged: (details) {
+          /*
+            onPageChanged: (details) {
             setState(() {});
           },
           onDocumentLoaded: (details) {
             setState(() {});
           },
+          */
         ),
       ],
     );

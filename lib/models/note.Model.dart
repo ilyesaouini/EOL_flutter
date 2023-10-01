@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:ffi';
-import "package:flutter/foundation.dart";
 
 class NoteNew {
   String? code_module;
