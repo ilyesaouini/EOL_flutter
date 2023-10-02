@@ -1,4 +1,4 @@
-package com.example.copihass
+package com.esprit.copihass
 
 import io.flutter.embedding.android.FlutterActivity
 
