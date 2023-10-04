@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:copihass/models/role.dart';
-import 'package:copihass/utils/utils.dart';
+import 'package:copihass/models/user.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -9,10 +10,7 @@ import 'package:copihass/config.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
-import '../../../utils/utils.dart';
-import '../../../models/user.dart';
-import '../../account/Home.dart';
-import '../loginPage.dart';
+
 part 'authentication_event.dart';
 part 'authentication_state.dart';
 
@@ -30,7 +28,7 @@ class AuthenticationBloc
       if (event is LoginEvent) {
         initSharedPref();
         var user = [];
-        var role = [];
+       
         var reqBody = {
           "email": event.email,
           "password": event.password,

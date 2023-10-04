@@ -1,15 +1,9 @@
 import 'package:copihass/models/reclamation.dart';
-import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
 import 'package:copihass/ui/reclamation/bloc/reclamation_bloc.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../models/user.dart';
 
 class ReclamationDetails extends StatefulWidget {
   final Reclamation reclamation;
@@ -23,7 +17,6 @@ class ReclamationDetails extends StatefulWidget {
 class _ReclamationDetailsState extends State<ReclamationDetails> {
   //util
   TextEditingController responeController = TextEditingController();
-  final _controller = InputDecoration();
   late Reclamation reclamation;
 
   @override

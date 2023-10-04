@@ -13,7 +13,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../models/note.Model.dart';
-import '../../../models/note.dart';
 
 part 'note_event.dart';
 part 'note_state.dart';

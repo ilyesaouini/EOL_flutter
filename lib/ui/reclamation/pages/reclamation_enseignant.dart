@@ -1,8 +1,6 @@
 import 'package:copihass/models/reclamation.dart';
-import 'package:copihass/ui/reclamation/pages/reclamationdetails.dart';
 import 'package:copihass/ui/reclamation/pages/reclamationsdetailsenseignant.dart';
-import 'package:copihass/ui/reclamation/widgets/dialog_box.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -10,9 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../models/user.dart';
-import '../../account/NavBar.dart';
-import '../../account/bloc/account_bloc.dart';
-import '../../authentication/loginPage.dart';
+
 import '../bloc/reclamation_bloc.dart';
 
 class ReclamationEnseignantPage extends StatefulWidget {
@@ -26,7 +22,6 @@ class ReclamationEnseignantPage extends StatefulWidget {
 
 class _ReclamationEnseignantPageState extends State<ReclamationEnseignantPage> {
   User user = User();
-  final _controller = InputDecoration();
 
   TextEditingController descriptionController = TextEditingController();
   List<Reclamation> reclamationList = [];

@@ -1,10 +1,8 @@
-import 'package:copihass/config.dart';
-import 'package:date_format/date_format.dart';
+
 import 'package:copihass/models/plan_class_session.dart';
 import 'package:copihass/models/user.dart';
 import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
-import 'package:copihass/ui/absence/pages/absence_admin.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

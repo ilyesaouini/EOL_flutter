@@ -1,19 +1,14 @@
-import 'package:copihass/config.dart';
-import 'package:copihass/models/absence.dart';
-import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
+
 import 'package:copihass/ui/note/bloc/note_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+
 
 import '../../../models/note.Model.dart';
-import '../../../models/note.dart';
-import '../../reclamation/bloc/reclamation_bloc.dart';
+
 
 class NoteDetails extends StatefulWidget {
   final NoteNew note;
@@ -151,7 +146,7 @@ class _NoteDetailsState extends State<NoteDetails> {
 }
 
 void showToastSuccess() => Fluttertoast.showToast(
-    msg: "Add reclamation successfuly",
+    msg: "Reclamation ajouté",
     fontSize: 16,
     backgroundColor: Colors.grey.shade400,
     textColor: Colors.black,

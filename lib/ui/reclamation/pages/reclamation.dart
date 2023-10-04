@@ -1,18 +1,14 @@
 import 'package:copihass/models/reclamation.dart';
 import 'package:copihass/ui/reclamation/pages/reclamationdetails.dart';
-import 'package:copihass/ui/reclamation/widgets/dialog_box.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../models/user.dart';
-import '../../account/NavBar.dart';
-import '../../account/bloc/account_bloc.dart';
-import '../../authentication/loginPage.dart';
+
 import '../bloc/reclamation_bloc.dart';
 
 class ReclamationPage extends StatefulWidget {
@@ -141,7 +137,7 @@ class _ReclamationPageState extends State<ReclamationPage> {
                   barrierDismissible: true,
                   builder: (context) {
                     return AlertDialog(
-                      title: Text("Add reclamation"),
+                      title: Text(" Reclamation simple"),
                       content: Container(
                         child: TextField(
                           controller: descriptionController,
@@ -202,7 +198,7 @@ class ReclamationListLoader extends StatelessWidget {
 }
 
 void showToastSuccess() => Fluttertoast.showToast(
-    msg: "Add reclamation successfuly",
+    msg: "Reclamation ajouté",
     fontSize: 16,
     backgroundColor: Colors.grey.shade400,
     textColor: Colors.black,

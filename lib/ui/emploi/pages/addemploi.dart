@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:copihass/ui/emploi/bloc/emploi_bloc.dart';
-import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 
 import 'package:flutter/material.dart';

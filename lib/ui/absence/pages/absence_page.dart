@@ -1,5 +1,4 @@
-import 'package:copihass/config.dart';
-import 'package:copihass/models/absence.dart';
+
 import 'package:copihass/models/user.dart';
 import 'package:copihass/ui/absence/pages/absence_details.dart';
 import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
@@ -8,8 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../models/absencenew.Model.dart';
-import '../../account/NavBar.dart';
-import '../../authentication/loginPage.dart';
+
 
 class AbsencePage extends StatefulWidget {
   final SharedPreferences prefs;

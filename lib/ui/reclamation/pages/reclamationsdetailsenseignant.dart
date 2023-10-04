@@ -1,15 +1,10 @@
 import 'package:copihass/models/reclamation.dart';
-import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
 import 'package:copihass/ui/reclamation/bloc/reclamation_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../models/user.dart';
 
 class ReclamationDetailsEnseignant extends StatefulWidget {
   final Reclamation reclamation;
@@ -153,7 +148,7 @@ class _ReclamationDetailsEnseignantState
 }
 
 void showToastSuccess() => Fluttertoast.showToast(
-    msg: "Add reponse successfuly",
+    msg: " Reponse ajouté",
     fontSize: 16,
     backgroundColor: Colors.grey.shade400,
     textColor: Colors.black,

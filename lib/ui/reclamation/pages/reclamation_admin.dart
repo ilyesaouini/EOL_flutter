@@ -1,17 +1,11 @@
 import 'package:copihass/models/reclamation.dart';
 import 'package:copihass/ui/reclamation/pages/reclamationdetails.dart';
-import 'package:copihass/ui/reclamation/widgets/dialog_box.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../models/user.dart';
-import '../../account/NavBar.dart';
-import '../../account/bloc/account_bloc.dart';
-import '../../authentication/loginPage.dart';
+
 import '../bloc/reclamation_bloc.dart';
 
 class ReclamationAdminPage extends StatefulWidget {
@@ -24,7 +18,6 @@ class ReclamationAdminPage extends StatefulWidget {
 
 class _ReclamationAdminPageState extends State<ReclamationAdminPage> {
   User user = User();
-  final _controller = InputDecoration();
 
   TextEditingController descriptionController = TextEditingController();
   List<Reclamation> reclamationList = [];
@@ -105,24 +98,21 @@ class _ReclamationAdminPageState extends State<ReclamationAdminPage> {
                                   const SizedBox(height: 10),
                                   (reclamationList[index].reponse == null)
                                       ? Text(
-                                          "Reponse: ${reclamationList[index].reponse}",
+                                          "Reponse: __",
                                         )
-                                      : Text("__"),
-                                  Text(
-                                    "Reponse: ${reclamationList[index].reponse}",
-                                  ),
+                                      : Text(
+                                          "Reponse: ${reclamationList[index].reponse}"),
                                   const SizedBox(height: 10),
                                   Text(
                                     "Module: ${reclamationList[index].module}",
                                   ),
                                   const SizedBox(height: 10),
-                                  Text(
-                                    "Enseignant: ${reclamationList[index].enseignant}",
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Text(
-                                    "Re-reclamation: ${reclamationList[index].id_reclamation}",
-                                  ),
+                                  (reclamationList[index].enseignant == null)
+                                      ? Text(
+                                          "Enseignant: __",
+                                        )
+                                      : Text(
+                                          "Enseignant:${reclamationList[index].enseignant}"),
                                   const SizedBox(height: 10),
                                   Text(
                                     "Status: ${reclamationList[index].status}",

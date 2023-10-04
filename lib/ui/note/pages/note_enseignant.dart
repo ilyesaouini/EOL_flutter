@@ -1,15 +1,13 @@
 import 'package:copihass/models/plan_class_session.dart';
 import 'package:copihass/ui/note/bloc/note_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../models/note.Model.dart';
-import '../../../models/note.dart';
+
 import '../../../models/user.dart';
-import 'notedetails.dart';
+
 
 class NoteEnseignantPage extends StatefulWidget {
   final SharedPreferences prefs;

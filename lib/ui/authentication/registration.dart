@@ -1,16 +1,15 @@
-import 'dart:convert';
 import 'dart:math';
 import 'package:copihass/ui/account/Home.dart';
+import 'package:copihass/ui/reclamation/pages/reclamation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../applogo.dart';
-import '../../config.dart';
 
 import 'bloc/authentication_bloc.dart';
 import 'loginPage.dart';
-import 'package:http/http.dart' as http;
 
 class Registration extends StatefulWidget {
   @override
@@ -34,6 +33,7 @@ class _RegistrationState extends State<Registration> {
         _isNotValidate = true;
       });
     }
+    showToastSuccess();
   }
 
   @override
@@ -43,6 +43,7 @@ class _RegistrationState extends State<Registration> {
         if (state is RegistreSuccesState) {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => Home(state.prefs)));
+          showToastSuccess();
         }
       },
       builder: (context, state) {
@@ -252,3 +253,10 @@ String generatePassword() {
   }
   return password;
 }
+
+void showToastSuccess() => Fluttertoast.showToast(
+    msg: "Compte créer avec succéss",
+    fontSize: 16,
+    backgroundColor: Colors.grey.shade400,
+    textColor: Colors.black,
+    gravity: ToastGravity.BOTTOM);

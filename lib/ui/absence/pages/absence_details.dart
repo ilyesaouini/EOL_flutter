@@ -1,5 +1,4 @@
-import 'package:copihass/config.dart';
-import 'package:copihass/models/absence.dart';
+
 import 'package:copihass/models/absencenew.Model.dart';
 import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,8 +7,6 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class AbsenceDetails extends StatefulWidget {
   final AbsenceNew absence;
@@ -144,7 +141,7 @@ class _AbsenceDetailsState extends State<AbsenceDetails> {
 }
 
 void showToastSuccess() => Fluttertoast.showToast(
-    msg: "Add reclamation successfuly",
+    msg: "Reclamation ajouté",
     fontSize: 16,
     backgroundColor: Colors.grey.shade400,
     textColor: Colors.black,

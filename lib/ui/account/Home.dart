@@ -1,27 +1,24 @@
-import 'dart:convert';
-import 'dart:io';
+
 import 'package:copihass/models/role.dart';
 import 'package:copihass/ui/absence/pages/absence_admin.dart';
 import 'package:copihass/ui/absence/pages/absence_page.dart';
-import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
+
 import 'package:copihass/ui/account/NavBar.dart';
 import 'package:copihass/ui/account/profile_page.dart';
 import 'package:copihass/ui/emploi/pages/addemploi.dart';
 import 'package:copihass/ui/emploi/pages/emploi.dart';
-import 'package:copihass/ui/note/bloc/note_bloc.dart';
+
 import 'package:copihass/ui/note/pages/note.dart';
-import 'package:copihass/ui/reclamation/bloc/reclamation_bloc.dart';
+
 import 'package:copihass/ui/reclamation/pages/reclamation.dart';
-import 'package:copihass/ui/resultat/bloc/resultat_bloc.dart';
+
 import 'package:copihass/ui/resultat/resultat.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 
 import 'package:copihass/ui/authentication/loginPage.dart';
 import 'package:flutter/material.dart';
 
-import 'package:image_picker/image_picker.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/user.dart';
@@ -31,8 +28,6 @@ import '../note/pages/note_enseignant.dart';
 import '../reclamation/pages/reclamation_admin.dart';
 import '../reclamation/pages/reclamation_enseignant.dart';
 import 'bloc/account_bloc.dart';
-import 'components/profile_menu.dart';
-
 class Home extends StatefulWidget {
   final SharedPreferences prefs;
   const Home(this.prefs, {super.key});

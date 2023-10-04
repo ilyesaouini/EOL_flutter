@@ -1,17 +1,9 @@
-import 'package:copihass/config.dart';
-import 'package:copihass/models/absence.dart';
-import 'package:copihass/models/absencenew.Model.dart';
+
 import 'package:copihass/models/plan_class_session.dart';
-import 'package:copihass/ui/absence/bloc/absence_bloc.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
-import '../../reclamation/bloc/reclamation_bloc.dart';
 
 class ClassDetails extends StatefulWidget {
   final Plan_Class_Session classe;

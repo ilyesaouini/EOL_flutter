@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../models/note.Model.dart';
-import '../../../models/note.dart';
 import '../../../models/user.dart';
 import 'notedetails.dart';
 

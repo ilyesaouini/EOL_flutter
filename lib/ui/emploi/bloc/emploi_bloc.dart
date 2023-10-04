@@ -6,9 +6,7 @@ import 'package:copihass/config.dart';
 import 'package:copihass/models/emploi.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 
 part 'emploi_event.dart';
@@ -57,7 +55,6 @@ class EmploiBloc extends Bloc<EmploiEvent, EmploiState> {
     );
   }
 
-  @override
   Future<dynamic> uploadFile(
       {File? file, String? path, bool? isFundDocument}) async {
     dynamic uploadedDocument;

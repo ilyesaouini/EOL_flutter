@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:copihass/config.dart';
-import 'package:copihass/models/note.dart';
 import 'package:copihass/models/reclamation.dart';
 import 'package:http/http.dart';
 
