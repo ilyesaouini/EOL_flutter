@@ -12,7 +12,8 @@ import 'package:copihass/ui/note/pages/note.dart';
 
 import 'package:copihass/ui/reclamation/pages/reclamation.dart';
 
-import 'package:copihass/ui/resultat/resultat.dart';
+import 'package:copihass/ui/resultat/bloc/pages/resultat.dart';
+import 'package:copihass/ui/resultat/bloc/pages/resultatadmin.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:copihass/ui/authentication/loginPage.dart';
@@ -78,7 +79,7 @@ class _HomeState extends State<Home> {
         ProfilePage(prefs: widget.prefs),
         NotePage(prefs: widget.prefs),
         AbsenceAdminPage(prefs: widget.prefs),
-        ResultatPage(prefs: widget.prefs),
+        ResultatAdminPage(prefs: widget.prefs),
         AddEmploiPage(),
         ReclamationAdminPage(prefs: widget.prefs),
       ];

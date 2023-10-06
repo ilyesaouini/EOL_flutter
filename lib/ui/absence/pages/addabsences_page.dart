@@ -1,4 +1,3 @@
-
 import 'package:copihass/models/plan_class_session.dart';
 import 'package:copihass/models/user.dart';
 import 'package:copihass/ui/absence/bloc/absence_bloc.dart';

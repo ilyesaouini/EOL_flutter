@@ -99,7 +99,7 @@ class _NoteDetailsState extends State<NoteDetails> {
             barrierDismissible: true,
             builder: (context) {
               return AlertDialog(
-                title: Text("Add reclamation"),
+                title: Text("Ajouter reclamation"),
                 content: Container(
                   child: TextField(
                     controller: descriptionController,
