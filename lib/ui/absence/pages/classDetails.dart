@@ -1,9 +1,7 @@
-
 import 'package:copihass/models/plan_class_session.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 
 class ClassDetails extends StatefulWidget {
   final Plan_Class_Session classe;
@@ -23,8 +21,6 @@ class _ClassDetailsState extends State<ClassDetails> {
     classe = widget.classe;
     super.initState();
   }
-
- 
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +46,7 @@ class _ClassDetailsState extends State<ClassDetails> {
               SizedBox(
                 height: 10,
               ),
-              Text(classe.code_cl?? "Null"),
+              Text(classe.code_cl ?? "Null"),
               SizedBox(
                 height: 10,
               ),
@@ -66,7 +62,7 @@ class _ClassDetailsState extends State<ClassDetails> {
             barrierDismissible: true,
             builder: (context) {
               return AlertDialog(
-                title: Text("Add reclamation"),
+                title: Text("Ajouter reclamation"),
                 content: Container(
                   child: TextField(
                     controller: descriptionController,
@@ -92,7 +88,6 @@ class _ClassDetailsState extends State<ClassDetails> {
                       backgroundColor: Colors.grey, // Background color
                     ),
                     onPressed: () {
-                      
                       Navigator.pop(context);
                     },
                     child: Text(
