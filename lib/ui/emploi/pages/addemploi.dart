@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class AddEmploiPage extends StatefulWidget {
   const AddEmploiPage({super.key});
@@ -24,6 +25,7 @@ class _AddEmploiPageState extends State<AddEmploiPage> {
 
   void addemploi(File file) {
     context.read<EmploiBloc>().add(AddEmploi(file));
+    showToastSuccess();
   }
 
   Future<void> pickFile() async {
@@ -137,3 +139,10 @@ class _AddEmploiPageState extends State<AddEmploiPage> {
     ));
   }
 }
+
+void showToastSuccess() => Fluttertoast.showToast(
+    msg: "Emploi ajouté",
+    fontSize: 16,
+    backgroundColor: Colors.grey.shade400,
+    textColor: Colors.black,
+    gravity: ToastGravity.BOTTOM);

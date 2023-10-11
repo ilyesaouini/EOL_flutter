@@ -23,6 +23,7 @@ class _EmploiPageState extends State<EmploiPage> {
   void initState() {
     context.read<EmploiBloc>().add(GetEmploi());
     super.initState();
+    context.read<EmploiBloc>().add(GetEmploi());
   }
 
   @override

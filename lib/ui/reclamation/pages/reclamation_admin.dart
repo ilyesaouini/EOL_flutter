@@ -71,13 +71,7 @@ class _ReclamationAdminPageState extends State<ReclamationAdminPage> {
                         itemCount: reclamationList.length,
                         itemBuilder: (context, index) {
                           return InkWell(
-                            onTap: () {
-                              Navigator.push(context, MaterialPageRoute(
-                                  builder: (BuildContext context) {
-                                return ReclamationDetails(
-                                    reclamation: reclamationList[index]);
-                              }));
-                            },
+                            onTap: () {},
                             child: Container(
                               margin: const EdgeInsets.all(8.0),
                               padding: const EdgeInsets.all(15),

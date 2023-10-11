@@ -3,6 +3,7 @@ import 'package:copihass/ui/resultat/bloc/resultat_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ResultatAdminPage extends StatefulWidget {
@@ -34,6 +35,7 @@ class _ResultatAdminPageState extends State<ResultatAdminPage> {
     }
     context.read<ResultatBloc>().add(AddAutorisation(
         autorisationList[0].etat_note, autorisationList[0].etat_resultat));
+    showToastSuccess();
   }
 
   @override
@@ -161,3 +163,10 @@ class ResultatListLoader extends StatelessWidget {
     );
   }
 }
+
+void showToastSuccess() => Fluttertoast.showToast(
+    msg: "Autorisation ajouté",
+    fontSize: 16,
+    backgroundColor: Colors.grey.shade400,
+    textColor: Colors.black,
+    gravity: ToastGravity.BOTTOM);

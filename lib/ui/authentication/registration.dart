@@ -255,7 +255,7 @@ String generatePassword() {
 }
 
 void showToastSuccess() => Fluttertoast.showToast(
-    msg: "Compte créer avec succéss",
+    msg: "Compte créé avec succéss",
     fontSize: 16,
     backgroundColor: Colors.grey.shade400,
     textColor: Colors.black,

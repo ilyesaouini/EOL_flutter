@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-
 class ReclamationDetails extends StatefulWidget {
   final Reclamation reclamation;
 
@@ -73,10 +72,10 @@ class _ReclamationDetailsState extends State<ReclamationDetails> {
                 height: 10,
               ),
               (reclamation.reponse == null)
-                  ? Text(
+                  ? Text("__")
+                  : Text(
                       "Reponse: ${reclamation.reponse}",
-                    )
-                  : Text("__"),
+                    ),
               SizedBox(
                 height: 10,
               ),

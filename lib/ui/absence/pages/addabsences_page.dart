@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:group_button/group_button.dart';
 
 import 'listeabsencepage.dart';
@@ -56,6 +57,7 @@ class _AddAbsenceDetailsState extends State<AddAbsenceDetails> {
         absence.annee_deb,
         _indexgroup,
         absence.id_ens));
+    showToastSuccess();
   }
 
   @override
@@ -301,3 +303,10 @@ class CheckBox {
     this.value = false,
   });
 }
+
+void showToastSuccess() => Fluttertoast.showToast(
+    msg: "Absence ajouté",
+    fontSize: 16,
+    backgroundColor: Colors.grey.shade400,
+    textColor: Colors.black,
+    gravity: ToastGravity.BOTTOM);
